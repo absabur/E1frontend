@@ -14,14 +14,17 @@ const UserUpdate = () => {
   const [role, setRole] = useState("");
   const params = useParams();
   const dispatch = useDispatch();
+  // @ts-ignore
   const { loading, user } = useSelector((state) => state.userInfo);
   const {
     isUpdated,
     error,
     loading: isLoading,
+  // @ts-ignore
   } = useSelector((state) => state.adminUserUD);
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(userInfo(params.id));
   }, []);
 
@@ -33,6 +36,7 @@ const UserUpdate = () => {
     if (isUpdated) {
       setMsg("User Updated successfully.");
       dispatch({ type: UPDATE_USER_RESET });
+      // @ts-ignore
       dispatch(userInfo(params.id));
       setRole("");
     }
@@ -50,6 +54,7 @@ const UserUpdate = () => {
     if (role === "user") {
       data = { isAdmin: false, isBan: false };
     }
+    // @ts-ignore
     dispatch(updateUser(params.id, data));
   };
 

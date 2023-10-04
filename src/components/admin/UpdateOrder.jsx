@@ -14,23 +14,28 @@ const Order = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const params = useParams();
   const dispatch = useDispatch();
+  // @ts-ignore
   const { order, error, loading } = useSelector((state) => state.orderDetails);
+  // @ts-ignore
   const { user } = useSelector((state) => state.user);
   const {
     isUpdated,
     error: updateError,
     loading: isLoading,
+  // @ts-ignore
   } = useSelector((state) => state.adminOrderUD);
   const [status, setStatus] = useState("");
   const [reason, setReason] = useState("");
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(getOrderDetails(params.id));
   }, [params.id, dispatch]);
 
   useEffect(() => {
     if (error) {
       setErr(error);
+      // @ts-ignore
       dispatch(clearErrors());
     }
     if (updateError) {
@@ -40,12 +45,14 @@ const Order = () => {
     if (isUpdated) {
       setMsg("Order Updated successfully.");
       dispatch({ type: UPDATE_ORDER_RESET });
+      // @ts-ignore
       dispatch(getOrderDetails(params.id));
     }
   }, [error, isUpdated, updateError]);
 
   const handleChange = (e) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(updateOrder(params.id, { status, reason }));
   };
 

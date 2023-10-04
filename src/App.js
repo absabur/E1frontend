@@ -1,9 +1,10 @@
+// @ts-nocheck
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import GlobalState from "./GlobalState";
 import { AiOutlineArrowUp } from "react-icons/ai";
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header/Header.jsx";
 import Home from "./components/Home/Home";
 import Footer from "./components/layout/Footer/Footer";
@@ -52,7 +53,7 @@ import AllUsers from "./components/admin/AllUsers";
 import UpdateUser from "./components/admin/UpdateUser";
 
 function App() {
-  const { isAuthenticated, loading, user } = useSelector((state) => state.user);
+  const { isAuthenticated, loading, user } = useSelector(state => state.user);
   const [isVisible, setIsVisible] = useState(false);
 
   const dispatch = useDispatch();
@@ -131,7 +132,7 @@ function App() {
         <LoadingPage />
       ) : (
         <div className="App">
-          <HashRouter>
+          <BrowserRouter>
             <Header />
             {user && user.isAdmin && <Sidebar />}
             <div style={{ height: "80px" }}></div>
@@ -235,7 +236,7 @@ function App() {
               )}
             </Routes>
             <Footer />
-          </HashRouter>
+          </BrowserRouter>
           <button
             className="btnScrollTop"
             style={{ display: isVisible ? "block" : "none" }}

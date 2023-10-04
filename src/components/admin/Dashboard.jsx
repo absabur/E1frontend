@@ -10,18 +10,25 @@ import { allUsers } from '../../actions/admin/userAction.js';
 const Dashboard = () => {
     const dispatch = useDispatch()
     const { pagination } = useSelector(
+        // @ts-ignore
         (state) => state.products
       );
       const { pagination: userCount } = useSelector(
+        // @ts-ignore
         (state) => state.adminUsers
       );
+    // @ts-ignore
     const { orders, amount } = useSelector(
+    // @ts-ignore
     (state) => state.adminOrders
     );
     
     useEffect(() => {
+        // @ts-ignore
         dispatch(getProductAdmin({limit: 100000000}))
+        // @ts-ignore
         dispatch(allOrders())
+        // @ts-ignore
         dispatch(allUsers(1, 100000000));
     }, [])
 
@@ -47,9 +54,6 @@ const Dashboard = () => {
                     {userCount && userCount.number_of_Users}
                 </Link>
             </div>
-            {/* <div className="lineChart">
-                <Doughnut data={doughnutState} />
-            </div> */}
         </div>
     </div>
   )

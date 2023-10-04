@@ -16,8 +16,10 @@ const UpdateCategory = () => {
   const params = useParams();
   const dispatch = useDispatch();
 
+    // @ts-ignore
   const { categories } = useSelector((state) => state.categories);
   useEffect(() => {
+    // @ts-ignore
     dispatch(allCategory());
   }, []);
   useEffect(() => {

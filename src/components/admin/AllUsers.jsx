@@ -15,12 +15,14 @@ import MetaDeta from "../layout/MetaDeta";
 const Users = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const { error, loading, users, pagination } = useSelector(
+    // @ts-ignore
     (state) => state.adminUsers
   );
   const {
     isDeleted,
     error: deleteError,
     loading: isLoading,
+  // @ts-ignore
   } = useSelector((state) => state.adminUserUD);
   const [searchParams, setSearchParams] = useSearchParams({});
 
@@ -41,21 +43,27 @@ const Users = () => {
     }
   };
 
+  // @ts-ignore
   const handlePageChange = (e, p) => {
     setpage(p);
   };
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(allUsers(page, limit));
   }, []);
 
   useEffect(() => {
     if (searchParams.get("sort")) {
+      // @ts-ignore
       setSort(searchParams.get("sort"));
+      // @ts-ignore
       dispatch(allUsers(page, limit, "", searchParams.get("sort")));
     }
     if (searchParams.get("id")) {
+      // @ts-ignore
       setId(searchParams.get("id"));
+      // @ts-ignore
       dispatch(allUsers(page, limit, searchParams.get("id"), ""));
     }
   }, [searchParams.get("sort"), searchParams.get("id")]);
@@ -64,12 +72,14 @@ const Users = () => {
     setSort("");
     setId("");
     setSearchParams({});
+    // @ts-ignore
     dispatch(allUsers(page, limit));
   };
 
   useEffect(() => {
     if (error) {
       setErr(error);
+      // @ts-ignore
       dispatch(clearErrors());
     }
     if (deleteError) {
@@ -79,6 +89,7 @@ const Users = () => {
     if (isDeleted) {
       setMsg("User deleted successfully");
       dispatch({ type: DELETE_USER_RESET });
+      // @ts-ignore
       dispatch(allUsers(page, limit));
     }
   }, [error, deleteError, isDeleted]);
@@ -98,6 +109,7 @@ const Users = () => {
 
   const handleDeleteSubmit = async (e) => {
     e.preventDefault()
+    // @ts-ignore
     dispatch(deleteUser(DeleteId));
     setCancelDiv(false)
   }
@@ -151,6 +163,7 @@ const Users = () => {
               <div className="id">
                 <label htmlFor="id">Id: </label>
                 <input
+                  // @ts-ignore
                   value={searchParams.get("id")}
                   disabled={searchParams.get("sort") ? true : false}
                   onChange={(e) => setId(e.target.value)}

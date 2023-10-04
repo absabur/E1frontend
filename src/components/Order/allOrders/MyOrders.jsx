@@ -13,14 +13,19 @@ const MyOrders = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  // @ts-ignore
   const { orders, error, loading } = useSelector((state) => state.myOrders);
+  // @ts-ignore
   const { success, isError, isLoading } = useSelector(
+    // @ts-ignore
     (state) => state.cancelOrder
   );
   useEffect(() => {
+    // @ts-ignore
     dispatch(myOrders());
     if (error) {
       setErr(error);
+      // @ts-ignore
       dispatch(clearErrors());
     }
     if (isError) {
@@ -45,6 +50,7 @@ const MyOrders = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(cancleOrder(cancleId, reason));
     setCancleDiv(false);
   };

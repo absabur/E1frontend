@@ -15,8 +15,10 @@ import GlobalState from "../../GlobalState";
 const AllCategories = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
+  // @ts-ignore
   const { categories } = useSelector((state) => state.categories);
   useEffect(() => {
+    // @ts-ignore
     dispatch(allCategory());
   }, []);
   const [name, setName] = useState("");
@@ -33,6 +35,7 @@ const AllCategories = () => {
       if (data.success) {
         setMsg("Category created");
         setName("");
+        // @ts-ignore
         dispatch(allCategory());
       }
     } catch (error) {
@@ -52,6 +55,7 @@ const AllCategories = () => {
     const { data } = await axios.delete(`/api/category/${DeleteName}`);
     if (data.success) {
       setMsg("Category Deleted");
+      // @ts-ignore
       dispatch(allCategory());
       setCancelDiv(false)
     }

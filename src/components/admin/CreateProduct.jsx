@@ -12,7 +12,9 @@ const CreateProduct = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // @ts-ignore
   const { loading, error, success } = useSelector((state) => state.newProduct);
+  // @ts-ignore
   const { categories } = useSelector((state) => state.categories);
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -35,6 +37,7 @@ const CreateProduct = () => {
   }, [error, dispatch, success]);
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(allCategory());
   }, []);
 
@@ -44,14 +47,17 @@ const CreateProduct = () => {
     const myForm = new FormData();
 
     myForm.set("name", name);
+    // @ts-ignore
     myForm.set("price", price);
     myForm.set("description", description);
     myForm.set("category", category);
+    // @ts-ignore
     myForm.set("Stock", Stock);
 
     images.forEach((image) => {
       myForm.append("images", image);
     });
+    // @ts-ignore
     dispatch(createProduct(myForm));
   };
 
@@ -66,7 +72,9 @@ const CreateProduct = () => {
 
       reader.onload = () => {
         if (reader.readyState === 2) {
+          // @ts-ignore
           setImagesPreview((old) => [...old, reader.result]);
+          // @ts-ignore
           setImages((old) => [...old, reader.result]);
         }
       };
@@ -108,6 +116,7 @@ const CreateProduct = () => {
                   required
                   name="price"
                   value={price}
+                  // @ts-ignore
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
@@ -120,6 +129,7 @@ const CreateProduct = () => {
                   required
                   name="stock"
                   value={Stock}
+                  // @ts-ignore
                   onChange={(e) => setStock(e.target.value)}
                 />
               </div>

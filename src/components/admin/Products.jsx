@@ -9,6 +9,7 @@ import {
   deleteProduct,
   getProductAdmin,
 } from "../../actions/admin/productsAction";
+// @ts-ignore
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -19,12 +20,14 @@ import MetaDeta from "../layout/MetaDeta";
 const Products = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const { loading, error, products, pagination } = useSelector(
+    // @ts-ignore
     (state) => state.products
   );
   const {
     isDeleted,
     error: deleteError,
     loading: isLoading,
+  // @ts-ignore
   } = useSelector((state) => state.adminProduct);
   const [searchParams, setSearchParams] = useSearchParams({});
 
@@ -47,22 +50,30 @@ const Products = () => {
   };
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(getProductAdmin({ page, limit, name: "", sort: "" }));
   }, []);
 
   useEffect(() => {
     if (searchParams.get("id")) {
+      // @ts-ignore
       setId(searchParams.get("id"));
+      // @ts-ignore
       dispatch(getProductAdmin({ page, limit, id: searchParams.get("id") }));
     }
     if (searchParams.get("name") || searchParams.get("sort")) {
+      // @ts-ignore
       setName(searchParams.get("name"));
+      // @ts-ignore
       setSort(searchParams.get("sort"));
       dispatch(
+        // @ts-ignore
         getProductAdmin({
           page,
           limit,
+          // @ts-ignore
           name: searchParams.get("name"),
+          // @ts-ignore
           sort: searchParams.get("sort"),
         })
       );
@@ -79,6 +90,7 @@ const Products = () => {
     setId("");
     setSearchParams({});
     dispatch(
+      // @ts-ignore
       getProductAdmin({ page, limit, name: "", sort: "Newest Arrivals" })
     );
   };
@@ -86,6 +98,7 @@ const Products = () => {
   useEffect(() => {
     if (error) {
       setErr(error);
+      // @ts-ignore
       dispatch(clearErrors());
     }
     if (deleteError) {
@@ -95,10 +108,12 @@ const Products = () => {
     if (isDeleted) {
       setMsg("Product deleted successfully.");
       dispatch({ type: DELETE_PRODUCT_RESET });
+      // @ts-ignore
       dispatch(getProductAdmin({ page, limit, name: "", sort: "" }));
     }
   }, [error, isDeleted, deleteError]);
 
+  // @ts-ignore
   const handlePageChange = (e, p) => {
     setpage(p);
   };
@@ -118,6 +133,7 @@ const Products = () => {
   
   const handleDeleteSubmit = async (e) => {
     e.preventDefault()
+    // @ts-ignore
     dispatch(deleteProduct(DeleteId));
     setCancelDiv(false)
   }
@@ -243,6 +259,7 @@ const Products = () => {
                     </p>
                     <p
                       className="stock"
+                      // @ts-ignore
                       style={product.Stock === 0 ? { color: "red" } : null}
                     >
                       {product.Stock}

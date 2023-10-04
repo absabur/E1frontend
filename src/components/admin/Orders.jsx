@@ -16,16 +16,19 @@ import MetaDeta from "../layout/MetaDeta";
 const Orders = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const { error, loading, orders, amount } = useSelector(
+    // @ts-ignore
     (state) => state.adminOrders
   );
   const {
     isDeleted,
     error: deleteError,
     loading: isLoading,
+  // @ts-ignore
   } = useSelector((state) => state.adminOrderUD);
   const [searchParams, setSearchParams] = useSearchParams({});
 
   const dispatch = useDispatch();
+  // @ts-ignore
   const navigate = useNavigate();
 
   const [sort, setSort] = useState("");
@@ -42,16 +45,21 @@ const Orders = () => {
   };
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(allOrders());
   }, []);
 
   useEffect(() => {
     if (searchParams.get("sort")) {
+      // @ts-ignore
       setSort(searchParams.get("sort"));
+      // @ts-ignore
       dispatch(allOrders("", searchParams.get("sort")));
     }
     if (searchParams.get("id")) {
+      // @ts-ignore
       setId(searchParams.get("id"));
+      // @ts-ignore
       dispatch(allOrders(searchParams.get("id"), ""));
     }
   }, [searchParams.get("sort"), searchParams.get("id")]);
@@ -60,12 +68,14 @@ const Orders = () => {
     setSort("");
     setId("");
     setSearchParams({});
+    // @ts-ignore
     dispatch(allOrders());
   };
 
   useEffect(() => {
     if (error) {
       setErr(error);
+      // @ts-ignore
       dispatch(clearErrors());
     }
     if (deleteError) {
@@ -75,6 +85,7 @@ const Orders = () => {
     if (isDeleted) {
       setMsg("Order deleted successfully.");
       dispatch({ type: DELETE_ORDER_RESET });
+      // @ts-ignore
       dispatch(allOrders());
     }
   }, [error, deleteError, isDeleted]);
@@ -94,6 +105,7 @@ const Orders = () => {
   
   const handleDeleteSubmit = async (e) => {
     e.preventDefault()
+    // @ts-ignore
     dispatch(deleteOrder(DeleteId));
     setCancelDiv(false)
   }
@@ -147,6 +159,7 @@ const Orders = () => {
               <div className="id">
                 <label htmlFor="id">Id: </label>
                 <input
+                  // @ts-ignore
                   value={searchParams.get("id")}
                   disabled={searchParams.get("sort") ? true : false}
                   onChange={(e) => setId(e.target.value)}

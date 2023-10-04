@@ -11,6 +11,7 @@ import { allCategory } from "../../../actions/admin/productsAction";
 import GlobalState from "../../../GlobalState";
 
 const Products = () => {
+  // @ts-ignore
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
 
@@ -28,8 +29,10 @@ const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams({});
 
   const { loading, error, products, pagination } = useSelector(
+    // @ts-ignore
     (state) => state.products
   );
+  // @ts-ignore
   const { categories } = useSelector((state) => state.categories);
   let search = searchParams.get("search") || "";
 
@@ -37,25 +40,35 @@ const Products = () => {
   useEffect(() => {
     if (error) {
       setErr(error);
+      // @ts-ignore
       dispatch(clearErrors());
     }
     if (searchParams.get("minPrice")) {
+      // @ts-ignore
       setfMinPrice(searchParams.get("minPrice"));
+      // @ts-ignore
       setMinPrice(searchParams.get("minPrice"));
     }
     if (searchParams.get("maxPrice")) {
+      // @ts-ignore
       setfMaxPrice(searchParams.get("maxPrice"));
+      // @ts-ignore
       setMaxPrice(searchParams.get("maxPrice"));
     }
     if (searchParams.get("sort")) {
+      // @ts-ignore
       setfSort(searchParams.get("sort"));
+      // @ts-ignore
       setSort(searchParams.get("sort"));
     }
     if (searchParams.get("cate")) {
+      // @ts-ignore
       setfCate(searchParams.get("cate"));
+      // @ts-ignore
       setCate(searchParams.get("cate"));
     }
     dispatch(
+      // @ts-ignore
       getProduct(search, page, limit, fminPrice, fmaxPrice, fcate, fsort)
     );
   }, [
@@ -74,6 +87,7 @@ const Products = () => {
     searchParams.get("cate"),
   ]);
 
+  // @ts-ignore
   const handlePageChange = (e, p) => {
     setpage(p);
   };
@@ -81,13 +95,16 @@ const Products = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchParams.get("search")) {
+      // @ts-ignore
       let search = searchParams.get("search");
     } else {
       search = "";
     }
     if (Number(minPrice) > Number(maxPrice)) {
+      // @ts-ignore
       setSearchParams({ search, minPrice, maxPrice: minPrice, cate, sort });
     } else {
+      // @ts-ignore
       setSearchParams({ search, minPrice, maxPrice, cate, sort });
     }
   };
@@ -97,6 +114,7 @@ const Products = () => {
     setCate("");
     setSort("");
     if (searchParams.get("search")) {
+      // @ts-ignore
       setSearchParams({ search: searchParams.get("search") });
     } else {
       setSearchParams({ search: "" });
@@ -105,6 +123,7 @@ const Products = () => {
   };
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(allCategory());
   }, []);
 
@@ -135,6 +154,7 @@ const Products = () => {
                   value={minPrice}
                   type="Number"
                   id="min-price"
+                  // @ts-ignore
                   onChange={(e) => setMinPrice(e.target.value)}
                 />
                 <span> -- </span>
@@ -142,6 +162,7 @@ const Products = () => {
                   value={maxPrice}
                   type="Number"
                   id="max-price"
+                  // @ts-ignore
                   onChange={(e) => setMaxPrice(e.target.value)}
                 />
                 <label htmlFor="max-price"> Max Price</label>
