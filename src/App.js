@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import GlobalState from "./GlobalState";
 import { AiOutlineArrowUp } from "react-icons/ai";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/layout/Header/Header.jsx";
 import Home from "./components/Home/Home";
 import Footer from "./components/layout/Footer/Footer";
@@ -133,7 +133,7 @@ function App() {
         <LoadingPage />
       ) : (
         <div className="App">
-          <BrowserRouter>
+          <HashRouter>
             <Header />
             {user && user.isAdmin && <Sidebar />}
             <div style={{ height: "80px" }}></div>
@@ -237,7 +237,7 @@ function App() {
               )}
             </Routes>
             <Footer />
-          </BrowserRouter>
+          </HashRouter>
           <button
             className="btn-scrollTop"
             style={{ display: isVisible ? "block" : "none" }}
