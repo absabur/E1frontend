@@ -1,0 +1,147 @@
+.updatePage {
+  width: 100%;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--back);
+}
+
+.updateForm {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin: auto;
+  background-color: var(--back);
+  border-radius: 10px;
+  padding: 2rem 0.4rem;
+  box-shadow: 0 0 10px var(--black);
+  margin: 2rem 0;
+}
+
+.updateForm form {
+  width: 100%;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.updateForm form div {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: 2rem 0;
+  flex-direction: row;
+}
+
+.updateForm form div input,
+loginForm form div label {
+  position: absolute;
+  padding: 20px;
+  font-size: 17px;
+}
+
+.updateForm form div label {
+  z-index: 10;
+  margin-left: 1.3rem;
+}
+
+.updateForm form div input {
+  width: 100%;
+  padding: 10px 3rem;
+}
+
+.updateForm a {
+  color: rgb(255, 0, 111);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.updateForm a:hover {
+  text-decoration: underline;
+}
+
+.singleUpdate {
+  height: 350px;
+}
+
+.crossIcon {
+  font-size: 30px;
+  cursor: url("../../../images/pointer.png"), auto;
+  z-index: 20;
+  margin-right: 0.5rem;
+}
+
+.singleUpdate form {
+  height: 100%;
+}
+
+#updateProfileImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img-label {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  flex-direction: column;
+}
+
+.image {
+  outline: 2px solid var(--v1);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+}
+#updateProfileImage > input {
+  display: flex;
+  padding: 0%;
+}
+
+#updateProfileImage > input::file-selector-button {
+  cursor: url("../../../images/pointer.png"), auto;
+  width: 100%;
+  z-index: 2;
+  height: 40px;
+  border: none;
+  margin: 0%;
+  font-size: 17px;
+  transition: all 0.5s;
+  padding: 0 1vmax;
+  color: rgb(255, 255, 255);
+  background-color: var(--black);
+}
+
+#updateProfileImage > input::file-selector-button:hover {
+  background-color: rgb(81, 81, 81);
+}
+
+.submitButton {
+  padding: 10px;
+  width: 50%;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 500px) {
+  .updatePage {
+    min-height: 550px;
+  }
+  .updateForm {
+    width: 100%;
+    height: 100%;
+  }
+}

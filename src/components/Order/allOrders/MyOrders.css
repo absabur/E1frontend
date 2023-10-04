@@ -1,0 +1,164 @@
+.allOrders{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--back);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.myOrderHead{
+    padding: 1rem;
+    border-bottom: 2px solid var(--black);
+}
+
+.orderCard{
+    margin: 1rem 0;
+    width: 100%;
+    max-width: 600px;
+    padding: 1rem;
+    box-shadow: 0 0 5px var(--black);
+    text-decoration: none;
+    color: var(--black);
+}
+
+.SingleProductCard{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 200px;
+    margin: 10px;
+}
+
+.productDetails{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.img{
+    width: 35%;
+    height: 100%;
+    background-color: var(--black);
+}
+
+.img img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.productName{
+    text-decoration: none;
+    color: var(--black);
+    font-size: 17px;
+    font-weight: 600;
+}
+
+
+.orderFoot{
+    text-align: right;
+}
+.paynow{
+    padding: 10px;
+    font-size: 17px;
+}
+
+.noOrder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    height: 60vh;
+    min-height: 500px;
+}
+
+@media screen and (max-width: 600px) {
+    .SingleProductCard{
+        height: 150px;
+    }
+}
+
+
+
+.orderNav{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 50px;
+    box-shadow: 0 0 5px var(--black);
+}
+
+.orderNav div{
+    width: 20%;
+    text-align: center;
+}
+
+.orderNav a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--black);
+}
+
+
+
+.reviewButton{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.countOrders{
+    border: 1px solid var(--back);
+    border-radius: 50%;
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    padding: 1px 3px;
+}
+
+.cancelDiv{
+    position: absolute;
+    height: 350px;
+    width: 350px;
+    background-color: var(--back);
+    box-shadow: 0 0 1500px 200px black;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.cancelButtons{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.cancelDiv form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 60%;
+}
+
+.cancelDiv form select{
+    width: 80%;
+}
+
+@media screen and (max-width: 600px) {
+    .orderNav a {
+        font-size: 14px;
+        font-weight: 500;
+    }
+}

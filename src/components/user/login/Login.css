@@ -1,0 +1,76 @@
+.loginPage {
+  width: 100%;
+  height: 80vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--back);
+}
+
+.loginForm {
+  width: 400px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin: auto;
+  background-color: antiquevar(--white);
+  border-radius: 10px;
+  padding: 2rem 0.4rem;
+  box-shadow: 0 0 10px var(--black);
+}
+
+.loginForm form {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.loginForm form div {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: 1rem 0;
+  flex-direction: row;
+}
+
+.loginForm form div input,
+loginForm form div label {
+  position: absolute;
+  padding: 20px;
+  font-size: 17px;
+}
+
+.loginForm form div label {
+  z-index: 10;
+  margin-left: 1.3rem;
+}
+
+.loginForm form div input {
+  width: 100%;
+  padding: 10px 3rem;
+}
+
+.loginForm a {
+  color: rgb(255, 0, 111);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.loginForm a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 500px) {
+  .loginForm {
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,0 +1,29 @@
+.logoutPage {
+  width: 100%;
+  height: 60vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  background-color: var(--back);
+}
+
+.logoutPage div {
+  width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+.logoutDeleteButton{
+  padding: 10px;
+  width: 150px;
+  font-size: 18px;
+}
+
+.headLogDelete{
+  margin: 1rem;
+  text-align: center;
+}

@@ -1,0 +1,436 @@
+.dashBoard {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--back);
+  position: relative;
+  height: min-content;
+  min-height: 500px;
+}
+
+.sideBar {
+  width: 250px;
+  position: fixed;
+  align-self: flex-start;
+  top: 80px;
+  margin-left: -250px;
+  z-index: 1111;
+  background-color: var(--back);
+  transition: all 0.3s;
+}
+
+.showBar {
+  margin-left: 0;
+}
+
+.preview {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.overView {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 2rem;
+}
+
+.overView a {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.2s;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+}
+
+.overView a:hover {
+  box-shadow: 0 0 10px var(--black);
+}
+
+.overView .orders {
+  background-color: bisque;
+}
+
+.overView .products {
+  background-color: rgb(46, 255, 144);
+}
+
+.overView .users {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.sideSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sideSection h3 {
+  text-align: left;
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 5px;
+}
+
+.sideSection a {
+  padding: 10px 0;
+  text-decoration: none;
+  border: 1px solid var(--black);
+  width: 100%;
+  padding-left: 2rem;
+  color: var(--black);
+  font-weight: 600;
+}
+
+.sideSection a:hover {
+  text-decoration: underline;
+}
+
+.table {
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.productChinCard {
+  min-width: 1000px;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--black);
+}
+
+.productChinCard .id {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  height: 100%;
+}
+
+.search {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  padding: 1rem;
+}
+.search div {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+
+.search div input {
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+.search label {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.sort select {
+  width: 70%;
+  text-align: center;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+.find {
+  padding: 5px 10px;
+  font-size: 20px;
+  margin: 10px;
+  width: 150px;
+}
+
+.copy {
+  color: rgb(105, 1, 115);
+}
+
+.copy:hover {
+  text-decoration: underline;
+  cursor: url("../../images/pointer.png"), auto;
+}
+
+.productChinCard:hover {
+  background-color: rgb(234, 234, 234);
+}
+
+.productChinCard .name {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  height: 100%;
+  padding: 10px;
+}
+
+.productChinCard .userName {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  height: 100%;
+  padding: 10px;
+}
+
+.productChinCard .email {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  height: 100%;
+  padding: 10px;
+}
+
+.productChinCard .stock {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  height: 100%;
+}
+
+.productChinCard .numberOfProduct {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  height: 100%;
+}
+
+.productChinCard .status {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  height: 100%;
+  margin-bottom: 0;
+}
+
+.productChinCard .totalAmount {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  height: 100%;
+}
+
+.productChinCard .prices {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  height: 100%;
+}
+
+.productChinCard .action {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  height: 100%;
+}
+
+.productChinCard .action button,
+.action a {
+  background: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: url("../../images/pointer.png"), auto;
+  color: black;
+}
+
+.productChinCard .action button:hover,
+.action a:hover {
+  color: var(--v1);
+}
+
+.pagination {
+  margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageTop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.pageTop p {
+  margin: 10px;
+}
+
+/* =================================================
+create product */
+.productCreate {
+  width: 400px;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin: auto;
+  background-color: antiquevar(--white);
+  border-radius: 10px;
+  padding: 2rem 0.4rem;
+}
+
+.productName,
+.productPrice,
+.productStock,
+.productCategory,
+.productDescription {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px 0;
+  padding: 0;
+}
+
+.productCreate input,
+.productCreate select,
+.productCreate textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 18px;
+}
+
+.productImages {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  background-color: var(--black);
+  margin: 1rem 10px;
+}
+
+.createProductFormImage {
+  overflow: auto;
+}
+
+.allCategory {
+  min-width: 340px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+  box-shadow: 0 0 5px var(--black);
+  padding: 5px 10px;
+}
+
+.editDelete {
+  font-size: 24px;
+  margin: 0 10px;
+  color: var(--black);
+  border: none;
+  background-color: transparent;
+  cursor: url("../../images/pointer.png"), auto;
+}
+
+.editDelete:hover {
+  color: var(--v1);
+}
+
+.paymentDetails {
+  margin: 1rem;
+}
+
+.paymentDetails p {
+  margin: 10px;
+}
+
+.edit {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 1rem 10px;
+  background-color: var(--back);
+  box-shadow: 0 0 10px var(--black);
+  margin-top: 1rem;
+}
+.radioButton {
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.radioButton label {
+  margin-right: 1.5rem;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 800px) {
+  .search div {
+    width: 95%;
+  }
+}

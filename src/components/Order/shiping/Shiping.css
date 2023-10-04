@@ -1,0 +1,169 @@
+.allInfo {
+  width: 100%;
+  background-color: var(--back);
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.addressShow {
+  width: 100%;
+  /* height: 60vh;
+    min-height: 600px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.price {
+  font-size: 2.8vw;
+}
+
+.addressCard {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 2rem;
+  box-shadow: 0 0 5px var(--black);
+}
+
+.addressCard div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1rem;
+  border-bottom: 2px solid var(--black);
+  padding-bottom: 0.3rem;
+}
+
+.trash {
+  font-size: 28px;
+  color: var(--v1);
+  cursor: url("../../../images/pointer.png"), auto;
+  box-shadow: 0 0 5px var(--black);
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  margin-left: 2rem;
+}
+
+section {
+  align-self: flex-end;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.toPayButton {
+  padding: 1.2vw;
+  font-size: 2.8vw;
+  width: 50%;
+  margin-bottom: 1rem;
+}
+
+.totalCheck {
+  margin-bottom: 1rem;
+}
+
+.orderItems {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cartCard {
+  height: 20vw;
+}
+
+.cartItems {
+  width: 100%;
+}
+
+.addressForm {
+  width: 100%;
+  padding: 2rem 0;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  background-color: var(--back);
+}
+
+.formHead,
+.addressHead {
+  border-bottom: 2px solid var(--black);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form {
+  width: 70%;
+  box-shadow: 0 0 10px var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.form div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.label {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+select,
+.input,
+textarea {
+  padding: 15px;
+  font-size: 20px;
+  width: 50%;
+  resize: none;
+}
+
+@media screen and (max-width: 992px) {
+  .form {
+    width: 96%;
+  }
+  .allInfo {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .addressForm {
+    min-height: 1000px;
+  }
+  .cartCard {
+    height: 30vw;
+  }
+  .addressCard {
+    width: 96%;
+  }
+  .form div {
+    flex-direction: column;
+    margin: 0.4rem;
+  }
+  select,
+  .input,
+  textarea {
+    width: 100%;
+  }
+  .label {
+    padding-bottom: 10px;
+  }
+}

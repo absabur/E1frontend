@@ -1,0 +1,123 @@
+.signUpPage {
+  width: 100%;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--back);
+}
+
+.signUpForm {
+  width: 400px;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin: auto;
+  background-color: antiquevar(--white);
+  border-radius: 10px;
+  padding: 2rem 0.4rem;
+  box-shadow: 0 0 10px var(--black);
+}
+
+.signUpForm form {
+  width: 100%;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.signUpForm form div {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: 2rem 0;
+  flex-direction: row;
+}
+
+.signUpForm form div input,
+loginForm form div label {
+  position: absolute;
+  padding: 20px;
+  font-size: 17px;
+}
+
+.signUpForm form div label {
+  z-index: 10;
+  margin-left: 1.3rem;
+}
+
+.signUpForm form div input {
+  width: 100%;
+  padding: 10px 3rem;
+}
+
+.signUpForm a {
+  color: rgb(255, 0, 111);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.signUpForm a:hover {
+  text-decoration: underline;
+}
+
+#registerImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img-label {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  flex-direction: column;
+}
+
+.image {
+  outline: 2px solid var(--v1);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+}
+#registerImage > input {
+  display: flex;
+  padding: 0%;
+}
+
+#registerImage > input::file-selector-button {
+  cursor: url("../../../images/pointer.png"), auto;
+  width: 100%;
+  z-index: 2;
+  height: 40px;
+  border: none;
+  margin: 0%;
+  font-size: 17px;
+  transition: all 0.5s;
+  padding: 0 1vmax;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: var(--white);
+}
+
+#registerImage > input::file-selector-button:hover {
+  background-color: rgb(233, 233, 233);
+}
+
+@media screen and (max-width: 500px) {
+  .signUpForm {
+    width: 100%;
+    height: 100%;
+  }
+}

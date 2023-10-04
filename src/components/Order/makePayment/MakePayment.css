@@ -1,0 +1,76 @@
+.paymentPage {
+  width: 100%;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--back);
+}
+
+.paymentForm {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin: auto;
+  background-color: var(--back);
+  border-radius: 10px;
+  padding: 2rem 0.4rem;
+  box-shadow: 0 0 10px var(--black);
+  margin: 2rem 0;
+}
+
+.mainForm {
+  width: 100%;
+}
+
+.mainForm div {
+  padding: 10px;
+  margin: 0.3rem;
+  width: 100%;
+}
+
+.mainForm div input {
+  width: 100%;
+  padding: 10px;
+  font-size: 17px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.payLogo {
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
+}
+
+.cod {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.codButton {
+  border-radius: 50%;
+  transition: all 0.2s;
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
+  cursor: url("../../../images/pointer.png"), auto;
+}
+
+.active {
+  color: var(--v1);
+}
+
+@media screen and (max-width: 520px) {
+  .paymentForm {
+    margin: 0;
+    width: 100%;
+  }
+}
