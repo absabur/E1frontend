@@ -70,6 +70,7 @@ const Header = () => {
       setprofile({ width: "0" });
     }
   }, [location.pathname]);
+  // @ts-ignore
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const [toggle, setToggle] = useState(false);
