@@ -15,10 +15,9 @@ import GlobalState from "../../GlobalState";
 const AllCategories = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
-  // @ts-ignore
+
   const { categories } = useSelector((state) => state.categories);
   useEffect(() => {
-    // @ts-ignore
     dispatch(allCategory());
   }, []);
   const [name, setName] = useState("");
@@ -35,46 +34,53 @@ const AllCategories = () => {
       if (data.success) {
         setMsg("Category created");
         setName("");
-        // @ts-ignore
+
         dispatch(allCategory());
       }
     } catch (error) {
       setErr(error.response.data.error);
     }
   };
-  const [cancelDiv, setCancelDiv] = useState(false)
-  const [DeleteName, setDeleteName] = useState("")
+  const [cancelDiv, setCancelDiv] = useState(false);
+  const [DeleteName, setDeleteName] = useState("");
 
   const handleDelete = (name) => {
-    setCancelDiv(true)
-    setDeleteName(name)
+    setCancelDiv(true);
+    setDeleteName(name);
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const { data } = await axios.delete(`/api/category/${DeleteName}`);
     if (data.success) {
       setMsg("Category Deleted");
-      // @ts-ignore
+
       dispatch(allCategory());
-      setCancelDiv(false)
+      setCancelDiv(false);
     }
-  }
+  };
 
   return (
     <>
-    <MetaDeta title="Categories" />
-      <div className="updatePage" style={{ flexDirection: "column" , position: "relative"}}>
-        {
-          cancelDiv ? 
+      <MetaDeta title="Categories" />
+      <div
+        className="updatePage"
+        style={{ flexDirection: "column", position: "relative" }}
+      >
+        {cancelDiv ? (
           <div id="cancel" className="cancelDiv">
             <h2>Category: {DeleteName}</h2>
             <form onSubmit={handleSubmit}>
               <div className="cancelButtons">
                 <button
-                  onClick={()=>setCancelDiv(false)}
+                  onClick={() => setCancelDiv(false)}
                   type="reset"
-                  style={{ fontSize: "16px", padding: "10px", border: "1px solid var(--black)", cursor :"pointer"  }}
+                  style={{
+                    fontSize: "16px",
+                    padding: "10px",
+                    border: "1px solid var(--black)",
+                    cursor: "pointer",
+                  }}
                 >
                   Cancel
                 </button>
@@ -86,11 +92,9 @@ const AllCategories = () => {
                   Delete
                 </button>
               </div>
-
             </form>
           </div>
-          : null
-        }
+        ) : null}
 
         <div>
           <h1 style={{ marginTop: "1rem" }}>Categories</h1>

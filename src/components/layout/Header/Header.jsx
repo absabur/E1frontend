@@ -52,7 +52,10 @@ const Header = () => {
       setlog({ width: "0" });
     }
 
-    if (location.pathname.slice(0, 10) === "/register/" || location.pathname === "/signup") {
+    if (
+      location.pathname.slice(0, 10) === "/register/" ||
+      location.pathname === "/signup"
+    ) {
       setreg({ width: "100%" });
     } else {
       setreg({ width: "0" });
@@ -70,7 +73,7 @@ const Header = () => {
       setprofile({ width: "0" });
     }
   }, [location.pathname]);
-  // @ts-ignore
+
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const [toggle, setToggle] = useState(false);
@@ -80,7 +83,7 @@ const Header = () => {
         <div className="header">
           <div className="logo-section">
             {/* <img src={logo} alt="logo" /> */}
-            <Link style={{textDecoration: "none"}} to="/">
+            <Link style={{ textDecoration: "none" }} to="/">
               <h4>ABS</h4>
             </Link>
           </div>
@@ -115,12 +118,14 @@ const Header = () => {
               <div className="navbar-flex">
                 <div className="cartNav">
                   <Link className="cartArea" to="/cart">
-                    <p className="cartCount">{user && user.cart && user.cart.length}</p>
-                    {
-                      user && user.cart.length > 0 ? 
-                      <MdShoppingCart className="react-icons cart" /> :
-                      <MdOutlineShoppingCart className="react-icons cart" />                      
-                    }
+                    <p className="cartCount">
+                      {user && user.cart && user.cart.length}
+                    </p>
+                    {user && user.cart.length > 0 ? (
+                      <MdShoppingCart className="react-icons cart" />
+                    ) : (
+                      <MdOutlineShoppingCart className="react-icons cart" />
+                    )}
                   </Link>
                   <div style={cart} className="cartLine ULine"></div>
                 </div>
@@ -155,13 +160,15 @@ const Header = () => {
                   }}
                 ></div>
                 <div className="regNav">
-                  <Link to="/signup">{location.pathname.slice(0, 10) === "/register/" ? "Register" : "Sign Up"}</Link>
+                  <Link to="/signup">
+                    {location.pathname.slice(0, 10) === "/register/"
+                      ? "Register"
+                      : "Sign Up"}
+                  </Link>
                   <div style={reg} className="regLine ULine"></div>
                 </div>
               </div>
             )}
-
-            
           </div>
           <div onClick={() => setToggle(!toggle)} className="bar-cross-icon">
             {toggle ? (

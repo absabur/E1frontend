@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cancleOrder, clearErrors, myOrders } from "../../../actions/orderAction";
+import {
+  cancleOrder,
+  clearErrors,
+  myOrders,
+} from "../../../actions/orderAction";
 import LoadingPage from "../../layout/loading/LoadingPage";
 import "./MyOrders.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,20 +16,18 @@ import MetaDeta from "../../layout/MetaDeta";
 const MyOrders = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  // @ts-ignore
+  const navigate = useNavigate();
+
   const { orders, error, loading } = useSelector((state) => state.myOrders);
-  // @ts-ignore
+
   const { success, isError, isLoading } = useSelector(
-    // @ts-ignore
     (state) => state.cancelOrder
   );
   useEffect(() => {
-    // @ts-ignore
     dispatch(myOrders());
     if (error) {
       setErr(error);
-      // @ts-ignore
+
       dispatch(clearErrors());
     }
     if (isError) {
@@ -50,14 +52,14 @@ const MyOrders = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // @ts-ignore
+
     dispatch(cancleOrder(cancleId, reason));
     setCancleDiv(false);
   };
 
   return (
     <div className="allOrders">
-    <MetaDeta title="My Orders" />
+      <MetaDeta title="My Orders" />
       {cancleDiv ? (
         <div id="cancel" className="cancelDiv">
           <p>Order Id: {cancleId}</p>
@@ -73,9 +75,14 @@ const MyOrders = () => {
             </select>
             <div className="cancelButtons">
               <button
-                onClick={()=>setCancleDiv(false)}
+                onClick={() => setCancleDiv(false)}
                 type="reset"
-                style={{ fontSize: "16px", padding: "10px", border: "1px solid var(--black)", cursor :"pointer"  }}
+                style={{
+                  fontSize: "16px",
+                  padding: "10px",
+                  border: "1px solid var(--black)",
+                  cursor: "pointer",
+                }}
               >
                 Undo
               </button>
@@ -87,7 +94,6 @@ const MyOrders = () => {
                 Submit
               </button>
             </div>
-
           </form>
         </div>
       ) : null}
@@ -143,7 +149,7 @@ const MyOrders = () => {
                       {order.orderStatus === "pay" ||
                       order.orderStatus === "receive" ? (
                         <>TO {order.orderStatus.toUpperCase()}</>
-                        ) : (
+                      ) : (
                         <>{order.orderStatus.toUpperCase()}</>
                       )}
                     </span>
@@ -178,22 +184,23 @@ const MyOrders = () => {
                 </Link>
               ) : null}
               {order.orderStatus === "pay" ||
-                order.orderStatus === "processing" ? (
-                  <Link to="#cancel"
-                    onClick={() => handleCancel(order._id)}
-                    style={{
-                      padding: "10px",
-                      fontSize: "16px",
-                      boxShadow: "0 0 5px var(--black)",
-                      color: "var(--black)",
-                      textDecoration: "none",
-                      fontWeight: "700",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Cancle
-                  </Link>
-                ) : null}
+              order.orderStatus === "processing" ? (
+                <Link
+                  to="#cancel"
+                  onClick={() => handleCancel(order._id)}
+                  style={{
+                    padding: "10px",
+                    fontSize: "16px",
+                    boxShadow: "0 0 5px var(--black)",
+                    color: "var(--black)",
+                    textDecoration: "none",
+                    fontWeight: "700",
+                    cursor: "pointer",
+                  }}
+                >
+                  Cancle
+                </Link>
+              ) : null}
             </div>
           </Link>
         ))

@@ -4,9 +4,9 @@ import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProductDetails } from "../../../actions/productAction";
 import Carousel from "react-material-ui-carousel";
-// @ts-ignore
+
 import { Link, useNavigate, useParams } from "react-router-dom";
-// @ts-ignore
+
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.jsx";
 import LoadingPage from "../loading/LoadingPage";
@@ -29,7 +29,6 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading, error, product } = useSelector(
-    // @ts-ignore
     (state) => state.productDetails
   );
 
@@ -39,15 +38,13 @@ const ProductDetails = () => {
   const [count4, setCount4] = useState(0);
   const [count5, setCount5] = useState(0);
 
-  // @ts-ignore
   const { isError, message } = useSelector((state) => state.cartAdd);
   // console.log(error, loading, product)
   useEffect(() => {
-    // @ts-ignore
     dispatch(getProductDetails(params.id));
     if (error) {
       setErr(error);
-      // @ts-ignore
+
       dispatch(clearErrors());
     }
 
@@ -63,7 +60,6 @@ const ProductDetails = () => {
       });
     }
     if (message) {
-      // @ts-ignore
       dispatch(auth());
       setMsg(message);
       dispatch({
@@ -103,27 +99,22 @@ const ProductDetails = () => {
       setCount5(rev5.length);
     }
     if (stars === "1star") {
-      // @ts-ignore
       setReviews(rev1);
     }
 
     if (stars === "2star") {
-      // @ts-ignore
       setReviews(rev2);
     }
 
     if (stars === "3star") {
-      // @ts-ignore
       setReviews(rev3);
     }
 
     if (stars === "4star") {
-      // @ts-ignore
       setReviews(rev4);
     }
 
     if (stars === "5star") {
-      // @ts-ignore
       setReviews(rev5);
     }
   }, [isError, message, stars, product]);
@@ -145,7 +136,7 @@ const ProductDetails = () => {
       price: product.price,
       image: product.images[0].url,
     };
-    // @ts-ignore
+
     await dispatch(addToCart(data));
   };
 
@@ -167,7 +158,7 @@ const ProductDetails = () => {
         <LoadingPage />
       ) : product ? (
         <>
-        <MetaDeta title="Product Details" />
+          <MetaDeta title="Product Details" />
           <p
             style={{
               textAlign: "center",
@@ -259,14 +250,12 @@ const ProductDetails = () => {
             <h3 className="descHead">Description</h3>
             <xmp style={{ whiteSpace: "pre-wrap", width: "100%" }}>
               {product.description}
-            // @ts-ignore
             </xmp>
           </div>
           <div id="reviews" className="allReviews">
             <h3 className="reviewHead">REVIEWS</h3>
             <div className="nav">
               <button
-                // @ts-ignore
                 style={
                   stars === "all"
                     ? { backgroundColor: "rgba(35, 255, 1, 0.3)" }
@@ -278,7 +267,6 @@ const ProductDetails = () => {
                 All <span>({product && product.numOfReviews})</span>
               </button>
               <button
-                // @ts-ignore
                 style={
                   stars === "1star"
                     ? { backgroundColor: "rgba(35, 255, 1, 0.3)" }
@@ -290,7 +278,6 @@ const ProductDetails = () => {
                 <RiStarSFill /> <span>({count1})</span>
               </button>
               <button
-                // @ts-ignore
                 style={
                   stars === "2star"
                     ? { backgroundColor: "rgba(35, 255, 1, 0.3)" }
@@ -303,7 +290,6 @@ const ProductDetails = () => {
                 <RiStarSFill /> <span>({count2})</span>
               </button>
               <button
-                // @ts-ignore
                 style={
                   stars === "3star"
                     ? { backgroundColor: "rgba(35, 255, 1, 0.3)" }
@@ -317,7 +303,6 @@ const ProductDetails = () => {
                 <RiStarSFill /> <span>({count3})</span>
               </button>
               <button
-                // @ts-ignore
                 style={
                   stars === "4star"
                     ? { backgroundColor: "rgba(35, 255, 1, 0.3)" }
@@ -332,7 +317,6 @@ const ProductDetails = () => {
                 <RiStarSFill /> <span>({count4})</span>
               </button>
               <button
-                // @ts-ignore
                 style={
                   stars === "5star"
                     ? { backgroundColor: "rgba(35, 255, 1, 0.3)" }
@@ -352,7 +336,6 @@ const ProductDetails = () => {
               <div className="reviewCards">
                 {reviews &&
                   reviews.map((review) => (
-                    // @ts-ignore
                     <ReviewCard key={review._id} review={review} />
                   ))}
               </div>

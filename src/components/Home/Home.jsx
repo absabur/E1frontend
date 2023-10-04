@@ -12,18 +12,17 @@ import GlobalState from "../../GlobalState";
 const Home = () => {
   const { setErr } = useContext(GlobalState);
   const dispatch = useDispatch();
-  // @ts-ignore
+
   const { loading, error, products } = useSelector((state) => state.products);
   // useSelector((state) => console.log(state.products));
 
   useEffect(() => {
-    // @ts-ignore
     dispatch(getProduct());
   }, [dispatch]);
 
   if (error) {
     setErr(error);
-    // @ts-ignore
+
     dispatch(clearErrors());
   }
 

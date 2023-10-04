@@ -15,14 +15,12 @@ import MetaDeta from "../layout/MetaDeta";
 const Users = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const { error, loading, users, pagination } = useSelector(
-    // @ts-ignore
     (state) => state.adminUsers
   );
   const {
     isDeleted,
     error: deleteError,
     loading: isLoading,
-  // @ts-ignore
   } = useSelector((state) => state.adminUserUD);
   const [searchParams, setSearchParams] = useSearchParams({});
 
@@ -43,27 +41,23 @@ const Users = () => {
     }
   };
 
-  // @ts-ignore
   const handlePageChange = (e, p) => {
     setpage(p);
   };
 
   useEffect(() => {
-    // @ts-ignore
     dispatch(allUsers(page, limit));
   }, []);
 
   useEffect(() => {
     if (searchParams.get("sort")) {
-      // @ts-ignore
       setSort(searchParams.get("sort"));
-      // @ts-ignore
+
       dispatch(allUsers(page, limit, "", searchParams.get("sort")));
     }
     if (searchParams.get("id")) {
-      // @ts-ignore
       setId(searchParams.get("id"));
-      // @ts-ignore
+
       dispatch(allUsers(page, limit, searchParams.get("id"), ""));
     }
   }, [searchParams.get("sort"), searchParams.get("id")]);
@@ -72,14 +66,14 @@ const Users = () => {
     setSort("");
     setId("");
     setSearchParams({});
-    // @ts-ignore
+
     dispatch(allUsers(page, limit));
   };
 
   useEffect(() => {
     if (error) {
       setErr(error);
-      // @ts-ignore
+
       dispatch(clearErrors());
     }
     if (deleteError) {
@@ -89,7 +83,7 @@ const Users = () => {
     if (isDeleted) {
       setMsg("User deleted successfully");
       dispatch({ type: DELETE_USER_RESET });
-      // @ts-ignore
+
       dispatch(allUsers(page, limit));
     }
   }, [error, deleteError, isDeleted]);
@@ -98,25 +92,25 @@ const Users = () => {
     copy(text);
     setMsg(`You have copied "${text}"`);
   };
-  
-  const [cancelDiv, setCancelDiv] = useState(false)
-  const [DeleteId, setDeleteId] = useState("")
+
+  const [cancelDiv, setCancelDiv] = useState(false);
+  const [DeleteId, setDeleteId] = useState("");
 
   const handleDelete = (id) => {
-    setCancelDiv(true)
-    setDeleteId(id)
+    setCancelDiv(true);
+    setDeleteId(id);
   };
 
   const handleDeleteSubmit = async (e) => {
-    e.preventDefault()
-    // @ts-ignore
+    e.preventDefault();
+
     dispatch(deleteUser(DeleteId));
-    setCancelDiv(false)
-  }
+    setCancelDiv(false);
+  };
 
   return (
     <>
-    <MetaDeta title="Users for Admin" />
+      <MetaDeta title="Users for Admin" />
       {loading || isLoading ? (
         <LoadingPage />
       ) : (
@@ -130,19 +124,23 @@ const Users = () => {
               flexDirection: "column",
               width: "100%",
               overflow: "hidden",
-              position: "relative"
+              position: "relative",
             }}
           >
-            {
-              cancelDiv ? 
+            {cancelDiv ? (
               <div id="cancel" className="cancelDiv">
                 <p>User Id: {DeleteId}</p>
                 <form onSubmit={handleDeleteSubmit}>
                   <div className="cancelButtons">
                     <button
-                      onClick={()=>setCancelDiv(false)}
+                      onClick={() => setCancelDiv(false)}
                       type="reset"
-                      style={{ fontSize: "16px", padding: "10px", border: "1px solid var(--black)", cursor :"pointer"  }}
+                      style={{
+                        fontSize: "16px",
+                        padding: "10px",
+                        border: "1px solid var(--black)",
+                        cursor: "pointer",
+                      }}
                     >
                       Cancel
                     </button>
@@ -154,16 +152,13 @@ const Users = () => {
                       Delete
                     </button>
                   </div>
-
                 </form>
               </div>
-              : null
-            }
+            ) : null}
             <form onSubmit={handleSubmit} className="search">
               <div className="id">
                 <label htmlFor="id">Id: </label>
                 <input
-                  // @ts-ignore
                   value={searchParams.get("id")}
                   disabled={searchParams.get("sort") ? true : false}
                   onChange={(e) => setId(e.target.value)}
@@ -201,7 +196,6 @@ const Users = () => {
                 Number of users: {users.length}
               </h4>
             ) : null}
-
 
             <div className="table">
               <div

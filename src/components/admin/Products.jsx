@@ -9,7 +9,7 @@ import {
   deleteProduct,
   getProductAdmin,
 } from "../../actions/admin/productsAction";
-// @ts-ignore
+
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -20,14 +20,12 @@ import MetaDeta from "../layout/MetaDeta";
 const Products = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const { loading, error, products, pagination } = useSelector(
-    // @ts-ignore
     (state) => state.products
   );
   const {
     isDeleted,
     error: deleteError,
     loading: isLoading,
-  // @ts-ignore
   } = useSelector((state) => state.adminProduct);
   const [searchParams, setSearchParams] = useSearchParams({});
 
@@ -50,30 +48,26 @@ const Products = () => {
   };
 
   useEffect(() => {
-    // @ts-ignore
     dispatch(getProductAdmin({ page, limit, name: "", sort: "" }));
   }, []);
 
   useEffect(() => {
     if (searchParams.get("id")) {
-      // @ts-ignore
       setId(searchParams.get("id"));
-      // @ts-ignore
+
       dispatch(getProductAdmin({ page, limit, id: searchParams.get("id") }));
     }
     if (searchParams.get("name") || searchParams.get("sort")) {
-      // @ts-ignore
       setName(searchParams.get("name"));
-      // @ts-ignore
+
       setSort(searchParams.get("sort"));
       dispatch(
-        // @ts-ignore
         getProductAdmin({
           page,
           limit,
-          // @ts-ignore
+
           name: searchParams.get("name"),
-          // @ts-ignore
+
           sort: searchParams.get("sort"),
         })
       );
@@ -90,7 +84,6 @@ const Products = () => {
     setId("");
     setSearchParams({});
     dispatch(
-      // @ts-ignore
       getProductAdmin({ page, limit, name: "", sort: "Newest Arrivals" })
     );
   };
@@ -98,7 +91,7 @@ const Products = () => {
   useEffect(() => {
     if (error) {
       setErr(error);
-      // @ts-ignore
+
       dispatch(clearErrors());
     }
     if (deleteError) {
@@ -108,12 +101,11 @@ const Products = () => {
     if (isDeleted) {
       setMsg("Product deleted successfully.");
       dispatch({ type: DELETE_PRODUCT_RESET });
-      // @ts-ignore
+
       dispatch(getProductAdmin({ page, limit, name: "", sort: "" }));
     }
   }, [error, isDeleted, deleteError]);
 
-  // @ts-ignore
   const handlePageChange = (e, p) => {
     setpage(p);
   };
@@ -123,24 +115,24 @@ const Products = () => {
     setMsg(`You have copied "${text}"`);
   };
 
-  const [cancelDiv, setCancelDiv] = useState(false)
-  const [DeleteId, setDeleteId] = useState("")
+  const [cancelDiv, setCancelDiv] = useState(false);
+  const [DeleteId, setDeleteId] = useState("");
 
   const handleDelete = (id) => {
-    setCancelDiv(true)
-    setDeleteId(id)
+    setCancelDiv(true);
+    setDeleteId(id);
   };
-  
+
   const handleDeleteSubmit = async (e) => {
-    e.preventDefault()
-    // @ts-ignore
+    e.preventDefault();
+
     dispatch(deleteProduct(DeleteId));
-    setCancelDiv(false)
-  }
+    setCancelDiv(false);
+  };
 
   return (
     <>
-    <MetaDeta title="Products for Admin" />
+      <MetaDeta title="Products for Admin" />
       {loading || isLoading ? (
         <LoadingPage />
       ) : (
@@ -153,19 +145,23 @@ const Products = () => {
               flexDirection: "column",
               width: "100%",
               overflow: "hidden",
-              position: "relative"
+              position: "relative",
             }}
           >
-            {
-              cancelDiv ? 
+            {cancelDiv ? (
               <div id="cancel" className="cancelDiv">
                 <p>Product Id: {DeleteId}</p>
                 <form onSubmit={handleDeleteSubmit}>
                   <div className="cancelButtons">
                     <button
-                      onClick={()=>setCancelDiv(false)}
+                      onClick={() => setCancelDiv(false)}
                       type="reset"
-                      style={{ fontSize: "16px", padding: "10px", border: "1px solid var(--black)", cursor :"pointer"  }}
+                      style={{
+                        fontSize: "16px",
+                        padding: "10px",
+                        border: "1px solid var(--black)",
+                        cursor: "pointer",
+                      }}
                     >
                       Cancel
                     </button>
@@ -177,11 +173,9 @@ const Products = () => {
                       Delete
                     </button>
                   </div>
-
                 </form>
               </div>
-              : null
-            }
+            ) : null}
             <form onSubmit={handleSubmit} className="search">
               <div className="id">
                 <label htmlFor="id">Id: </label>
@@ -259,7 +253,6 @@ const Products = () => {
                     </p>
                     <p
                       className="stock"
-                      // @ts-ignore
                       style={product.Stock === 0 ? { color: "red" } : null}
                     >
                       {product.Stock}

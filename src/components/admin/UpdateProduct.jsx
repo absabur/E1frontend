@@ -3,13 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import MetaDeta from "../layout/MetaDeta";
 import LoadingPage from "../layout/loading/LoadingPage";
-import {
-  allCategory,
-  updateProduct,
-} from "../../actions/admin/productsAction";
-import {
-  UPDATE_PRODUCT_RESET,
-} from "../../constance/admin/productConstant";
+import { allCategory, updateProduct } from "../../actions/admin/productsAction";
+import { UPDATE_PRODUCT_RESET } from "../../constance/admin/productConstant";
 import { getProductDetails } from "../../actions/productAction";
 import GlobalState from "../../GlobalState";
 
@@ -19,12 +14,11 @@ const UpdateProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading, error, isUpdated } = useSelector(
-    // @ts-ignore
     (state) => state.adminProduct
   );
-  // @ts-ignore
+
   const { product } = useSelector((state) => state.productDetails);
-  // @ts-ignore
+
   const { categories } = useSelector((state) => state.categories);
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -35,9 +29,8 @@ const UpdateProduct = () => {
   const [imagesPreview, setImagesPreview] = useState([]);
 
   useEffect(() => {
-    // @ts-ignore
     dispatch(getProductDetails(params.id));
-    // @ts-ignore
+
     dispatch(allCategory());
   }, []);
 
@@ -61,7 +54,7 @@ const UpdateProduct = () => {
       product.images.forEach((element) => {
         imagesArray.push(element.url);
       });
-      // @ts-ignore
+
       setImagesPreview(imagesArray);
     }
   }, [error, dispatch, isUpdated, product]);
@@ -72,17 +65,17 @@ const UpdateProduct = () => {
     const myForm = new FormData();
 
     myForm.set("name", name);
-    // @ts-ignore
+
     myForm.set("price", price);
     myForm.set("description", description);
     myForm.set("category", category);
-    // @ts-ignore
+
     myForm.set("Stock", Stock);
 
     images.forEach((image) => {
       myForm.append("images", image);
     });
-    // @ts-ignore
+
     dispatch(updateProduct(id, myForm));
   };
 
@@ -97,9 +90,8 @@ const UpdateProduct = () => {
 
       reader.onload = () => {
         if (reader.readyState === 2) {
-          // @ts-ignore
           setImagesPreview((old) => [...old, reader.result]);
-          // @ts-ignore
+
           setImages((old) => [...old, reader.result]);
         }
       };
@@ -110,7 +102,7 @@ const UpdateProduct = () => {
 
   return (
     <>
-    <MetaDeta title="Update Product" />
+      <MetaDeta title="Update Product" />
       {loading ? (
         <LoadingPage />
       ) : (
@@ -141,7 +133,6 @@ const UpdateProduct = () => {
                   required
                   name="price"
                   value={price}
-                  // @ts-ignore
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
@@ -154,7 +145,6 @@ const UpdateProduct = () => {
                   required
                   name="stock"
                   value={Stock}
-                  // @ts-ignore
                   onChange={(e) => setStock(e.target.value)}
                 />
               </div>

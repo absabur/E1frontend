@@ -16,10 +16,8 @@ const UpdateCategory = () => {
   const params = useParams();
   const dispatch = useDispatch();
 
-    // @ts-ignore
   const { categories } = useSelector((state) => state.categories);
   useEffect(() => {
-    // @ts-ignore
     dispatch(allCategory());
   }, []);
   useEffect(() => {
@@ -52,7 +50,7 @@ const UpdateCategory = () => {
   return (
     <>
       <div className="updatePage">
-          <MetaDeta title="Update Category" />
+        <MetaDeta title="Update Category" />
         <div className="updateForm singleUpdate">
           <form encType="multipart/form-data" onSubmit={updateProfileSubmit}>
             <h1>Update Category</h1>

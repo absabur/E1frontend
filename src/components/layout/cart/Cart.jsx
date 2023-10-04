@@ -13,12 +13,11 @@ import GlobalState from "../../../GlobalState";
 import MetaDeta from "../MetaDeta";
 
 const CartItem = () => {
-  // @ts-ignore
   const { setErr, setMsg } = useContext(GlobalState);
   const [subTotal, setSubTotal] = useState(0);
-  // @ts-ignore
+
   const { loading, user } = useSelector((state) => state.user);
-  // @ts-ignore
+
   const { isError } = useSelector((state) => state.cartAdd);
 
   const dispatch = useDispatch();
@@ -42,7 +41,7 @@ const CartItem = () => {
   useEffect(() => {
     if (isError) {
       setErr(isError);
-      // @ts-ignore
+
       dispatch(clearErrors());
     }
   }, [dispatch, user, isError]);
@@ -55,16 +54,15 @@ const CartItem = () => {
       price,
       image,
     };
-    // @ts-ignore
+
     await dispatch(addToCart(data));
-    // @ts-ignore
+
     await dispatch(auth());
   };
 
   const handleDelete = async (productId) => {
-    // @ts-ignore
     await dispatch(deleteCart({ productId }));
-    // @ts-ignore
+
     await dispatch(auth());
   };
 
@@ -83,7 +81,7 @@ const CartItem = () => {
       ) : (
         <>
           <div className="allCart">
-          <MetaDeta title="Cart" />
+            <MetaDeta title="Cart" />
             <h1 className="cartHead">Your Cart</h1>
             {user.cart && user.cart.length != 0 ? (
               <>
