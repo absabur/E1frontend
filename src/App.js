@@ -15,7 +15,7 @@ import Login from "./components/user/login/Login";
 import Register from "./components/user/register/Register";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./actions/userAction";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logout from "./components/user/logout/Logout";
 import DeleteProfile from "./components/user/logout/DeleteProfile";
 import Error from "./components/Error/Error";
@@ -70,18 +70,16 @@ function App() {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       let heightToHideFrom = 300;
-      const winScroll = document.body.scrollTop ||
-          document.documentElement.scrollTop;
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
 
       if (winScroll > heightToHideFrom) {
-           setIsVisible(true);
+        setIsVisible(true);
       } else {
-           setIsVisible(false);
+        setIsVisible(false);
       }
-    }
-    );
-
-  }, [])
+    });
+  }, []);
   const [err, setErr] = useState("");
   const [msg, setMsg] = useState("");
   useEffect(() => {
@@ -239,7 +237,7 @@ function App() {
             <Footer />
           </HashRouter>
           <button
-            className="btn-scrollTop"
+            className="btnScrollTop"
             style={{ display: isVisible ? "block" : "none" }}
             onClick={goTop}
           >
