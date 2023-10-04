@@ -83,7 +83,7 @@ const CartItem = () => {
           <div className="allCart">
             <MetaDeta title="Cart" />
             <h1 className="cartHead">Your Cart</h1>
-            {user.cart && user.cart.length != 0 ? (
+            {user && user.cart && user.cart.length > 0 ? (
               <>
                 {user.cart.map((item) => (
                   <div key={item.productId} className="cartCard">

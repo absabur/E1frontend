@@ -210,7 +210,7 @@ const Products = () => {
             <MetaDeta title="All Products" />
             {/* <Search/> */}
 
-            {products[0] ? (
+            {products && products.length > 0 ? (
               <>
                 <div className="px80"></div>
                 <h1 className="products-heading">Products</h1>
