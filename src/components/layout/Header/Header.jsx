@@ -117,7 +117,7 @@ const Header = () => {
                   <Link className="cartArea" to="/cart">
                     <p className="cartCount">{user && user.cart && user.cart.length}</p>
                     {
-                      user.cart[0] ? 
+                      JSON.stringify(user.cart !== '[]') ? 
                       <MdShoppingCart className="react-icons cart" /> :
                       <MdOutlineShoppingCart className="react-icons cart" />                      
                     }
