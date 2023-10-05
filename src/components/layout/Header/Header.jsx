@@ -10,6 +10,9 @@ import Search from "../product/Search";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import GlobalState from "../../../GlobalState";
+import logo from "../../../images/logo.png";
+import { animateScroll } from 'react-scroll';
+
 
 const Header = () => {
   const [home, sethome] = useState({ width: "0" });
@@ -71,6 +74,10 @@ const Header = () => {
     } else {
       setprofile({ width: "0" });
     }
+
+    animateScroll.scrollToTop({
+      duration: 0
+    });
   }, [location.pathname]);
   // @ts-ignore
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -82,7 +89,7 @@ const Header = () => {
           <div className="logo-section">
             {/* <img src={logo} alt="logo" /> */}
             <Link style={{textDecoration: "none"}} to="/">
-              <h4>ABS</h4>
+              <img style={{height: "60px", width: "60px", borderRadius: "20px", border: "1px solid var(--v1)"}} src={logo} alt="ABS" />
             </Link>
           </div>
           <div className="nav-links">

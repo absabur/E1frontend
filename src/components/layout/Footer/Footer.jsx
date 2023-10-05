@@ -2,22 +2,24 @@ import React from "react";
 import playStore from "../../../images/playstore.png";
 import appStore from "../../../images/Appstore.png";
 import "./Footer.css";
+import logo from "../../../images/logo.png"
 
 const Footer = () => {
   return (
     <footer id="footer">
-      <div className="leftFooter">
+      {/* <div className="leftFooter">
         <h4>DOWNLOAD OUR APP</h4>
         <p>Download App for Android and IOS mobile phone</p>
         <img src={playStore} alt="playstore" />
         <img src={appStore} alt="Appstore" />
-      </div>
+      </div> */}
 
       <div className="midFooter">
-        <h1>ABS<br/>commerce</h1>
+        <h1><img style={{height: "100px", width: "100px", borderRadius: "20px", border: "1px solid var(--v1)"}} src={logo} alt="ABS" />
+        <br/>E-commerce</h1>
         <p>High Quality is our first priority</p>
 
-        <p>Copyrights 2021 &copy; abs-commerce</p>
+        <p>Copyrights 2021 &copy; abs E-commerce</p>
       </div>
 
       <div className="rightFooter">

@@ -16,7 +16,6 @@ import { BackendUrl } from "../BackendUrl";
 export const getProduct =
   (search="" ,page = 1,limit = 8,minPrice = 0,maxPrice = 1000000,cate = "",sort = "Top Sales") =>
   async (dispatch) => {
-    console.log(search, page, limit, minPrice, maxPrice, sort, cate);
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST });
       const data = await axios.get(

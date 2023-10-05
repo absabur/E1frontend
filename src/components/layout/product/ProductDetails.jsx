@@ -2,12 +2,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, getProductDetails } from "../../../actions/productAction";
+import { clearErrors, getProduct, getProductDetails } from "../../../actions/productAction";
 import Carousel from "react-material-ui-carousel";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-import ReactStars from "react-rating-stars-component";
+// import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.jsx";
 import LoadingPage from "../loading/LoadingPage";
 import Error from "../../Error/Error";
@@ -19,6 +19,7 @@ import Rating from "@mui/material/Rating";
 import { RiStarSFill } from "react-icons/ri";
 import GlobalState from "../../../GlobalState";
 import MetaDeta from "../MetaDeta";
+import ProductCard from "../../Home/ProductCard";
 
 const ProductDetails = () => {
   const { setErr, setMsg } = useContext(GlobalState);
@@ -31,6 +32,8 @@ const ProductDetails = () => {
   const { loading, error, product } = useSelector(
     (state) => state.productDetails
   );
+  const { loading: isLoading, products } = useSelector((state) => state.products);
+
 
   const [count1, setCount1] = useState(0);
   const [count2, setCount2] = useState(0);
@@ -116,6 +119,11 @@ const ProductDetails = () => {
 
     if (stars === "5star") {
       setReviews(rev5);
+    }
+
+    if (product) {
+      // "", 1, 30, 0, 1000000, product.category, ""
+      dispatch(getProduct());
     }
   }, [isError, message, stars, product]);
 
@@ -343,6 +351,27 @@ const ProductDetails = () => {
               <p className="noReviews">No Reviews Yet</p>
             )}
             {/* <button>Submit Review</button> */}
+          </div>
+          <div className="container">
+            <h2 className="homeHeading">Related Product</h2>
+            {loading ? (
+              <LoadingPage />
+            ) : (
+              <>
+                <div className="productCard">
+                  {products &&
+                    products.map((product) => (
+                      <ProductCard key={product._id} product={product} />
+                    ))}
+                </div>
+                <Link 
+                  className="all-product v2button allProductBotton"
+                  to="/products"
+                >
+                  All Product
+                </Link>
+              </>
+            )}
           </div>
         </>
       ) : (

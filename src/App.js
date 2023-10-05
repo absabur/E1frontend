@@ -18,7 +18,7 @@ import { auth } from "./actions/userAction";
 import React, { useEffect, useState } from "react";
 import Logout from "./components/user/logout/Logout";
 import DeleteProfile from "./components/user/logout/DeleteProfile";
-import Error from "./components/Error/Error";
+// import Error from "./components/Error/Error";
 import UPassword from "./components/user/update/UPassword";
 import UName from "./components/user/update/UName";
 import UEmail from "./components/user/update/UEmail";
@@ -50,7 +50,6 @@ import UpdateOrder from "./components/admin/UpdateOrder";
 import Sidebar from "./components/admin/Sidebar";
 import AllUsers from "./components/admin/AllUsers";
 import UpdateUser from "./components/admin/UpdateUser";
-import { BackendUrl } from "./BackendUrl";
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -69,7 +68,6 @@ function App() {
   };
 
   useEffect(() => {
-
     window.addEventListener("scroll", () => {
       let heightToHideFrom = 300;
       const winScroll =
@@ -114,6 +112,9 @@ function App() {
     setErr("");
     setMsg("");
   }, [msg, err]);
+  
+
+  
   // window.addEventListener("contextmenu", (e) => e.preventDefault());
 
   return (
@@ -238,8 +239,8 @@ function App() {
                   </>
                 )}
               </Routes>
+              <Footer />
             </div>
-            <Footer />
           </BrowserRouter>
           <button
             className="btnScrollTop"
