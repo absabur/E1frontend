@@ -84,7 +84,6 @@ export const auth = () => async (dispatch) => {
     const data = await axios.get(`${BackendUrl}/api/user/user-info`, { withCredentials: true });
     dispatch({ type: AUTH_USER_SUCCESS, payload: data });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: AUTH_USER_FAILES,
       payload: error.response.data.error,

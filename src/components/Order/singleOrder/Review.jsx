@@ -39,10 +39,10 @@ const Review = () => {
     }
     if (success) {
       setMsg("Review done");
-      dispatch(myOrders());
       const config = { withCredentials: true, headers: { "Content-Type": "application/json" }};
       axios.put(`${BackendUrl}/api/order/reviewd`, { id, productId }, config);
       dispatch({ type: REVIEW_RESET });
+      dispatch(myOrders());
       navigate("/profile");
     }
     if (rating === 5 && comment.length < 10 ) setComment("Satisfied");
@@ -52,14 +52,14 @@ const Review = () => {
     if (rating === 1 && comment.length < 10 ) setComment("Bad");
   }, [error, success, isError, rating]);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const reviewData = {
       rating: rating,
       comment: comment,
       productId: params.id.slice(24, 48),
       orderId: params.id.slice(0, 24),
     };
-    dispatch(reviewProduct(reviewData));
+    await dispatch(reviewProduct(reviewData));
   };
 
   return (
