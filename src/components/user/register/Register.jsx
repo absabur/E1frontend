@@ -25,9 +25,9 @@ const Register = () => {
     password: "",
     cPassword: "",
   });
-  const { loading, isAuthenticated, error } = useSelector(
+  const { loading, isAuthenticated, error, token } = useSelector(
     (state) => state.user
-  );
+    );
 
   const dispatch = useDispatch();
   useEffect(() => {

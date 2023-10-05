@@ -16,15 +16,17 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { isAuthenticated, error } = useSelector((state) => state.user);
+  const { isAuthenticated, error, token } = useSelector((state) => state.user);
 
   const handlelogin = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
   };
   useEffect(() => {
-    setErr(error);
-    dispatch(clearErrors());
+    if (error) {
+      setErr(error);
+      dispatch(clearErrors());
+    }
   }, [error, dispatch]);
   const [type, setType] = useState(false);
 

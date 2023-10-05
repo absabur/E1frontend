@@ -57,6 +57,7 @@ export const signInUpReducer = (state = { user: {} }, action) => {
         ...state,
         isAuthenticated: true,
         user: action.payload.data.user,
+        token: action.payload.data.token,
         loading: false,
       };
     case LOGIN_FAILES:
