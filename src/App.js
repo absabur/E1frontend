@@ -161,12 +161,12 @@ function App() {
                   path="/profile/reset-password/:token"
                   element={<ResetPassword />}
                 />
-                <Route path="/logout" element={<Logout />} />
-                <Route path="/profile/delete" element={<DeleteProfile />} />
-                <Route path="/mail-update/:token" element={<ConfirmEmail />} />
-                <Route path="/cart" element={<Cart />} />
                 {isAuthenticated && (
                   <>
+                    <Route path="/mail-update/:token" element={<ConfirmEmail />} />
+                    <Route path="/logout" element={<Logout />} />
+                    <Route path="/profile/delete" element={<DeleteProfile />} />
+                    <Route path="/cart" element={<Cart />} />
                     <Route path="/myorders" element={<MyOrders />} />
                     <Route path="/myorders/to-pay" element={<MyOrdersToPay />} />
                     <Route
