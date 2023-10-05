@@ -10,6 +10,7 @@ import {
   REVIEW_SUCCESS,
   REVIEW_FAILES,
   REVIEW_RESET,
+  ALL_PRODUCT_RESET,
 } from "../constance/productConstant";
 
 import {
@@ -43,6 +44,13 @@ export const productReducer = (
         loading: false,
         error: action.payload,
       };
+    case ALL_PRODUCT_RESET:
+      return {
+        loading: false,
+        error: null, 
+        products: [], 
+        pagination: {}
+      }
     case CLEARE_ERRORS:
       return {
         ...state,

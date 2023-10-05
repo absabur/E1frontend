@@ -9,6 +9,7 @@ import MetaDeta from "../MetaDeta";
 
 import { allCategory } from "../../../actions/admin/productsAction";
 import GlobalState from "../../../GlobalState";
+import { ALL_PRODUCT_RESET } from "../../../constance/productConstant";
 
 const Products = () => {
   const { setErr, setMsg } = useContext(GlobalState);
@@ -61,6 +62,7 @@ const Products = () => {
 
       setCate(searchParams.get("cate"));
     }
+    dispatch({type: ALL_PRODUCT_RESET})
     dispatch(
       getProduct(search, page, limit, fminPrice, fmaxPrice, fcate, fsort)
     );

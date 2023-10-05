@@ -26,7 +26,7 @@ const AllCategories = () => {
   const updateProfileSubmit = async (e) => {
     e.preventDefault();
 
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = { withCredentials: true, headers: { "Content-Type": "application/json" }};
 
     try {
       const { data } = await axios.post(
@@ -56,7 +56,7 @@ const AllCategories = () => {
     e.preventDefault();
     const { data } = await axios.delete(
       `${BackendUrl}/api/category/${DeleteName}`,
-      {withCredentials: true}
+      { withCredentials: true }
     );
     if (data.success) {
       setMsg("Category Deleted");

@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import GlobalState from "./GlobalState";
 import { AiOutlineArrowUp } from "react-icons/ai";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/layout/Header/Header.jsx";
 import Home from "./components/Home/Home";
 import Footer from "./components/layout/Footer/Footer";
@@ -53,6 +53,7 @@ import UpdateUser from "./components/admin/UpdateUser";
 import { BackendUrl } from "./BackendUrl";
 
 function App() {
+  const [toggle, setToggle] = useState(false);
   const { isAuthenticated, loading, user } = useSelector(state => state.user);
   const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
@@ -68,11 +69,13 @@ function App() {
   };
 
   useEffect(() => {
+
     window.addEventListener("scroll", () => {
       let heightToHideFrom = 300;
       const winScroll =
         document.body.scrollTop || document.documentElement.scrollTop;
 
+      if (winScroll) setToggle(false)
       if (winScroll > heightToHideFrom) {
         setIsVisible(true);
       } else {
@@ -114,7 +117,7 @@ function App() {
   // window.addEventListener("contextmenu", (e) => e.preventDefault());
 
   return (
-    <GlobalState.Provider value={{ err, setErr, msg, setMsg }}>
+    <GlobalState.Provider value={{ err, setErr, msg, setMsg, toggle, setToggle }}>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -135,105 +138,107 @@ function App() {
             <Header />
             {user && user.isAdmin && <Sidebar />}
             <div style={{ height: "80px" }}></div>
-            <Routes>
-              <Route
-                path="*"
-                element={<Error message="Route not found to access" />}
-              />
-              {/* Navigate replace to={"/"} */}
-              <Route path="/" element={<Home />} />
-              <Route path="/product/:id" element={<ProductDetails />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/products/:search" element={<Products />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register/:token" element={<Register />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route
-                path="/profile/forgot/password"
-                element={<ForgotPassword />}
-              />
-              <Route
-                path="/profile/reset-password/:token"
-                element={<ResetPassword />}
-              />
-              <Route path="/logout" element={<Logout />} />
-              <Route path="/profile/delete" element={<DeleteProfile />} />
-              <Route path="/mail-update/:token" element={<ConfirmEmail />} />
-              <Route path="/cart" element={<Cart />} />
-              {isAuthenticated && (
-                <>
-                  <Route path="/myorders" element={<MyOrders />} />
-                  <Route path="/myorders/to-pay" element={<MyOrdersToPay />} />
-                  <Route
-                    path="/myorders/to-process"
-                    element={<MyOrdersToProcess />}
-                  />
-                  <Route
-                    path="/myorders/to-ship"
-                    element={<MyOrdersToShip />}
-                  />
-                  <Route
-                    path="/myorders/to-receive"
-                    element={<MyOrdersToReceive />}
-                  />
-                  <Route
-                    path="/myorders/to-review"
-                    element={<MyOrdersToReview />}
-                  />
-                  <Route path="/order/:id" element={<Order />} />
-                  <Route path="/profile/update/name" element={<UName />} />
-                  <Route path="/profile/update/email" element={<UEmail />} />
-                  <Route path="/profile/update/image" element={<UImage />} />
-                  <Route
-                    path="/profile/update/password"
-                    element={<UPassword />}
-                  />
-                  <Route path="/order/shiping" element={<Shipping />} />
-                  <Route path="/order/payment/:id" element={<MakePayment />} />
-                  <Route
-                    path="/order/payment-success"
-                    element={<PaymentSuccess />}
-                  />
-                  <Route path="/order/review/:id" element={<Review />} />
-                  {user && user.isAdmin === true && (
-                    <>
-                      <Route path="/admin/dashboard" element={<Dashboard />} />
-                      <Route
-                        path="/admin/products"
-                        element={<AdminProducts />}
-                      />
-                      <Route path="/admin/orders" element={<Orders />} />
-                      <Route
-                        path="/admin/order/update/:id"
-                        element={<UpdateOrder />}
-                      />
-                      <Route
-                        path="/admin/product/details/:id"
-                        element={<UpdateProduct />}
-                      />
-                      <Route
-                        path="/admin/create/product"
-                        element={<CreateProduct />}
-                      />
-                      <Route
-                        path="/admin/update/category/:id"
-                        element={<UpdateCategory />}
-                      />
-                      <Route
-                        path="/admin/categories"
-                        element={<AllCategories />}
-                      />
-                      <Route path="/admin/users" element={<AllUsers />} />
-                      <Route
-                        path="/admin/user/update/:id"
-                        element={<UpdateUser />}
-                      />
-                    </>
-                  )}
-                </>
-              )}
-            </Routes>
+            <div onClick={() => setToggle(false)} style={{width: "100vw"}}>
+              <Routes>
+                <Route
+                  path="*"
+                  element={<Navigate replace to={"/login"} />}
+                />
+                {/* Navigate replace to={"/"} */}
+                <Route path="/" element={<Home />} />
+                <Route path="/product/:id" element={<ProductDetails />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/products/:search" element={<Products />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register/:token" element={<Register />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route
+                  path="/profile/forgot/password"
+                  element={<ForgotPassword />}
+                />
+                <Route
+                  path="/profile/reset-password/:token"
+                  element={<ResetPassword />}
+                />
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/profile/delete" element={<DeleteProfile />} />
+                <Route path="/mail-update/:token" element={<ConfirmEmail />} />
+                <Route path="/cart" element={<Cart />} />
+                {isAuthenticated && (
+                  <>
+                    <Route path="/myorders" element={<MyOrders />} />
+                    <Route path="/myorders/to-pay" element={<MyOrdersToPay />} />
+                    <Route
+                      path="/myorders/to-process"
+                      element={<MyOrdersToProcess />}
+                    />
+                    <Route
+                      path="/myorders/to-ship"
+                      element={<MyOrdersToShip />}
+                    />
+                    <Route
+                      path="/myorders/to-receive"
+                      element={<MyOrdersToReceive />}
+                    />
+                    <Route
+                      path="/myorders/to-review"
+                      element={<MyOrdersToReview />}
+                    />
+                    <Route path="/order/:id" element={<Order />} />
+                    <Route path="/profile/update/name" element={<UName />} />
+                    <Route path="/profile/update/email" element={<UEmail />} />
+                    <Route path="/profile/update/image" element={<UImage />} />
+                    <Route
+                      path="/profile/update/password"
+                      element={<UPassword />}
+                    />
+                    <Route path="/order/shiping" element={<Shipping />} />
+                    <Route path="/order/payment/:id" element={<MakePayment />} />
+                    <Route
+                      path="/order/payment-success"
+                      element={<PaymentSuccess />}
+                    />
+                    <Route path="/order/review/:id" element={<Review />} />
+                    {user && user.isAdmin === true && (
+                      <>
+                        <Route path="/admin/dashboard" element={<Dashboard />} />
+                        <Route
+                          path="/admin/products"
+                          element={<AdminProducts />}
+                        />
+                        <Route path="/admin/orders" element={<Orders />} />
+                        <Route
+                          path="/admin/order/update/:id"
+                          element={<UpdateOrder />}
+                        />
+                        <Route
+                          path="/admin/product/details/:id"
+                          element={<UpdateProduct />}
+                        />
+                        <Route
+                          path="/admin/create/product"
+                          element={<CreateProduct />}
+                        />
+                        <Route
+                          path="/admin/update/category/:id"
+                          element={<UpdateCategory />}
+                        />
+                        <Route
+                          path="/admin/categories"
+                          element={<AllCategories />}
+                        />
+                        <Route path="/admin/users" element={<AllUsers />} />
+                        <Route
+                          path="/admin/user/update/:id"
+                          element={<UpdateUser />}
+                        />
+                      </>
+                    )}
+                  </>
+                )}
+              </Routes>
+            </div>
             <Footer />
           </BrowserRouter>
           <button

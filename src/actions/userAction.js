@@ -81,9 +81,10 @@ export const register = (userData) => async (dispatch) => {
 export const auth = () => async (dispatch) => {
   try {
     dispatch({ type: AUTH_USER_REQUEST });
-    const data = await axios.get(`${BackendUrl}/api/user/user-info`,{withCredentials: true});
+    const data = await axios.get(`${BackendUrl}/api/user/user-info`, { withCredentials: true });
     dispatch({ type: AUTH_USER_SUCCESS, payload: data });
   } catch (error) {
+    console.log(error);
     dispatch({
       type: AUTH_USER_FAILES,
       payload: error.response.data.error,
