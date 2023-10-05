@@ -10,6 +10,7 @@ import Rating from "@mui/material/Rating";
 import { REVIEW_RESET } from "../../../constance/productConstant";
 import GlobalState from "../../../GlobalState";
 import MetaDeta from "../../layout/MetaDeta";
+import { BackendUrl } from "../../../BackendUrl";
 
 const Review = () => {
   const { setErr, setMsg } = useContext(GlobalState);
@@ -39,7 +40,7 @@ const Review = () => {
     if (success) {
       setMsg("Review done");
       const config = { headers: { "Content-Type": "application/json" } };
-      axios.put(`/api/order/reviewd`, { id, productId }, config);
+      axios.put(`${BackendUrl}/api/order/reviewd`, { id, productId }, config);
       dispatch({ type: REVIEW_RESET });
       navigate("/profile");
     }
@@ -62,7 +63,7 @@ const Review = () => {
 
   return (
     <>
-    <MetaDeta title="FeedBack" />
+      <MetaDeta title="FeedBack" />
       {loading || isLoading ? (
         <LoadingPage />
       ) : order && order.orderStatus === "delivered" ? (

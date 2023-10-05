@@ -11,6 +11,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { FaRegTrashCan } from "react-icons/fa6";
 import "./admin.css";
 import GlobalState from "../../GlobalState";
+import { BackendUrl } from "../../BackendUrl";
 
 const AllCategories = () => {
   const { setErr, setMsg } = useContext(GlobalState);
@@ -30,7 +31,11 @@ const AllCategories = () => {
     };
 
     try {
-      const { data } = await axios.post(`/api/category`, { name }, config);
+      const { data } = await axios.post(
+        `${BackendUrl}/api/category`,
+        { name },
+        config
+      );
       if (data.success) {
         setMsg("Category created");
         setName("");
@@ -51,7 +56,9 @@ const AllCategories = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data } = await axios.delete(`/api/category/${DeleteName}`);
+    const { data } = await axios.delete(
+      `${BackendUrl}/api/category/${DeleteName}`
+    );
     if (data.success) {
       setMsg("Category Deleted");
 

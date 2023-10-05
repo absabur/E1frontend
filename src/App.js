@@ -50,11 +50,11 @@ import UpdateOrder from "./components/admin/UpdateOrder";
 import Sidebar from "./components/admin/Sidebar";
 import AllUsers from "./components/admin/AllUsers";
 import UpdateUser from "./components/admin/UpdateUser";
+import { BackendUrl } from "./BackendUrl";
 
 function App() {
   const { isAuthenticated, loading, user } = useSelector(state => state.user);
   const [isVisible, setIsVisible] = useState(false);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(auth());

@@ -8,6 +8,7 @@ import MetaDeta from "../layout/MetaDeta";
 import { useDispatch, useSelector } from "react-redux";
 import { allCategory } from "../../actions/admin/productsAction";
 import GlobalState from "../../GlobalState";
+import { BackendUrl } from "../../BackendUrl";
 
 const UpdateCategory = () => {
   const { setErr, setMsg } = useContext(GlobalState);
@@ -37,7 +38,11 @@ const UpdateCategory = () => {
       headers: { "Content-Type": "application/json" },
     };
     try {
-      const { data } = await axios.put(`/api/category/${id}`, { name }, config);
+      const { data } = await axios.put(
+        `${BackendUrl}/api/category/${id}`,
+        { name },
+        config
+      );
       if (data.success) {
         setMsg("Category Updated.");
         navigate("/admin/categories");

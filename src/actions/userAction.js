@@ -37,13 +37,14 @@ import {
   CONFIRM_EMAIL_FAILES,
   CLEARE_ERRORS,
 } from "../constance/userConstant";
+import { BackendUrl } from "../BackendUrl";
 
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
     const config = { headers: { "Content-Type": "application/json" } };
     const data = await axios.post(
-      "/api/user/login",
+      `${BackendUrl}/api/user/login`,
       { email, password },
       config
     );
@@ -62,7 +63,11 @@ export const register = (userData) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const data = await axios.post(`/api/user/new`, userData, config);
+    const data = await axios.post(
+      `${BackendUrl}/api/user/new`,
+      userData,
+      config
+    );
 
     dispatch({ type: REGISTER_SUCCESS, payload: data });
   } catch (error) {
@@ -76,8 +81,7 @@ export const register = (userData) => async (dispatch) => {
 export const auth = () => async (dispatch) => {
   try {
     dispatch({ type: AUTH_USER_REQUEST });
-    const data = await axios.get("/api/user/user-info");
-    console.log(data);
+    const data = await axios.get(`${BackendUrl}/api/user/user-info`);
     dispatch({ type: AUTH_USER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -89,7 +93,7 @@ export const auth = () => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.post("/api/user/logout");
+    await axios.post(`${BackendUrl}/api/user/logout`);
     dispatch({ type: LOGOUT_USER_SUCCESS });
   } catch (error) {
     dispatch({
@@ -106,7 +110,7 @@ export const updateProfile = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/user/update-profile`,
+      `${BackendUrl}/api/user/update-profile`,
       userData,
       config
     );
@@ -127,7 +131,7 @@ export const changePassword = (passwordData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `/api/user/update-password`,
+      `${BackendUrl}/api/user/update-password`,
       passwordData,
       config
     );
@@ -145,7 +149,9 @@ export const deleteAccount = () => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ACCOUNT_REQUEST });
 
-    const { data } = await axios.delete(`/api/user/delete-profile`);
+    const { data } = await axios.delete(
+      `${BackendUrl}/api/user/delete-profile`
+    );
 
     dispatch({ type: DELETE_ACCOUNT_SUCCESS, payload: data.success });
   } catch (error) {
@@ -163,7 +169,7 @@ export const forgotPassword = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/user/forgot-password`,
+      `${BackendUrl}/api/user/forgot-password`,
       userData,
       config
     );
@@ -184,7 +190,7 @@ export const resetPassword = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `/api/user/reset-password`,
+      `${BackendUrl}/api/user/reset-password`,
       userData,
       config
     );
@@ -204,7 +210,11 @@ export const signUpVerify = (userData) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.post(`/api/user/signup`, userData, config);
+    const { data } = await axios.post(
+      `${BackendUrl}/api/user/signup`,
+      userData,
+      config
+    );
 
     dispatch({ type: VERIFY_EMAIL_SUCCESS, payload: data.message });
   } catch (error) {
@@ -222,7 +232,7 @@ export const verifyEmail = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/user/update-email-requset`,
+      `${BackendUrl}/api/user/update-email-requset`,
       userData,
       config
     );
@@ -243,7 +253,7 @@ export const confirmEmail = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `/api/user/update-email`,
+      `${BackendUrl}/api/user/update-email`,
       userData,
       config
     );
