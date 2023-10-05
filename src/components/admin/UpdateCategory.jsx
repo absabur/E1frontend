@@ -34,9 +34,8 @@ const UpdateCategory = () => {
   const updateProfileSubmit = async (e) => {
     e.preventDefault();
     const id = params.id;
-    const config = {
-      headers: { "Content-Type": "application/json" },
-    };
+
+    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
     try {
       const { data } = await axios.put(
         `${BackendUrl}/api/category/${id}`,

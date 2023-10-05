@@ -39,7 +39,8 @@ const Review = () => {
     }
     if (success) {
       setMsg("Review done");
-      const config = { headers: { "Content-Type": "application/json" } };
+
+      const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
       axios.put(`${BackendUrl}/api/order/reviewd`, { id, productId }, config);
       dispatch({ type: REVIEW_RESET });
       navigate("/profile");

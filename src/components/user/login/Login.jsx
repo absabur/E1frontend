@@ -29,7 +29,6 @@ const Login = () => {
     }
   }, [error, dispatch]);
   const [type, setType] = useState(false);
-
   return (
     <>
       {isAuthenticated ? (

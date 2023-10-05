@@ -16,7 +16,7 @@ export const allOrders = (id, sort) => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_ORDER_REQUEST });
     const data = await axios.get(
-      `${BackendUrl}/api/order/all-orders?id=${id}&sort=${sort}`
+      `${BackendUrl}/api/order/all-orders?id=${id}&sort=${sort}`,{withCredentials: true}
     );
     dispatch({ type: ADMIN_ORDER_SUCCESS, payload: data });
   } catch (error) {
@@ -31,7 +31,7 @@ export const deleteOrder = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ORDER_REQUEST });
 
-    const { data } = await axios.delete(`${BackendUrl}/api/order/${id}`);
+    const { data } = await axios.delete(`${BackendUrl}/api/order/${id}`,{withCredentials: true});
     dispatch({ type: DELETE_ORDER_SUCCESS, payload: data.success });
   } catch (error) {
     dispatch({
@@ -45,9 +45,8 @@ export const updateOrder = (id, orderData) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_ORDER_REQUEST });
 
-    const config = {
-      headers: { "Content-Type": "application/json" },
-    };
+    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+
 
     const { data } = await axios.put(
       `${BackendUrl}/api/order/${id}`,

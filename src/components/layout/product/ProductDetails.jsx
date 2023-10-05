@@ -204,9 +204,9 @@ const ProductDetails = () => {
                     {product.Stock < 1 ? " OutOfStock" : ` InStock`}
                   </b>
                   <br />
-                  <p style={{ paddingTop: "0.4rem" }}>
+                  <span style={{ paddingTop: "0.4rem" }}>
                     {product.Stock < 1 ? null : ` ${product.Stock} Item Left`}
-                  </p>
+                  </span>
                 </p>
                 <div className="cartInput">
                   <button onClick={decQuantity}>−</button>

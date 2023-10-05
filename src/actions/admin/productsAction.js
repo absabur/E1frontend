@@ -22,7 +22,8 @@ export const getProductAdmin =
     try {
       dispatch({ type: ADMIN_PRODUCT_REQUEST });
       const data = await axios.get(
-        `${BackendUrl}/api/product/admin?limit=${limit}&page=${page}&sort=${sort}&id=${id}&name=${name}`
+        `${BackendUrl}/api/product/admin?limit=${limit}&page=${page}&sort=${sort}&id=${id}&name=${name}`,
+        {withCredentials: true}
       );
       dispatch({ type: ADMIN_PRODUCT_SUCCESS, payload: data });
     } catch (error) {
@@ -36,7 +37,7 @@ export const getProductAdmin =
 export const createProduct = (productData) => async (dispatch) => {
   try {
     dispatch({ type: CREATE_PRODUCT_REQUEST });
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
+    const config = {withCredentials: true, headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.post(
       `${BackendUrl}/api/product/new`,
@@ -56,7 +57,7 @@ export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    const { data } = await axios.delete(`${BackendUrl}/api/product/${id}`);
+    const { data } = await axios.delete(`${BackendUrl}/api/product/${id}`,{withCredentials: true});
     dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data.success });
   } catch (error) {
     dispatch({
@@ -70,9 +71,8 @@ export const updateProduct = (id, productData) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
 
-    const config = {
-      headers: { "Content-Type": "application/json" },
-    };
+    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+
 
     const { data } = await axios.put(
       `${BackendUrl}/api/product/${id}`,
@@ -93,7 +93,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
 };
 
 export const allCategory = () => async (dispatch) => {
-  const { data } = await axios.get(`${BackendUrl}/api/category`);
+  const { data } = await axios.get(`${BackendUrl}/api/category`,{withCredentials: true});
   dispatch({
     type: CATEGORY_GET_SUCCESS,
     payload: data.categories,

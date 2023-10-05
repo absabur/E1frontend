@@ -54,7 +54,7 @@ export const getProductDetails = (id) => async (dispatch) => {
 export const reviewProduct = (reviewData) => async (dispatch) => {
   try {
     dispatch({ type: REVIEW_REQUEST });
-    const config = { headers: { "Content-Type": "application/json" } };
+    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
 
     const { data } = await axios.put(
       `${BackendUrl}/api/product/create-review`,
