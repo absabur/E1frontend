@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { clearErrors, getOrderDetails } from "../../../actions/orderAction";
+import { clearErrors, getOrderDetails, myOrders } from "../../../actions/orderAction";
 
 import LoadingPage from "../../layout/loading/LoadingPage";
 import { reviewProduct } from "../../../actions/productAction";
@@ -39,17 +39,17 @@ const Review = () => {
     }
     if (success) {
       setMsg("Review done");
-
+      dispatch(myOrders());
       const config = { withCredentials: true, headers: { "Content-Type": "application/json" }};
       axios.put(`${BackendUrl}/api/order/reviewd`, { id, productId }, config);
       dispatch({ type: REVIEW_RESET });
       navigate("/profile");
     }
-    if (rating === 5) setComment("Satisfied");
-    if (rating === 4) setComment("Good");
-    if (rating === 3) setComment("Average");
-    if (rating === 2) setComment("Poor");
-    if (rating === 1) setComment("Bad");
+    if (rating === 5 && comment.length < 10 ) setComment("Satisfied");
+    if (rating === 4 && comment.length < 10 ) setComment("Good");
+    if (rating === 3 && comment.length < 10 ) setComment("Average");
+    if (rating === 2 && comment.length < 10 ) setComment("Poor");
+    if (rating === 1 && comment.length < 10 ) setComment("Bad");
   }, [error, success, isError, rating]);
 
   const handleClick = () => {

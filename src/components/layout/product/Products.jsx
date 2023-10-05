@@ -168,7 +168,7 @@ const Products = () => {
                     value={cate}
                     onChange={(e) => setCate(e.target.value)}
                   >
-                    <option value="all">All</option>
+                    <option value="">Choose</option>
 
                     {categories &&
                       categories.map((category) => (
