@@ -77,7 +77,7 @@ export const auth = () => async (dispatch) => {
   try {
     dispatch({ type: AUTH_USER_REQUEST });
     const data = await axios.get("/api/user/user-info");
-
+    console.log(data);
     dispatch({ type: AUTH_USER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
