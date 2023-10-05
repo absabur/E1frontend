@@ -14,15 +14,7 @@ import {
 import { BackendUrl } from "../BackendUrl";
 
 export const getProduct =
-  (
-    search = "",
-    page,
-    limit = 8,
-    minPrice = 0,
-    maxPrice = 1000000,
-    cate = "",
-    sort = "Top Sales"
-  ) =>
+  (search ,page = 1,limit = 8,minPrice = 0,maxPrice = 1000000,cate = "",sort = "Top Sales") =>
   async (dispatch) => {
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST });

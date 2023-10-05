@@ -21,11 +21,6 @@ const Products = () => {
   const [cate, setCate] = useState("");
   const [sort, setSort] = useState("");
 
-  const [fminPrice, setfMinPrice] = useState(0);
-  const [fmaxPrice, setfMaxPrice] = useState(1000000);
-  const [fcate, setfCate] = useState("");
-  const [fsort, setfSort] = useState("");
-
   const [searchParams, setSearchParams] = useSearchParams({});
 
   const { loading, error, products, pagination } = useSelector(
@@ -37,34 +32,17 @@ const Products = () => {
 
   let limit = 20;
   useEffect(() => {
+    dispatch({type: ALL_PRODUCT_RESET})
     if (error) {
       setErr(error);
-
       dispatch(clearErrors());
     }
-    if (searchParams.get("minPrice")) {
-      setfMinPrice(searchParams.get("minPrice"));
-
-      setMinPrice(searchParams.get("minPrice"));
-    }
-    if (searchParams.get("maxPrice")) {
-      setfMaxPrice(searchParams.get("maxPrice"));
-
-      setMaxPrice(searchParams.get("maxPrice"));
-    }
-    if (searchParams.get("sort")) {
-      setfSort(searchParams.get("sort"));
-
-      setSort(searchParams.get("sort"));
-    }
-    if (searchParams.get("cate")) {
-      setfCate(searchParams.get("cate"));
-
-      setCate(searchParams.get("cate"));
-    }
-    dispatch({type: ALL_PRODUCT_RESET})
+    setMinPrice(searchParams.get("minPrice"));
+    setMaxPrice(searchParams.get("maxPrice"));
+    setSort(searchParams.get("sort"));
+    setCate(searchParams.get("cate"));
     dispatch(
-      getProduct(search, page, limit, fminPrice, fmaxPrice, fcate, fsort)
+      getProduct(search, page, limit, searchParams.get("minPrice"), searchParams.get("maxPrice"), searchParams.get("cate"), searchParams.get("sort"))
     );
   }, [
     dispatch,
@@ -72,10 +50,6 @@ const Products = () => {
     page,
     limit,
     error,
-    fminPrice,
-    fmaxPrice,
-    fsort,
-    fcate,
     searchParams.get("minPrice"),
     searchParams.get("maxPrice"),
     searchParams.get("sort"),
@@ -140,6 +114,7 @@ const Products = () => {
               <div className="form-input">
                 <label htmlFor="min-price">Min Price </label>
                 <input
+                  placeholder="Minimum Price"
                   value={minPrice}
                   type="Number"
                   id="min-price"
@@ -147,6 +122,7 @@ const Products = () => {
                 />
                 <span> -- </span>
                 <input
+                  placeholder="Maximum Price"
                   value={maxPrice}
                   type="Number"
                   id="max-price"
