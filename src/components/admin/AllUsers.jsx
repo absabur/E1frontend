@@ -185,7 +185,7 @@ const Users = () => {
                 <button onClick={handleReset} className="v1button find">
                   Reset
                 </button>
-                <button className="v2button find" type="submit">
+                <button disabled={id && id.length !== 24 ? true : false} className="v2button find" type="submit">
                   Find
                 </button>
               </div>

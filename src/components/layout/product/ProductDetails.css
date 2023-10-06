@@ -414,7 +414,9 @@
 }
 
 .not-found {
+  margin-top: 80px;
   height: 50vh;
+  min-height: 400px;
   display: flex;
   align-items: center;
 }
