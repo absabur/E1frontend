@@ -192,7 +192,6 @@ const Products = () => {
           </div>
           <div className="products-section" onClick={()=> setFilterToggle(false)}>
             <MetaDeta title="All Products" />
-            {/* <Search/> */}
 
             {products && products.length > 0 ? (
               <>

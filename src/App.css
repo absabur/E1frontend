@@ -36,6 +36,19 @@ a {
   position: relative;
 }
 
+.App {
+  background-color: var(--back);
+  min-width: 100vw;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .v1button {
   text-align: center;
   /* border-radius: 10px; */

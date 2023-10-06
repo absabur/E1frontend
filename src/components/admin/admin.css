@@ -9,6 +9,18 @@
   min-height: 500px;
 }
 
+.dashboard-toggle{
+  margin-left: 250px;
+  height: 40px;
+  width: 50px;
+  font-size: 2rem;
+  border: none;
+  box-shadow: 0 0 5px var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .sideBar {
   width: 250px;
   position: fixed;

@@ -7,7 +7,7 @@ import { ImCross } from 'react-icons/im';
 const Search = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchValue, setsearchValue] = useState(null)
+  const [searchValue, setsearchValue] = useState("")
 
   const handleClearSearch = () => {
     setSearchParams({})

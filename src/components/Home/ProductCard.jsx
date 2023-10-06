@@ -14,7 +14,7 @@ const ProductCard = ({product}) => {
   return (
     <Link key={product._id} className='productCard' to={`/product/${product._id}`}>
       <img src={product.images[0].url} alt={product.name} />
-      <p>{product.name.slice(0, 20)}{product.name.slice(19,100)?"...": null}</p>
+      <p style={{textAlign: "center", padding: "0 2px"}}>{product.name.slice(0, 20)}{product.name.slice(19,100)?"...": null}</p>
       <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
         <Rating size="small" value={product.ratings} precision={0.5} readOnly /> <span style={{margin: "2px"}}>{product.ratings && product.ratings.toFixed(1)}</span><span className='productCardSpan'>{product.numOfReviews} reviews</span>
       </div>
