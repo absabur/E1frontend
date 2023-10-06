@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { clearErrors, getOrderDetails } from "../../../actions/orderAction";
 import LoadingPage from "../../layout/loading/LoadingPage";
-
+import copy from "copy-to-clipboard";
 import "./Order.css";
 import GlobalState from "../../../GlobalState";
 import MetaDeta from "../../layout/MetaDeta";
@@ -25,6 +25,10 @@ const Order = () => {
       dispatch(clearErrors());
     }
   }, [error]);
+  const handleCopyText = (text) => {
+    copy(text);
+    setMsg(`You have copied "${text}"`);
+  };
 
   return (
     <>
@@ -57,11 +61,11 @@ const Order = () => {
               }
               className="status"
             >
-              {order.orderStatus === "delivered" ||
-              order.orderStatus === "canceled" ? (
-                <>{order.orderStatus.toUpperCase()}</>
-              ) : (
+              {order.orderStatus === "pay" ||
+              order.orderStatus === "receive" ? (
                 <>TO {order.orderStatus.toUpperCase()}</>
+                ) : (
+                <>{order.orderStatus.toUpperCase()}</>
               )}
             </span>
           </h4>
@@ -71,7 +75,7 @@ const Order = () => {
             </p>
           ) : null}
           <div className="orderCard">
-            <strong>Order: {order._id}</strong>
+            <strong>Order: <span onClick={(e)=> handleCopyText(e.currentTarget.innerHTML)} style={{color: "var(--v1)"}}>{order._id}</span></strong>
             <br />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span style={{ opacity: "0.7" }}>
@@ -90,7 +94,7 @@ const Order = () => {
                     to={`/product/${item.productId}`}
                     className="productName link"
                   >
-                    {item.name}
+                    {item.name.slice(0, 32)}{item.name.slice(31, -1)? "...": ""}
                   </Link>
                   <b>
                     ৳{item.price} x{item.quantity}

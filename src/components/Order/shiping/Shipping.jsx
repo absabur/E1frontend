@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoadingPage from "../../layout/loading/LoadingPage";
 import { auth } from "../../../actions/userAction";
 import { RESET_CART_STATE } from "../../../constance/cartConstant";
-import { TbEdit } from "react-icons/tb";
+import { TbTrash } from "react-icons/tb";
 import "./Shiping.css";
 import { Link, useNavigate } from "react-router-dom";
 import GlobalState from "../../../GlobalState";
@@ -25,7 +25,7 @@ const Shipping = () => {
 
   const [subTotal, setSubTotal] = useState(0);
 
-  const [orderDetails, setOrderDetails] = useState(null);
+  const [orderDetails, setOrderDetails] = useState([]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -195,9 +195,9 @@ const Shipping = () => {
                 {user.address.email}
               </div>
               <section>
-                Change Address:{" "}
+                Delete Address To Change:{" "}
                 <button onClick={handleDelete} className="trash">
-                  <TbEdit />
+                  <TbTrash />
                 </button>
               </section>
             </div>
@@ -215,7 +215,7 @@ const Shipping = () => {
             </h2>
             <div className="cartItems">
               {orderDetails &&
-                orderDetails.length != 0 &&
+                orderDetails.length > 0 &&
                 orderDetails.map((item) => (
                   <div key={item.productId} className="cartCard">
                     <Link
@@ -229,7 +229,7 @@ const Shipping = () => {
                         to={`/product/${item.productId}`}
                         className="itemName"
                       >
-                        {item.name.slice(0, 50)}
+                        {item.name.slice(0, 45)}{item.name.slice(44, -1)? "...": ""}
                       </Link>
                       <div className="itemQuantity">
                         <h1>Quantity: {item.quantity}</h1>

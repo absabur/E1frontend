@@ -249,7 +249,7 @@ const Products = () => {
                     </p>
                     <p className="name">
                       {product.name.slice(0, 60)}
-                      {product.name.slice(61, 1000) ? "..." : null}
+                      {product.name.slice(59, 1000) ? "..." : null}
                     </p>
                     <p
                       className="stock"

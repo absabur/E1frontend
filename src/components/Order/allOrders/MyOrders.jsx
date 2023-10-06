@@ -41,12 +41,12 @@ const MyOrders = () => {
     }
   }, [error, isError, success]);
 
-  const [cancleDiv, setCancleDiv] = useState(false);
+  const [cancleDiv, setCancleDiv] = useState("");
   const [cancleId, setCancelId] = useState("");
   const [reason, setReason] = useState("");
 
   const handleCancel = (id) => {
-    setCancleDiv(true);
+    setCancleDiv(id);
     setCancelId(id);
   };
 
@@ -60,62 +60,62 @@ const MyOrders = () => {
   return (
     <div className="allOrders">
       <MetaDeta title="My Orders" />
-      {cancleDiv ? (
-        <div id="cancel" className="cancelDiv">
-          <p>Order Id: {cancleId}</p>
-          <form onSubmit={handleSubmit}>
-            <select required onChange={(e) => setReason(e.target.value)}>
-              <option value="">Choose</option>
-              <option value="Unexpected Order">Unexpected Order</option>
-              <option value="Change of Mind">Change of Mind</option>
-              <option value="Duplicate Order">Duplicate Order</option>
-              <option value="Change Payment Method">
-                Change Payment Method
-              </option>
-            </select>
-            <div className="cancelButtons">
-              <button
-                onClick={() => setCancleDiv(false)}
-                type="reset"
-                style={{
-                  fontSize: "16px",
-                  padding: "10px",
-                  border: "1px solid var(--black)",
-                  cursor: "pointer",
-                }}
-              >
-                Undo
-              </button>
-              <button
-                type="submit"
-                className="v1button"
-                style={{ fontSize: "16px", padding: "10px" }}
-              >
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      ) : null}
       <OrdersHeading />
 
       <h2 className="myOrderHead">My Orders</h2>
-      {orders && orders[0] ? null : (
-        <div className="noOrder">
-          <h1>No Order</h1>
-        </div>
-      )}
+
       {loading ? (
         <LoadingPage />
-      ) : (
-        orders &&
+      ) : (<>
+        {orders && orders[0] ? null : (
+          <div className="noOrder">
+            <h1>No Order</h1>
+          </div>
+        )}
+        {orders &&
         orders.toReversed().map((order) => (
-          <Link
-            to={`/order/${order._id}`}
+          <div
             key={order._id}
             className="orderCard"
           >
-            <strong>Order: {order._id}</strong>
+          {cancleDiv == order._id ? (
+            <div id="cancel" className="cancelDiv">
+              <p>Order Id: {cancleId}</p>
+              <form onSubmit={handleSubmit}>
+                <select required onChange={(e) => setReason(e.target.value)}>
+                  <option value="">Choose</option>
+                  <option value="Unexpected Order">Unexpected Order</option>
+                  <option value="Change of Mind">Change of Mind</option>
+                  <option value="Duplicate Order">Duplicate Order</option>
+                  <option value="Change Payment Method">
+                    Change Payment Method
+                  </option>
+                </select>
+                <div className="cancelButtons">
+                  <button
+                    onClick={() => setCancleDiv(false)}
+                    type="reset"
+                    style={{
+                      fontSize: "16px",
+                      padding: "10px",
+                      border: "1px solid var(--black)",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Undo
+                  </button>
+                  <button
+                    type="submit"
+                    className="v1button"
+                    style={{ fontSize: "16px", padding: "10px" }}
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          ) : null}
+            <Link style={{color: "var(--v1)"}} to={`/order/${order._id}`}>Order: {order._id}</Link>
             <br />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span>
@@ -130,7 +130,7 @@ const MyOrders = () => {
                   <img src={item.image} alt="" />
                 </div>
                 <div className="productDetails">
-                  <p className="productName">{item.name}</p>
+                  <p className="productName">{item.name.slice(0, 15)}{item.name.slice(14, -1)? "...": ""}</p>
                   <b>
                     ৳{item.price} x{item.quantity}
                   </b>
@@ -202,9 +202,9 @@ const MyOrders = () => {
                 </Link>
               ) : null}
             </div>
-          </Link>
-        ))
-      )}
+          </div>
+        ))}
+      </>)}
     </div>
   );
 };

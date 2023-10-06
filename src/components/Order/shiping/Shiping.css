@@ -16,7 +16,7 @@
 }
 
 .price {
-  font-size: 2.8vw;
+  font-size: 20px;
 }
 
 .addressCard {
@@ -59,7 +59,7 @@ section {
 
 .toPayButton {
   padding: 1.2vw;
-  font-size: 2.8vw;
+  font-size: 18px;
   width: 50%;
   margin-bottom: 1rem;
 }
@@ -77,12 +77,13 @@ section {
   flex-direction: column;
 }
 
-.cartCard {
-  height: 20vw;
-}
 
 .cartItems {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .addressForm {
@@ -147,9 +148,6 @@ textarea {
 @media screen and (max-width: 720px) {
   .addressForm {
     min-height: 1000px;
-  }
-  .cartCard {
-    height: 30vw;
   }
   .addressCard {
     width: 96%;

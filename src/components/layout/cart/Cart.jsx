@@ -98,7 +98,7 @@ const CartItem = () => {
                         to={`/product/${item.productId}`}
                         className="itemName"
                       >
-                        {item.name.slice(0, 50)}
+                        {item.name.slice(0, 45)}{item.name.slice(44, -1)? "...": ""}
                       </Link>
                       <div className="itemQuantity">
                         <h1>Quantity: {item.quantity}</h1>
@@ -189,7 +189,7 @@ const CartItem = () => {
                 <Link
                   to="/products"
                   className="v2button"
-                  style={{ padding: "10px" }}
+                  style={{ padding: "10px", width: "250px" }}
                 >
                   All Products
                 </Link>

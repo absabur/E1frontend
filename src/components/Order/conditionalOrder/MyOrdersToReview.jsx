@@ -64,7 +64,7 @@ const MyOrdersToReview = () => {
                         <img src={item.image} alt="" />
                       </div>
                       <div className="productDetails">
-                        <p className="productName">{item.name}</p>
+                        <p className="productName">{item.name.slice(0, 32)}{item.name.slice(31, -1)? "...": ""}</p>
                         <b>
                           ৳{item.price} x{item.quantity}
                         </b>
