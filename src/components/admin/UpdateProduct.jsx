@@ -62,6 +62,9 @@ const UpdateProduct = () => {
   const createProductSubmitHandler = (e) => {
     e.preventDefault();
     const id = params.id;
+    if (category == "") {
+      setErr("Choose a Category")
+    }
     const myForm = new FormData();
 
     myForm.set("name", name);

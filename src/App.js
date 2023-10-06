@@ -139,7 +139,7 @@ function App() {
           {loading ? (
             <LoadingPage />
           ) : (
-            <div onClick={() => setToggle(false)} style={{width: "100vw", minHeight: "90vh", display: "flex", flexDirection: "column", justifyContent: "space-between", backgroundColor: "var(--back)"}}>
+            <div onClick={() => setToggle(false)} style={{width: "100vw", minHeight: "70vh", display: "flex", flexDirection: "column", justifyContent: "space-between", backgroundColor: "var(--back)"}}>
               <Routes>
                 <Route
                   path="*"
