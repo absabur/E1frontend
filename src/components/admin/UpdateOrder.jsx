@@ -93,11 +93,11 @@ const Order = () => {
               }
               className="status"
             >
-              {order.orderStatus === "delivered" ||
-              order.orderStatus === "canceled" ? (
-                <>{order.orderStatus.toUpperCase()}</>
-              ) : (
+              {order.orderStatus === "pay" ||
+              order.orderStatus === "receive" ? (
                 <>TO {order.orderStatus.toUpperCase()}</>
+                ) : (
+                <>{order.orderStatus.toUpperCase()}</>
               )}
             </span>
           </h4>
@@ -147,7 +147,7 @@ const Order = () => {
               >
                 <label htmlFor="reason">Cancelation Reason: </label>
                 <input
-                  style={{ width: "100%", margin: "10px 0" }}
+                  style={{ width: "100%", margin: "10px 0", padding: "10px", fontSize: "17px" }}
                   placeholder="Reason"
                   id="reason"
                   name="reason"

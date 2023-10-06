@@ -336,7 +336,8 @@ create product */
   margin: auto;
   background-color: antiquevar(--white);
   border-radius: 10px;
-  padding: 2rem 0.4rem;
+  padding: 2rem 0.7rem;
+  box-shadow: 0 0 10px var(--black);
 }
 
 .productName,
@@ -432,5 +433,13 @@ create product */
 @media screen and (max-width: 800px) {
   .search div {
     width: 95%;
+  }
+}
+
+
+
+@media screen and (max-width: 500px) {
+  .productCreate {
+    box-shadow:  0 0 0;
   }
 }
