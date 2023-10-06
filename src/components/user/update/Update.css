@@ -139,9 +139,11 @@ loginForm form div label {
 @media screen and (max-width: 500px) {
   .updatePage {
     min-height: 550px;
+    box-shadow: 0 0 0;
   }
   .updateForm {
     width: 100%;
     height: 100%;
+    box-shadow: 0 0 0;
   }
 }

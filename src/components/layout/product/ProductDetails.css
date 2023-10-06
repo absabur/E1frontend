@@ -368,12 +368,21 @@
   margin: 10px 0;
 }
 
+.filterToggle{
+  display: none;
+}
+
 .select-filter {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
+}
+
+.select-setion{
+  display: flex;
+  width: 100%;
 }
 
 .buttons {
@@ -416,7 +425,7 @@
 }
 
 .px80 {
-  height: 80px;
+  height: 100px;
 }
 
 @media screen and (max-width: 992px) {
@@ -430,12 +439,10 @@
     height: 30vh;
   }
 
-  .px80 {
-    height: 0;
-  }
 
   .main-product-section {
     flex-direction: column;
+    position: relative;
   }
 
   .productImage {
@@ -443,28 +450,73 @@
   }
 
   .filter-div {
-    width: 100%;
+    width: 60vw;
     margin-top: 80px;
     margin-left: 0;
+    position: absolute;
+    z-index: 111;
+    background-color: var(--back);
+    left: -60vw;
+    transition: all 0.3s;
+  }
+
+  .form-input{
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+  }
+
+  .form-input input{
+    width: 90%;
+  }
+  
+  .select-setion{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .select-filter{
+    flex-direction: column;
+  }
+
+  .filterToggle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -85px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 0 40px 40px 0;
+    cursor: url("../../../images/pointer.png"), auto;
+    top: 10px;
+    width: 80px;
+    background-color: var(--back);
+    box-shadow: 0 0 5px var(--black);
   }
 
   .category-link {
     width: 100%;
   }
 
-  .form-input {
-    flex-direction: row;
-    margin: 0;
-  }
   .select-filter ul {
     width: 100%;
     margin: 10px;
   }
-  .filter-div input {
-    width: 25%;
-  }
+
   .select-filter {
     margin-bottom: 0;
+  }
+
+  .filter-div .buttons{
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .filterButton{
+    margin: 10px ;
   }
 
   .CarouselImage {

@@ -352,7 +352,7 @@ const ProductDetails = () => {
             )}
             {/* <button>Submit Review</button> */}
           </div>
-          <div className="container">
+          <div className="container" style={{borderTop: "2px solid var(--white)"}}>
             <h2 className="homeHeading">Related Product</h2>
             {loading ? (
               <LoadingPage />

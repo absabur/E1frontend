@@ -139,7 +139,7 @@ function App() {
             <Header />
             {user && user.isAdmin && <Sidebar />}
             <div style={{ height: "80px" }}></div>
-            <div onClick={() => setToggle(false)} style={{width: "100vw"}}>
+            <div onClick={() => setToggle(false)} style={{width: "100vw", minHeight: "700px", height: "90vh", display: "flex", flexDirection: "column", justifyContent: "space-between", backgroundColor: "var(--back)"}}>
               <Routes>
                 <Route
                   path="*"

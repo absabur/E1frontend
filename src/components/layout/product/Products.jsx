@@ -6,7 +6,8 @@ import ProductCard from "../../Home/ProductCard";
 import { useSearchParams } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
 import MetaDeta from "../MetaDeta";
-
+import { TbFilterOff } from 'react-icons/tb';
+import { TbFilter } from 'react-icons/tb';
 import { allCategory } from "../../../actions/admin/productsAction";
 import GlobalState from "../../../GlobalState";
 import { ALL_PRODUCT_RESET } from "../../../constance/productConstant";
@@ -14,6 +15,8 @@ import { ALL_PRODUCT_RESET } from "../../../constance/productConstant";
 const Products = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
+
+  const [filterToggle, setFilterToggle] = useState(false)
 
   const [page, setpage] = useState(1);
   const [minPrice, setMinPrice] = useState(0);
@@ -74,6 +77,7 @@ const Products = () => {
     }
   };
   const hanleReset = () => {
+    setFilterToggle(false)
     setMinPrice(0);
     setMaxPrice(1000000);
     setCate("");
@@ -88,7 +92,14 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(allCategory());
+    // window.addEventListener("scroll", () => {
+    //   const winScroll =
+    //     document.body.scrollTop || document.documentElement.scrollTop;
+
+    //   if (winScroll) setFilterToggle(false)
+    // });
   }, []);
+
 
   const sortedKey = [
     "Default",
@@ -106,15 +117,16 @@ const Products = () => {
       ) : (
         <div className="main-product-section">
           <MetaDeta title="Products" />
-          <div className="filter-div">
+          <div style={filterToggle? {left: "0"}: {}} className="filter-div">
+            <p style={filterToggle? {borderRadius: "40px 0 0 40px"}: {}} onClick={()=> setFilterToggle(!filterToggle)} className="filterToggle">Filter{filterToggle? <TbFilterOff />: <TbFilter />}</p>
             <h1 style={{ fontSize: "20px", marginBottom: "10px" }}>
               Filter Products
             </h1>
             <form onSubmit={handleSubmit}>
               <div className="form-input">
-                <label htmlFor="min-price">Min Price </label>
+                <label htmlFor="min-price">Mininmum </label>
                 <input
-                  placeholder="Minimum Price"
+                  placeholder="Price"
                   value={minPrice}
                   type="Number"
                   id="min-price"
@@ -122,21 +134,15 @@ const Products = () => {
                 />
                 <span> -- </span>
                 <input
-                  placeholder="Maximum Price"
+                  placeholder="Price"
                   value={maxPrice}
                   type="Number"
                   id="max-price"
                   onChange={(e) => setMaxPrice(e.target.value)}
                 />
-                <label htmlFor="max-price"> Max Price</label>
+                <label htmlFor="max-price"> Maximum</label>
               </div>
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "space-between",
-                }}
-              >
+              <div className="select-setion">
                 <div className="select-filter">
                   <h2 className="selectHead">Category</h2>
                   <select
@@ -178,20 +184,20 @@ const Products = () => {
                 >
                   Reset filters
                 </button>
-                <button type="submit" className="v2button filterButton">
+                <button onClick={()=> setFilterToggle(false)} type="submit" className="v2button filterButton">
                   Apply filter
                 </button>
               </div>
             </form>
           </div>
-          <div className="products-section">
+          <div className="products-section" onClick={()=> setFilterToggle(false)}>
             <MetaDeta title="All Products" />
             {/* <Search/> */}
 
             {products && products.length > 0 ? (
               <>
                 <div className="px80"></div>
-                <h1 className="products-heading">Products</h1>
+                {/* <h1 className="products-heading">Products</h1> */}
 
                 {search ? (
                   <h3 style={{ marginBottom: "1rem" }}>
