@@ -62,9 +62,6 @@ const UpdateProduct = () => {
   const createProductSubmitHandler = (e) => {
     e.preventDefault();
     const id = params.id;
-    if (category == "") {
-      setErr("Choose a Category")
-    }
     const myForm = new FormData();
 
     myForm.set("name", name);
@@ -102,6 +99,11 @@ const UpdateProduct = () => {
       reader.readAsDataURL(file);
     });
   };
+  const handleCategorySelect = () => {
+    if (category.length != 24) {
+      setErr("Choose a Category")
+    }
+  }
 
   return (
     <>
@@ -203,6 +205,7 @@ const UpdateProduct = () => {
               </div>
 
               <input
+                onClick={handleCategorySelect}
                 style={{ padding: "10px" }}
                 type="submit"
                 value="Update"

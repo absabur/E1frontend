@@ -112,7 +112,7 @@ function App() {
     setErr("");
     setMsg("");
   }, [msg, err]);
-  
+
 
   
   // window.addEventListener("contextmenu", (e) => e.preventDefault());
@@ -141,11 +141,6 @@ function App() {
           ) : (
             <div onClick={() => setToggle(false)} style={{width: "100vw", minHeight: "70vh", display: "flex", flexDirection: "column", justifyContent: "space-between", backgroundColor: "var(--back)"}}>
               <Routes>
-                <Route
-                  path="*"
-                  element={<Navigate replace to={"/login"} />}
-                />
-                {/* Navigate replace to={"/"} */}
                 <Route path="/" element={<Home />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
                 <Route path="/products" element={<Products />} />
@@ -162,7 +157,7 @@ function App() {
                   path="/profile/reset-password/:token"
                   element={<ResetPassword />}
                 />
-                {isAuthenticated && (
+                {isAuthenticated ? 
                   <>
                     <Route path="/mail-update/:token" element={<ConfirmEmail />} />
                     <Route path="/logout" element={<Logout />} />
@@ -236,8 +231,19 @@ function App() {
                         />
                       </>
                     )}
+                  </> : <>
+                      {
+                        setTimeout(() => {
+                          <Route
+                            path="*"
+                            element={<Navigate replace to={"/login"} />}
+                          />
+                          {/* Navigate replace to={"/"} */}
+                        }, 100)
+                      }
                   </>
-                )}
+                }
+
               </Routes>
             </div>
           )}
