@@ -162,7 +162,7 @@ const Shipping = () => {
 
   return (
     <>
-    <MetaDeta title="Order Success" />
+    <MetaDeta title="Confirm Order" />
       {isLoading || loading ? (
         <LoadingPage />
       ) : user.address && user.address.division ? (
