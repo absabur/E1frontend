@@ -63,11 +63,13 @@ const ProductDetails = () => {
       });
     }
     if (message) {
-      dispatch(auth());
       setMsg(message);
       dispatch({
         type: RESET_CART_STATE,
       });
+      setTimeout(() => {
+        dispatch(auth());
+      }, 1000);
     }
     if (stars === "all") {
       setReviews(product.reviews);
@@ -354,7 +356,7 @@ const ProductDetails = () => {
           </div>
           <div className="container" style={{borderTop: "2px solid var(--white)"}}>
             <h2 className="homeHeading">Related Product</h2>
-            {loading ? (
+            {isLoading ? (
               <LoadingPage />
             ) : (
               <>

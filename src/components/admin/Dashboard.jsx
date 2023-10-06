@@ -22,7 +22,6 @@ const Dashboard = () => {
     dispatch(allUsers(1, 100000000));
   }, []);
 
-  console.log(userCount);
 
   return (
     <div className="dashBoard">

@@ -25,7 +25,6 @@ const UEmail = () => {
   useEffect(() => {
     if (error) {
       setErr(error);
-      console.log(error);
       dispatch(clearErrors());
     }
     if (message) {

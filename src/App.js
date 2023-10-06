@@ -85,6 +85,7 @@ function App() {
   const [msg, setMsg] = useState("");
   useEffect(() => {
     if (msg) {
+      console.log(msg);
       toast.success(msg, {
         position: "top-right",
         autoClose: 5000,
@@ -108,6 +109,7 @@ function App() {
         theme: "light",
       });
     }
+    // console.log(msg);
 
     setErr("");
     setMsg("");
@@ -229,10 +231,10 @@ function App() {
                     )}
                   </>
                 }
-                {/* <Route
+                <Route
                   path="*"
-                  element={<Navigate replace to={"/"} />}
-                /> */}
+                  element={<Home />}
+                />
               </Routes>
             )}
             </div>
