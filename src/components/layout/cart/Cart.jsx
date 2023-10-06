@@ -149,6 +149,7 @@ const CartItem = () => {
                         <button
                           onClick={() => handleDelete(item.productId)}
                           className="v1button removeButton"
+                          style={{padding: "5px 10px"}}
                         >
                           Remove
                         </button>
@@ -162,7 +163,7 @@ const CartItem = () => {
                   <Link
                     onClick={handleCheckOut}
                     to="/order/shiping"
-                    style={{ width: "60%" }}
+                    style={{ width: "250px" }}
                     className="v2button checkButton"
                   >
                     Check Out

@@ -80,7 +80,7 @@ const Header = () => {
     });
   }, [location.pathname]);
   // @ts-ignore
-  const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { isAuthenticated, user, loading } = useSelector((state) => state.user);
 
   return (
     <>
@@ -119,7 +119,7 @@ const Header = () => {
             </div>
           </div>
           <div className="icons">
-            {isAuthenticated ? (
+            {loading ? "" : isAuthenticated ? (
               <div className="navbar-flex">
                 <div className="cartNav">
                   <Link className="cartArea" to="/cart">

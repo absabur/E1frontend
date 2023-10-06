@@ -131,14 +131,14 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-      {loading ? (
-        <LoadingPage />
-      ) : (
         <div className="App">
           <BrowserRouter>
             <Header />
             {user && user.isAdmin && <Sidebar />}
             <div style={{ height: "80px" }}></div>
+          {loading ? (
+            <LoadingPage />
+          ) : (
             <div onClick={() => setToggle(false)} style={{width: "100vw", minHeight: "90vh", display: "flex", flexDirection: "column", justifyContent: "space-between", backgroundColor: "var(--back)"}}>
               <Routes>
                 <Route
@@ -239,8 +239,9 @@ function App() {
                   </>
                 )}
               </Routes>
-              <Footer />
             </div>
+          )}
+          <Footer />
           </BrowserRouter>
           <button
             className="btnScrollTop"
@@ -250,7 +251,6 @@ function App() {
             <AiOutlineArrowUp />
           </button>
         </div>
-      )}
     </GlobalState.Provider>
   );
 }
