@@ -23,13 +23,13 @@ const Login = () => {
     token: tokenBack,
   } = useSelector((state) => state.user);
 
-  const handlelogin = (e) => {
+  const handlelogin = async (e) => {
     e.preventDefault();
-    dispatch(login(token, email, password));
+    await dispatch(login(token, email, password));
   };
   useEffect(() => {
     if (error) {
-      setErr(error);
+      setErr(error)
       dispatch(clearErrors());
     }
     if (tokenBack) {

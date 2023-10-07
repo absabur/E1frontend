@@ -57,9 +57,8 @@ function App() {
   const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
   const token = localStorage.getItem("access_token_abs_ecommerce");
-  useEffect(() => {
-    dispatch(auth(token));
-  }, []);
+  const [err, setErr] = useState("");
+  const [msg, setMsg] = useState("");
 
   const goTop = () => {
     window.scrollTo({
@@ -81,9 +80,10 @@ function App() {
         setIsVisible(false);
       }
     });
+    
+    dispatch(auth(token));
   }, []);
-  const [err, setErr] = useState("");
-  const [msg, setMsg] = useState("");
+
   useEffect(() => {
     if (msg) {
       toast.success(msg, {
@@ -96,6 +96,7 @@ function App() {
         progress: undefined,
         theme: "light",
       });
+      setMsg("");
     }
     if (err) {
       toast.error(err, {
@@ -108,11 +109,10 @@ function App() {
         progress: undefined,
         theme: "light",
       });
+      setErr("");
     }
 
-    setErr("");
-    setMsg("");
-  }, [msg, err, loading]);
+  }, [msg, err, loading, setErr, setMsg]);
 
   return (
     <GlobalState.Provider
