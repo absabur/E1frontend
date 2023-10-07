@@ -60,7 +60,7 @@ const MyOrdersToReview = () => {
               {order.orderItems.map((item) => (
                 <>
                   {item.review === "done" ? null : (
-                    <div key={item._id} className="SingleProductCard">
+                    <div key={item._id} className="SingleProductCard" style={{boxShadow: "0 0 10px var(--black)", marginBottom: "10px"}}>
                       <div className="img">
                         <img src={item.image} alt="" />
                       </div>
