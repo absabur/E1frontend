@@ -14,7 +14,6 @@ const Order = () => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("access_token_abs_ecommerce");
   const { order, error, loading } = useSelector((state) => state.orderDetails);
-  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(getOrderDetails(token, params.id));
@@ -41,7 +40,9 @@ const Order = () => {
           <div className="shipingInfo">
             <b>Shiping Details</b>
             <br />
-            <b>Name: {user.name}</b>
+            <b>Name: {order.user.name}</b>
+            <br />
+            <b>Email: {order.user.email}</b>
             <br />
             <b>Number: {order.shippingInfo.phoneNo}</b>
             <br />
