@@ -33,6 +33,7 @@
     justify-content: space-between;
     height: 200px;
     margin: 10px;
+    box-shadow: 0 0 10px var(--black);
 }
 
 .productDetails{
@@ -82,7 +83,7 @@
 
 @media screen and (max-width: 600px) {
     .SingleProductCard{
-        height: 150px;
+        height: 200px;
     }
 }
 

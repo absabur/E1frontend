@@ -45,11 +45,6 @@ const MyOrdersToReview = () => {
     <div className="allOrders" style={{ minHeight: "500px" }}>
       <MetaDeta title="Review" />
       <h2 className="myOrderHead">My Orders To Review</h2>
-      {emptyOrder === true ? (
-        <div className="noOrder">
-          <h1>No Product</h1>
-        </div>
-      ) : null}
       {loading ? (
         <LoadingPage />
       ) : (
@@ -57,6 +52,11 @@ const MyOrdersToReview = () => {
         orders.toReversed().map((order) =>
           order.orderStatus === "delivered" ? (
             <>
+              {emptyOrder === true ? (
+                <div className="noOrder">
+                  <h1>No Product</h1>
+                </div>
+              ) : null}
               {order.orderItems.map((item) => (
                 <>
                   {item.review === "done" ? null : (
@@ -89,16 +89,6 @@ const MyOrdersToReview = () => {
                             Review
                           </Link>
                         </div>
-                        {/* {
-                      item.review === "done" ? 
-                      <div className="buttons" style={{marginBottom: "1rem"}}>
-                          <Link to={`/order/review/${order._id}${item.productId}`} className="paynow v1button">Change Review</Link>
-                      </div>
-                      :
-                      <div className="buttons" style={{marginBottom: "1rem"}}>
-                          <Link to={`/order/review/${order._id}${item.productId}`} className="paynow v1button">Review</Link>
-                      </div>
-                    } */}
                       </div>
                     </div>
                   )}
