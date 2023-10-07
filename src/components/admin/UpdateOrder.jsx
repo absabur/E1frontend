@@ -18,12 +18,12 @@ const Order = () => {
 
   const { order, error, loading } = useSelector((state) => state.orderDetails);
 
-  const { user } = useSelector((state) => state.user);
   const {
     isUpdated,
     error: updateError,
     loading: isLoading,
   } = useSelector((state) => state.adminOrderUD);
+
   const [status, setStatus] = useState("");
   const [reason, setReason] = useState("");
 
@@ -32,6 +32,7 @@ const Order = () => {
   }, [params.id, dispatch]);
 
   useEffect(() => {
+    const token = localStorage.getItem("access_token_abs_ecommerce")
     if (error) {
       setErr(error);
 
@@ -47,14 +48,13 @@ const Order = () => {
 
       dispatch(getOrderDetails(token, params.id));
     }
-  }, [error, isUpdated, updateError]);
+  }, [error, isUpdated, updateError, order]);
 
   const handleChange = (e) => {
     e.preventDefault();
 
     dispatch(updateOrder(token, params.id, { status, reason }));
   };
-
   return (
     <>
       <MetaDeta title="Change Order Status" />
@@ -65,7 +65,9 @@ const Order = () => {
           <div className="shipingInfo">
             <b>Shiping Details</b>
             <br />
-            <b>Name: {user.name}</b>
+            <b>Name: {order.user.name}</b>
+            <br />
+            <b>Email: {order.user.email}</b>
             <br />
             <b>Number: {order.shippingInfo.phoneNo}</b>
             <br />

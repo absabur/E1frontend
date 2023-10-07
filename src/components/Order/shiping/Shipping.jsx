@@ -158,7 +158,7 @@ const Shipping = () => {
       totalPrice: subTotal + 100,
       orderStatus: "pay",
     };
-    await dispatch(createOrder(orderData));
+    await dispatch(createOrder(token, orderData));
   };
 
   return (

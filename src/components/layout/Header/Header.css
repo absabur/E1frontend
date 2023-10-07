@@ -1,6 +1,6 @@
 .header-relative {
   height: 80px;
-  width: 100%;
+  width: 100vw;
   position: fixed;
   z-index: 1000;
 }
