@@ -24,11 +24,11 @@ export const createOrder = (token, order) => async (dispatch) => {
     dispatch({ type: CREATE_ORDER_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token};`,
+        access_token: `${token}`,
       },
+      withCredentials: true
     };
 
     const { data } = await axios.post(
@@ -50,8 +50,8 @@ export const myOrders = (token) => async (dispatch) => {
   try {
     dispatch({ type: MY_ORDERS_REQUEST });
     const config = {
-      withCredentials: true,
-      headers: { Cookie: `access_token=${token};` },
+      headers: { access_token: `${token}` },
+      withCredentials: true
     };
 
     const { data } = await axios.get(
@@ -72,8 +72,8 @@ export const getOrderDetails = (token, id) => async (dispatch) => {
   try {
     dispatch({ type: SINGLE_ORDER_REQUEST });
     const config = {
-      withCredentials: true,
-      headers: { Cookie: `access_token=${token};` },
+      headers: { access_token: `${token}` },
+      withCredentials: true
     };
 
     const { data } = await axios.get(`${BackendUrl}/api/order/${id}`, config);
@@ -92,11 +92,11 @@ export const makePayment =
     try {
       dispatch({ type: PAYMENT_REQUEST });
       const config = {
-        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
-          Cookie: `access_token=${token};`,
+          access_token: `${token}`,
         },
+        withCredentials: true
       };
 
       const { data } = await axios.put(
@@ -119,11 +119,11 @@ export const cancleOrder = (token, id, reason) => async (dispatch) => {
   try {
     dispatch({ type: CANCEL_ORDER_REQUEST });
     const config = {
-      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token};`,
+        access_token: `${token}`,
       },
+      withCredentials: true
     };
 
     const { data } = await axios.put(

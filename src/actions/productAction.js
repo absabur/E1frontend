@@ -56,11 +56,11 @@ export const reviewProduct = (token, reviewData) => async (dispatch) => {
   try {
     dispatch({ type: REVIEW_REQUEST });
     const config = {
-      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token};`,
+        access_token: `${token}`,
       },
+      withCredentials: true
     };
 
     const { data } = await axios.put(

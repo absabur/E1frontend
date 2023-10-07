@@ -46,11 +46,11 @@ const Review = () => {
       setMsg("Review done");
       const token = localStorage.getItem("access_token");
       const config = {
-        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
-          Cookie: `access_token=${token};`,
+          access_token: `${token}`,
         },
+        withCredentials: true
       };
       axios.put(`${BackendUrl}/api/order/reviewd`, { id, productId }, config);
       dispatch({ type: REVIEW_RESET });

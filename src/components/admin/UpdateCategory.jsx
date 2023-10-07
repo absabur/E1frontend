@@ -37,17 +37,17 @@ const UpdateCategory = () => {
     const id = params.id;
 
     const config = {
-      withCredentials: true,
       headers: { "Content-Type": "application/json" },
+      withCredentials: true
     };
     try {
       const token = localStorage.getItem("access_token");
       const config = {
-        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
-          Cookie: `access_token=${token};`,
+          access_token: `${token}`,
         },
+        withCredentials: true
       };
       const { data } = await axios.put(
         `${BackendUrl}/api/category/${id}`,

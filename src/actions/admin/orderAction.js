@@ -16,8 +16,8 @@ export const allOrders = (token, id, sort) => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_ORDER_REQUEST });
     const config = {
-      withCredentials: true,
-      headers: { Cookie: `access_token=${token};` },
+      headers: { access_token: `${token}` },
+      withCredentials: true
     };
     const data = await axios.get(
       `${BackendUrl}/api/order/all-orders?id=${id}&sort=${sort}`,
@@ -36,8 +36,8 @@ export const deleteOrder = (token, id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ORDER_REQUEST });
     const config = {
-      withCredentials: true,
-      headers: { Cookie: `access_token=${token};` },
+      headers: { access_token: `${token}` },
+      withCredentials: true
     };
 
     const { data } = await axios.delete(
@@ -58,11 +58,11 @@ export const updateOrder = (token, id, orderData) => async (dispatch) => {
     dispatch({ type: UPDATE_ORDER_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token};`,
+        access_token: `${token}`,
       },
+      withCredentials: true
     };
 
     const { data } = await axios.put(

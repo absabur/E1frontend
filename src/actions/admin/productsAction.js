@@ -25,11 +25,11 @@ export const getProductAdmin =
     try {
       dispatch({ type: ADMIN_PRODUCT_REQUEST });
       const config = {
-        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
-          Cookie: `access_token=${token};`,
+          access_token: `${token}`,
         },
+        withCredentials: true
       };
       const data = await axios.get(
         `${BackendUrl}/api/product/admin?limit=${limit}&page=${page}&sort=${sort}&id=${id}&name=${name}`,
@@ -49,11 +49,11 @@ export const createProduct = (token, productData) => async (dispatch) => {
     dispatch({ type: CREATE_PRODUCT_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: {
         "Content-Type": "multipart/form-data",
-        Cookie: `access_token=${token};`,
+        access_token: `${token}`,
       },
+      withCredentials: true
     };
 
     const { data } = await axios.post(
@@ -74,8 +74,8 @@ export const deleteProduct = (token, id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
     const config = {
-      withCredentials: true,
-      headers: { Cookie: `access_token=${token};` },
+      headers: { access_token: `${token}` },
+      withCredentials: true
     };
 
     const { data } = await axios.delete(
@@ -96,11 +96,11 @@ export const updateProduct = (token, id, productData) => async (dispatch) => {
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token};`,
+        access_token: `${token}`,
       },
+      withCredentials: true
     };
 
     const { data } = await axios.put(
@@ -122,9 +122,7 @@ export const updateProduct = (token, id, productData) => async (dispatch) => {
 };
 
 export const allCategory = (token) => async (dispatch) => {
-  const { data } = await axios.get(`${BackendUrl}/api/category`, {
-    withCredentials: true,
-  });
+  const { data } = await axios.get(`${BackendUrl}/api/category`, {});
   dispatch({
     type: CATEGORY_GET_SUCCESS,
     payload: data.categories,

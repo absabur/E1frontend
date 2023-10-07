@@ -43,8 +43,8 @@ export const login = (token, email, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
     const config = {
-      withCredentials: true,
       headers: { "Content-Type": "application/json" },
+      withCredentials: true
     };
 
     const data = await axios.post(
@@ -67,8 +67,8 @@ export const register = (token, userData) => async (dispatch) => {
     dispatch({ type: REGISTER_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true
     };
 
     const data = await axios.post(
@@ -90,8 +90,8 @@ export const auth = (token) => async (dispatch) => {
   try {
     dispatch({ type: AUTH_USER_REQUEST });
     const config = {
-      withCredentials: true,
-      headers: { Cookie: `access_token=${token};` },
+      headers: { access_token: `${token}` },
+      withCredentials: true
     };
     const data = await axios.get(`${BackendUrl}/api/user/user-info`, config);
     dispatch({ type: AUTH_USER_SUCCESS, payload: data });
@@ -106,8 +106,8 @@ export const auth = (token) => async (dispatch) => {
 export const logout = (token) => async (dispatch) => {
   try {
     const config = {
-      withCredentials: true,
-      headers: { Cookie: `access_token=${token};` },
+      headers: { access_token: `${token}` },
+      withCredentials: true
     };
     await axios.post(`${BackendUrl}/api/user/logout`, config);
     dispatch({ type: LOGOUT_USER_SUCCESS });
@@ -124,11 +124,11 @@ export const updateProfile = (token, userData) => async (dispatch) => {
     dispatch({ type: UPDATE_PROFILE_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: {
         "Content-Type": "multipart/form-data",
-        Cookie: `access_token=${token};`,
+        access_token: `${token}`,
       },
+      withCredentials: true
     };
 
     const { data } = await axios.put(
@@ -151,11 +151,11 @@ export const changePassword = (token, passwordData) => async (dispatch) => {
     dispatch({ type: CHANGE_PASSWORD_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token};`,
+        access_token: `${token}`,
       },
+      withCredentials: true
     };
 
     const { data } = await axios.put(
@@ -178,8 +178,8 @@ export const deleteAccount = (token) => async (dispatch) => {
     dispatch({ type: DELETE_ACCOUNT_REQUEST });
 
     const config = {
-      withCredentials: true,
-      headers: { Cookie: `access_token=${token};` },
+      headers: { access_token: `${token}` },
+      withCredentials: true
     };
     const { data } = await axios.delete(
       `${BackendUrl}/api/user/delete-profile`,
@@ -200,8 +200,8 @@ export const forgotPassword = (token, userData) => async (dispatch) => {
     dispatch({ type: FORGETE_PASSWORD_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: { "Content-Type": "application/json" },
+      withCredentials: true
     };
 
     const { data } = await axios.post(
@@ -224,8 +224,8 @@ export const resetPassword = (token, userData) => async (dispatch) => {
     dispatch({ type: RESET_PASSWORD_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: { "Content-Type": "application/json" },
+      withCredentials: true
     };
 
     const { data } = await axios.put(
@@ -248,8 +248,8 @@ export const signUpVerify = (token, userData) => async (dispatch) => {
     dispatch({ type: VERIFY_EMAIL_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: { "Content-Type": "application/json" },
+      withCredentials: true
     };
 
     const { data } = await axios.post(
@@ -272,11 +272,11 @@ export const verifyEmail = (token, userData) => async (dispatch) => {
     dispatch({ type: REQUEST_EMAIL_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token};`,
+        access_token: `${token}`,
       },
+      withCredentials: true
     };
 
     const { data } = await axios.post(
@@ -299,8 +299,8 @@ export const confirmEmail = (token, userData) => async (dispatch) => {
     dispatch({ type: CONFIRM_EMAIL_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: { "Content-Type": "application/json" },
+      withCredentials: true
     };
 
     const { data } = await axios.put(

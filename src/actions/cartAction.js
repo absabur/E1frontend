@@ -16,8 +16,8 @@ export const addToCart = (token, userData) => async (dispatch) => {
     dispatch({ type: ADD_TO_CART_REQUEST });
 
     const config = {
-      withCredentials: true,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", access_token: `${token}`, },
+      withCredentials: true
     };
 
     const { data } = await axios.put(
@@ -39,8 +39,8 @@ export const deleteCart =
   (token, { productId }) =>
   async (dispatch) => {
     const config = {
-      withCredentials: true,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", access_token: `${token}`, },
+      withCredentials: true
     };
     const { data } = await axios.put(
       `${BackendUrl}/api/user/delete-cart`,
@@ -56,8 +56,8 @@ export const addressAdd = (token, userData) => async (dispatch) => {
     dispatch({ type: ADD_ADDERSS_REQUEST });
 
     const config = {
-      withCredentials: true,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", access_token: `${token}`, },
+      withCredentials: true
     };
 
     const { data } = await axios.put(
@@ -77,11 +77,12 @@ export const addressAdd = (token, userData) => async (dispatch) => {
 };
 
 export const deleteAddress = (token) => async (dispatch) => {
+  const config = {
+    headers: { access_token: `${token}`, },
+    withCredentials: true
+  };
   const { data } = await axios.put(
-    `${BackendUrl}/api/user/delete-address`,
-    {},
-    { withCredentials: true }
-  );
+    `${BackendUrl}/api/user/delete-address`,config);
 
   dispatch({ type: DELETE_ADDRESS, payload: data.message });
 };

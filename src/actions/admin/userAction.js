@@ -19,8 +19,8 @@ export const allUsers = (token, page, limit, id, sort) => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_USER_REQUEST });
     const config = {
-      withCredentials: true,
-      headers: { Cookie: `access_token=${token};` },
+      headers: { access_token: `${token}` },
+      withCredentials: true
     };
     const data = await axios.get(
       `${BackendUrl}/api/user/all-users?id=${id}&sort=${sort}`,
@@ -39,8 +39,8 @@ export const userInfo = (token, id) => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_USERDETAILS_REQUEST });
     const config = {
-      withCredentials: true,
-      headers: { Cookie: `access_token=${token};` },
+      headers: { access_token: `${token}` },
+      withCredentials: true
     };
     const data = await axios.get(`${BackendUrl}/api/user/${id}`, config);
     dispatch({ type: ADMIN_USERDETAILS_SUCCESS, payload: data });
@@ -56,8 +56,8 @@ export const deleteUser = (token, id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_USER_REQUEST });
     const config = {
-      withCredentials: true,
-      headers: { Cookie: `access_token=${token};` },
+      headers: { access_token: `${token}` },
+      withCredentials: true
     };
 
     const { data } = await axios.delete(`${BackendUrl}/api/user/${id}`, config);
@@ -75,11 +75,11 @@ export const updateUser = (token, id, userData) => async (dispatch) => {
     dispatch({ type: UPDATE_USER_REQUEST });
 
     const config = {
-      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token};`,
+        access_token: `${token}`,
       },
+      withCredentials: true
     };
 
     const { data } = await axios.put(

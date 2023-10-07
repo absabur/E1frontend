@@ -27,8 +27,8 @@ const AllCategories = () => {
     e.preventDefault();
 
     const config = {
-      withCredentials: true,
       headers: { "Content-Type": "application/json" },
+      withCredentials: true
     };
     const token = localStorage.getItem("access_token");
 
@@ -61,8 +61,8 @@ const AllCategories = () => {
     const token = localStorage.getItem("access_token");
 
     const config = {
-      withCredentials: true,
-      headers: { Cookie: `access_token=${token};` },
+      headers: { access_token: `${token}` },
+      withCredentials: true
     };
     const { data } = await axios.delete(
       `${BackendUrl}/api/category/${DeleteName}`,
