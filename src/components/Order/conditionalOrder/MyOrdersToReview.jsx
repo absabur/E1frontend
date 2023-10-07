@@ -13,7 +13,7 @@ const MyOrdersToReview = () => {
   const [emptyOrder, setEmptyOrder] = useState(false);
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   const { orders, error, loading } = useSelector((state) => state.myOrders);
   useEffect(() => {
     dispatch(myOrders(token));
@@ -43,7 +43,7 @@ const MyOrdersToReview = () => {
   }, [orders]);
   return (
     <div className="allOrders" style={{ minHeight: "500px" }}>
-    <MetaDeta title="Review" />
+      <MetaDeta title="Review" />
       <h2 className="myOrderHead">My Orders To Review</h2>
       {emptyOrder === true ? (
         <div className="noOrder">
@@ -65,7 +65,10 @@ const MyOrdersToReview = () => {
                         <img src={item.image} alt="" />
                       </div>
                       <div className="productDetails">
-                        <p className="productName">{item.name.slice(0, 32)}{item.name.slice(31, -1)? "...": ""}</p>
+                        <p className="productName">
+                          {item.name.slice(0, 32)}
+                          {item.name.slice(31, -1) ? "..." : ""}
+                        </p>
                         <b>
                           ৳{item.price} x{item.quantity}
                         </b>

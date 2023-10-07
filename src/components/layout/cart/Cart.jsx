@@ -21,7 +21,7 @@ const CartItem = () => {
   const { isError } = useSelector((state) => state.cartAdd);
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
 
   useEffect(() => {
     dispatch({
@@ -99,7 +99,8 @@ const CartItem = () => {
                         to={`/product/${item.productId}`}
                         className="itemName"
                       >
-                        {item.name.slice(0, 45)}{item.name.slice(44, -1)? "...": ""}
+                        {item.name.slice(0, 45)}
+                        {item.name.slice(44, -1) ? "..." : ""}
                       </Link>
                       <div className="itemQuantity">
                         <h1>Quantity: {item.quantity}</h1>
@@ -150,7 +151,7 @@ const CartItem = () => {
                         <button
                           onClick={() => handleDelete(item.productId)}
                           className="v1button removeButton"
-                          style={{padding: "5px 10px"}}
+                          style={{ padding: "5px 10px" }}
                         >
                           Remove
                         </button>

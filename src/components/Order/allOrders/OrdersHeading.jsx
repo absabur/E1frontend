@@ -20,7 +20,7 @@ const Header = () => {
   const [total, setTotal] = useState(0);
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   useEffect(() => {
     if (orders) {
       let topay = 0;

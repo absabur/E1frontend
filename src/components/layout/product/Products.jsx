@@ -6,8 +6,8 @@ import ProductCard from "../../Home/ProductCard";
 import { useSearchParams } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
 import MetaDeta from "../MetaDeta";
-import { TbFilterOff } from 'react-icons/tb';
-import { TbFilter } from 'react-icons/tb';
+import { TbFilterOff } from "react-icons/tb";
+import { TbFilter } from "react-icons/tb";
 import { allCategory } from "../../../actions/admin/productsAction";
 import GlobalState from "../../../GlobalState";
 import { ALL_PRODUCT_RESET } from "../../../constance/productConstant";
@@ -15,9 +15,9 @@ import { ALL_PRODUCT_RESET } from "../../../constance/productConstant";
 const Products = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
 
-  const [filterToggle, setFilterToggle] = useState(false)
+  const [filterToggle, setFilterToggle] = useState(false);
 
   const [page, setpage] = useState(1);
   const [minPrice, setMinPrice] = useState(0);
@@ -36,7 +36,7 @@ const Products = () => {
 
   let limit = 20;
   useEffect(() => {
-    dispatch({type: ALL_PRODUCT_RESET})
+    dispatch({ type: ALL_PRODUCT_RESET });
     if (error) {
       setErr(error);
       dispatch(clearErrors());
@@ -46,7 +46,16 @@ const Products = () => {
     setSort(searchParams.get("sort"));
     setCate(searchParams.get("cate"));
     dispatch(
-      getProduct(token, search, page, limit, searchParams.get("minPrice"), searchParams.get("maxPrice"), searchParams.get("cate"), searchParams.get("sort"))
+      getProduct(
+        token,
+        search,
+        page,
+        limit,
+        searchParams.get("minPrice"),
+        searchParams.get("maxPrice"),
+        searchParams.get("cate"),
+        searchParams.get("sort")
+      )
     );
   }, [
     dispatch,
@@ -78,7 +87,7 @@ const Products = () => {
     }
   };
   const hanleReset = () => {
-    setFilterToggle(false)
+    setFilterToggle(false);
     setMinPrice(0);
     setMaxPrice(1000000);
     setCate("");
@@ -101,7 +110,6 @@ const Products = () => {
     // });
   }, []);
 
-
   const sortedKey = [
     "Default",
     "Top Sales",
@@ -118,8 +126,14 @@ const Products = () => {
       ) : (
         <div className="main-product-section">
           <MetaDeta title="Products" />
-          <div style={filterToggle? {left: "0"}: {}} className="filter-div">
-            <p style={filterToggle? {borderRadius: "40px 0 0 40px"}: {}} onClick={()=> setFilterToggle(!filterToggle)} className="filterToggle">Filter{filterToggle? <TbFilterOff />: <TbFilter />}</p>
+          <div style={filterToggle ? { left: "0" } : {}} className="filter-div">
+            <p
+              style={filterToggle ? { borderRadius: "40px 0 0 40px" } : {}}
+              onClick={() => setFilterToggle(!filterToggle)}
+              className="filterToggle"
+            >
+              Filter{filterToggle ? <TbFilterOff /> : <TbFilter />}
+            </p>
             <h1 style={{ fontSize: "20px", marginBottom: "10px" }}>
               Filter Products
             </h1>
@@ -185,13 +199,20 @@ const Products = () => {
                 >
                   Reset filters
                 </button>
-                <button onClick={()=> setFilterToggle(false)} type="submit" className="v2button filterButton">
+                <button
+                  onClick={() => setFilterToggle(false)}
+                  type="submit"
+                  className="v2button filterButton"
+                >
                   Apply filter
                 </button>
               </div>
             </form>
           </div>
-          <div className="products-section" onClick={()=> setFilterToggle(false)}>
+          <div
+            className="products-section"
+            onClick={() => setFilterToggle(false)}
+          >
             <MetaDeta title="All Products" />
 
             {products && products.length > 0 ? (

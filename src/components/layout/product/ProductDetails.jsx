@@ -2,7 +2,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, getProduct, getProductDetails } from "../../../actions/productAction";
+import {
+  clearErrors,
+  getProduct,
+  getProductDetails,
+} from "../../../actions/productAction";
 import Carousel from "react-material-ui-carousel";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -28,13 +32,14 @@ const ProductDetails = () => {
   const [reviews, setReviews] = useState([]);
   const params = useParams();
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   const navigate = useNavigate();
   const { loading, error, product } = useSelector(
     (state) => state.productDetails
   );
-  const { loading: isLoading, products } = useSelector((state) => state.products);
-
+  const { loading: isLoading, products } = useSelector(
+    (state) => state.products
+  );
 
   const [count1, setCount1] = useState(0);
   const [count2, setCount2] = useState(0);
@@ -355,7 +360,10 @@ const ProductDetails = () => {
             )}
             {/* <button>Submit Review</button> */}
           </div>
-          <div className="container" style={{borderTop: "2px solid var(--white)"}}>
+          <div
+            className="container"
+            style={{ borderTop: "2px solid var(--white)" }}
+          >
             <h2 className="homeHeading">Related Product</h2>
             {isLoading ? (
               <LoadingPage />
@@ -367,7 +375,7 @@ const ProductDetails = () => {
                       <ProductCard key={product._id} product={product} />
                     ))}
                 </div>
-                <Link 
+                <Link
                   className="all-product v2button allProductBotton"
                   to="/products"
                 >

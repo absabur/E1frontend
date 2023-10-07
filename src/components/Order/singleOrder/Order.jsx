@@ -12,7 +12,7 @@ const Order = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const params = useParams();
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { user } = useSelector((state) => state.user);
 
@@ -33,7 +33,7 @@ const Order = () => {
 
   return (
     <>
-    <MetaDeta title="Confirm Order" />
+      <MetaDeta title="Confirm Order" />
       {loading ? (
         <LoadingPage />
       ) : JSON.stringify(order) !== "{}" && order ? (
@@ -65,7 +65,7 @@ const Order = () => {
               {order.orderStatus === "pay" ||
               order.orderStatus === "receive" ? (
                 <>TO {order.orderStatus.toUpperCase()}</>
-                ) : (
+              ) : (
                 <>{order.orderStatus.toUpperCase()}</>
               )}
             </span>
@@ -76,7 +76,15 @@ const Order = () => {
             </p>
           ) : null}
           <div className="orderCard">
-            <strong>Order: <span onClick={(e)=> handleCopyText(e.currentTarget.innerHTML)} style={{color: "var(--v1)"}}>{order._id}</span></strong>
+            <strong>
+              Order:{" "}
+              <span
+                onClick={(e) => handleCopyText(e.currentTarget.innerHTML)}
+                style={{ color: "var(--v1)" }}
+              >
+                {order._id}
+              </span>
+            </strong>
             <br />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span style={{ opacity: "0.7" }}>
@@ -95,7 +103,8 @@ const Order = () => {
                     to={`/product/${item.productId}`}
                     className="productName link"
                   >
-                    {item.name.slice(0, 32)}{item.name.slice(31, -1)? "...": ""}
+                    {item.name.slice(0, 32)}
+                    {item.name.slice(31, -1) ? "..." : ""}
                   </Link>
                   <b>
                     ৳{item.price} x{item.quantity}

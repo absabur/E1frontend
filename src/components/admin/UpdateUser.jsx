@@ -14,7 +14,7 @@ const UserUpdate = () => {
   const [role, setRole] = useState("");
   const params = useParams();
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
 
   const { loading, user } = useSelector((state) => state.userInfo);
   const {

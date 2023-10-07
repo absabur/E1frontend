@@ -104,12 +104,12 @@ export const auth = (token) => async (dispatch) => {
 };
 
 export const logout = (token) => async (dispatch) => {
-  try {
+  try {console.log(token);
     const config = {
       headers: { access_token: `${token}` },
       withCredentials: true
     };
-    await axios.post(`${BackendUrl}/api/user/logout`, config);
+    await axios.post(`${BackendUrl}/api/user/logout`,{} , config);
     dispatch({ type: LOGOUT_USER_SUCCESS });
   } catch (error) {
     dispatch({

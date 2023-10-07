@@ -14,7 +14,6 @@ const Logout = () => {
   );
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,9 +26,10 @@ const Logout = () => {
   const handleCancle = () => {
     navigate("/profile");
   };
-  const handleLogout = () => {
-    dispatch(logout(token));
-    localStorage.removeItem("access_token")
+  const handleLogout = async () => {
+    const token = localStorage.getItem("access_token_abs_ecommerce");
+    await dispatch(logout(token));
+    localStorage.removeItem("access_token_abs_ecommerce");
   };
   return (
     <>
@@ -37,7 +37,7 @@ const Logout = () => {
         <LoadingPage />
       ) : isAuthenticated ? (
         <div className="logoutPage">
-        <MetaDeta title="Log Out" />
+          <MetaDeta title="Log Out" />
           <h2 className="headLogDelete">Are you sure to logout?</h2>
           <div>
             <button

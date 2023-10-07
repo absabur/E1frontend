@@ -16,8 +16,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
-  const { isAuthenticated, error, token: tokenBack } = useSelector((state) => state.user);
+  const token = localStorage.getItem("access_token_abs_ecommerce");
+  const {
+    isAuthenticated,
+    error,
+    token: tokenBack,
+  } = useSelector((state) => state.user);
 
   const handlelogin = (e) => {
     e.preventDefault();
@@ -29,7 +33,7 @@ const Login = () => {
       dispatch(clearErrors());
     }
     if (tokenBack) {
-      localStorage.setItem("access_token", tokenBack)
+      localStorage.setItem("access_token_abs_ecommerce", tokenBack);
     }
   }, [error, dispatch, tokenBack]);
   const [type, setType] = useState(false);

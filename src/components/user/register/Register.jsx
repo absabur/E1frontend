@@ -25,19 +25,22 @@ const Register = () => {
     password: "",
     cPassword: "",
   });
-  const { loading, isAuthenticated, error, token: tokenBack } = useSelector(
-    (state) => state.user
-    );
+  const {
+    loading,
+    isAuthenticated,
+    error,
+    token: tokenBack,
+  } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   useEffect(() => {
     if (error) {
       setErr(error);
       dispatch(clearErrors());
     }
     if (tokenBack) {
-      localStorage.setItem("access_token", tokenBack)
+      localStorage.setItem("access_token_abs_ecommerce", tokenBack);
     }
   }, [error, dispatch, tokenBack]);
   const registerSubmit = (e) => {

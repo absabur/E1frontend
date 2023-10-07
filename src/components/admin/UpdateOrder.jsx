@@ -14,7 +14,7 @@ const Order = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const params = useParams();
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
 
   const { order, error, loading } = useSelector((state) => state.orderDetails);
 
@@ -97,7 +97,7 @@ const Order = () => {
               {order.orderStatus === "pay" ||
               order.orderStatus === "receive" ? (
                 <>TO {order.orderStatus.toUpperCase()}</>
-                ) : (
+              ) : (
                 <>{order.orderStatus.toUpperCase()}</>
               )}
             </span>
@@ -148,7 +148,12 @@ const Order = () => {
               >
                 <label htmlFor="reason">Cancelation Reason: </label>
                 <input
-                  style={{ width: "100%", margin: "10px 0", padding: "10px", fontSize: "17px" }}
+                  style={{
+                    width: "100%",
+                    margin: "10px 0",
+                    padding: "10px",
+                    fontSize: "17px",
+                  }}
                   placeholder="Reason"
                   id="reason"
                   name="reason"

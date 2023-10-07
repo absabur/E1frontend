@@ -82,7 +82,7 @@ export const deleteAddress = (token) => async (dispatch) => {
     withCredentials: true
   };
   const { data } = await axios.put(
-    `${BackendUrl}/api/user/delete-address`,config);
+    `${BackendUrl}/api/user/delete-address`, {}, config);
 
   dispatch({ type: DELETE_ADDRESS, payload: data.message });
 };

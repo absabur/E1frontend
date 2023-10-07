@@ -12,7 +12,7 @@ const UpdateProduct = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const params = useParams();
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   const navigate = useNavigate();
   const { loading, error, isUpdated } = useSelector(
     (state) => state.adminProduct
@@ -102,9 +102,9 @@ const UpdateProduct = () => {
   };
   const handleCategorySelect = () => {
     if (category.length != 24) {
-      setErr("Choose a Category")
+      setErr("Choose a Category");
     }
-  }
+  };
 
   return (
     <>

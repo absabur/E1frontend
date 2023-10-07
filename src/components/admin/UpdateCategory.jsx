@@ -16,7 +16,7 @@ const UpdateCategory = () => {
   const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem("access_token_abs_ecommerce");
 
   const { categories } = useSelector((state) => state.categories);
   useEffect(() => {
@@ -38,16 +38,16 @@ const UpdateCategory = () => {
 
     const config = {
       headers: { "Content-Type": "application/json" },
-      withCredentials: true
+      withCredentials: true,
     };
     try {
-      const token = localStorage.getItem("access_token");
+      const token = localStorage.getItem("access_token_abs_ecommerce");
       const config = {
         headers: {
           "Content-Type": "application/json",
           access_token: `${token}`,
         },
-        withCredentials: true
+        withCredentials: true,
       };
       const { data } = await axios.put(
         `${BackendUrl}/api/category/${id}`,

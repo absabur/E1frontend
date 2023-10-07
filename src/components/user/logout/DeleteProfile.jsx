@@ -17,7 +17,6 @@ const DeleteProfile = () => {
   );
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
   const navigate = useNavigate();
   useEffect(() => {
     if (error) {
@@ -27,13 +26,14 @@ const DeleteProfile = () => {
     dispatch({
       type: UPDATE_PROFILE_RESET,
     });
-  }, [error, dispatch]);
+  }, [error, dispatch, isAuthenticated]);
   const handleCancle = () => {
     navigate("/profile");
   };
   const handleDelete = () => {
+    const token = localStorage.getItem("access_token_abs_ecommerce");
     dispatch(deleteAccount(token));
-    localStorage.removeItem("access_token")
+    localStorage.removeItem("access_token_abs_ecommerce");
   };
   return (
     <>
@@ -41,7 +41,7 @@ const DeleteProfile = () => {
         <LoadingPage />
       ) : isAuthenticated ? (
         <div className="logoutPage">
-        <MetaDeta title="Delete Account" />
+          <MetaDeta title="Delete Account" />
           <h2 className="headLogDelete">Accout will be delete permently. </h2>
           <h2 className="headLogDelete">Are You Sure?</h2>
           <div>

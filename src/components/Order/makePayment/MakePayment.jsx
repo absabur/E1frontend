@@ -25,7 +25,7 @@ const MakePayment = () => {
   const [cod, setCod] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { success, isError, isLoading } = useSelector((state) => state.payment);
   const params = useParams();
@@ -98,7 +98,7 @@ const MakePayment = () => {
 
   return (
     <>
-    <MetaDeta title="Make Payment" />
+      <MetaDeta title="Make Payment" />
       {loading || isLoading ? (
         <LoadingPage />
       ) : (

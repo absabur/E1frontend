@@ -18,7 +18,7 @@ const UEmail = () => {
   const [email, setEmail] = useState("");
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   useEffect(() => {
     if (error) {
       setErr(error);

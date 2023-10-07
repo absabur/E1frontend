@@ -16,7 +16,7 @@ import { BackendUrl } from "../../BackendUrl";
 const AllCategories = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   const { categories } = useSelector((state) => state.categories);
   useEffect(() => {
     dispatch(allCategory(token));
@@ -28,9 +28,9 @@ const AllCategories = () => {
 
     const config = {
       headers: { "Content-Type": "application/json" },
-      withCredentials: true
+      withCredentials: true,
     };
-    const token = localStorage.getItem("access_token");
+    const token = localStorage.getItem("access_token_abs_ecommerce");
 
     try {
       const { data } = await axios.post(
@@ -58,11 +58,11 @@ const AllCategories = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("access_token");
+    const token = localStorage.getItem("access_token_abs_ecommerce");
 
     const config = {
       headers: { access_token: `${token}` },
-      withCredentials: true
+      withCredentials: true,
     };
     const { data } = await axios.delete(
       `${BackendUrl}/api/category/${DeleteName}`,

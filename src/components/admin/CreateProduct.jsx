@@ -11,7 +11,7 @@ import GlobalState from "../../GlobalState";
 const CreateProduct = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   const navigate = useNavigate();
 
   const { loading, error, success } = useSelector((state) => state.newProduct);

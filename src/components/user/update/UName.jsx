@@ -19,7 +19,7 @@ const UName = () => {
   const [name, setName] = useState(user.name);
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   useEffect(() => {
     if (error) {
       setErr(error);

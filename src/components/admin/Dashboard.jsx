@@ -9,7 +9,7 @@ import { allUsers } from "../../actions/admin/userAction.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   const { pagination } = useSelector((state) => state.products);
   const { pagination: userCount } = useSelector((state) => state.adminUsers);
 
@@ -22,7 +22,6 @@ const Dashboard = () => {
 
     dispatch(allUsers(token, 1, 100000000));
   }, []);
-
 
   return (
     <div className="dashBoard">

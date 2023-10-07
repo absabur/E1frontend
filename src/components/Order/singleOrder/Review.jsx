@@ -20,13 +20,12 @@ const Review = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const params = useParams();
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { success, isError, isLoading } = useSelector((state) => state.review);
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
   const navigate = useNavigate();
-
   useEffect(() => {
     dispatch(getOrderDetails(token, params.id.slice(0, 24)));
   }, [params.id, dispatch]);
@@ -44,13 +43,13 @@ const Review = () => {
     }
     if (success) {
       setMsg("Review done");
-      const token = localStorage.getItem("access_token");
+      const token = localStorage.getItem("access_token_abs_ecommerce");
       const config = {
         headers: {
           "Content-Type": "application/json",
           access_token: `${token}`,
         },
-        withCredentials: true
+        withCredentials: true,
       };
       axios.put(`${BackendUrl}/api/order/reviewd`, { id, productId }, config);
       dispatch({ type: REVIEW_RESET });

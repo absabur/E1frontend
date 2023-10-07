@@ -53,10 +53,10 @@ import UpdateUser from "./components/admin/UpdateUser";
 
 function App() {
   const [toggle, setToggle] = useState(false);
-  const { loading, user, isAuthenticated } = useSelector(state => state.user);
+  const { loading, user, isAuthenticated } = useSelector((state) => state.user);
   const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   useEffect(() => {
     dispatch(auth(token));
   }, []);
@@ -74,7 +74,7 @@ function App() {
       const winScroll =
         document.body.scrollTop || document.documentElement.scrollTop;
 
-      if (winScroll) setToggle(false)
+      if (winScroll) setToggle(false);
       if (winScroll > heightToHideFrom) {
         setIsVisible(true);
       } else {
@@ -115,7 +115,9 @@ function App() {
   }, [msg, err, loading]);
 
   return (
-    <GlobalState.Provider value={{ err, setErr, msg, setMsg, toggle, setToggle }}>
+    <GlobalState.Provider
+      value={{ err, setErr, msg, setMsg, toggle, setToggle }}
+    >
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -128,15 +130,24 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-        <div className="App">
-          <BrowserRouter>
-            <Header />
-            {user && user.isAdmin && <Sidebar />}
-            <div style={{ height: "80px" }}></div>
-            <div onClick={() => setToggle(false)} style={{width: "100vw", display: "flex", flexDirection: "column", justifyContent: "space-between", backgroundColor: "var(--back)"}}>
+      <div className="App">
+        <BrowserRouter>
+          <Header />
+          {user && user.isAdmin && <Sidebar />}
+          <div style={{ height: "80px" }}></div>
+          <div
+            onClick={() => setToggle(false)}
+            style={{
+              width: "100vw",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              backgroundColor: "var(--back)",
+            }}
+          >
             {loading ? (
-                <LoadingPage />
-              ) : (
+              <LoadingPage />
+            ) : (
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
@@ -154,99 +165,318 @@ function App() {
                   path="/profile/reset-password/:token"
                   element={<ResetPassword />}
                 />
-                {isAuthenticated &&
+                {isAuthenticated && (
                   <>
-                    <Route path="/mail-update/:token" element={isAuthenticated?<ConfirmEmail />: <Navigate replace to={"/login"} />} />
-                    <Route path="/logout" element={isAuthenticated?<Logout />: <Navigate replace to={"/login"} />} />
-                    <Route path="/profile/delete" element={isAuthenticated?<DeleteProfile />: <Navigate replace to={"/login"} />} />
-                    <Route path="/cart" element={isAuthenticated?<Cart />: <Navigate replace to={"/login"} />} />
-                    <Route path="/myorders" element={isAuthenticated?<MyOrders />: <Navigate replace to={"/login"} />} />
-                    <Route path="/myorders/to-pay" element={isAuthenticated?<MyOrdersToPay />: <Navigate replace to={"/login"} />} />
+                    <Route
+                      path="/mail-update/:token"
+                      element={
+                        isAuthenticated ? (
+                          <ConfirmEmail />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
+                    <Route
+                      path="/logout"
+                      element={
+                        isAuthenticated ? (
+                          <Logout />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
+                    <Route
+                      path="/profile/delete"
+                      element={
+                        isAuthenticated ? (
+                          <DeleteProfile />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
+                    <Route
+                      path="/cart"
+                      element={
+                        isAuthenticated ? (
+                          <Cart />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
+                    <Route
+                      path="/myorders"
+                      element={
+                        isAuthenticated ? (
+                          <MyOrders />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
+                    <Route
+                      path="/myorders/to-pay"
+                      element={
+                        isAuthenticated ? (
+                          <MyOrdersToPay />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
                     <Route
                       path="/myorders/to-process"
-                      element={isAuthenticated?<MyOrdersToProcess />: <Navigate replace to={"/login"} />}
+                      element={
+                        isAuthenticated ? (
+                          <MyOrdersToProcess />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
                     />
                     <Route
                       path="/myorders/to-ship"
-                      element={isAuthenticated?<MyOrdersToShip />: <Navigate replace to={"/login"} />}
+                      element={
+                        isAuthenticated ? (
+                          <MyOrdersToShip />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
                     />
                     <Route
                       path="/myorders/to-receive"
-                      element={isAuthenticated?<MyOrdersToReceive />: <Navigate replace to={"/login"} />}
+                      element={
+                        isAuthenticated ? (
+                          <MyOrdersToReceive />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
                     />
                     <Route
                       path="/myorders/to-review"
-                      element={isAuthenticated?<MyOrdersToReview />: <Navigate replace to={"/login"} />}
+                      element={
+                        isAuthenticated ? (
+                          <MyOrdersToReview />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
                     />
-                    <Route path="/order/:id" element={isAuthenticated?<Order />: <Navigate replace to={"/login"} />} />
-                    <Route path="/profile/update/name" element={isAuthenticated?<UName />: <Navigate replace to={"/login"} />} />
-                    <Route path="/profile/update/email" element={isAuthenticated?<UEmail />: <Navigate replace to={"/login"} />} />
-                    <Route path="/profile/update/image" element={isAuthenticated?<UImage />: <Navigate replace to={"/login"} />} />
+                    <Route
+                      path="/order/:id"
+                      element={
+                        isAuthenticated ? (
+                          <Order />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
+                    <Route
+                      path="/profile/update/name"
+                      element={
+                        isAuthenticated ? (
+                          <UName />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
+                    <Route
+                      path="/profile/update/email"
+                      element={
+                        isAuthenticated ? (
+                          <UEmail />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
+                    <Route
+                      path="/profile/update/image"
+                      element={
+                        isAuthenticated ? (
+                          <UImage />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
                     <Route
                       path="/profile/update/password"
-                      element={isAuthenticated?<UPassword />: <Navigate replace to={"/login"} />}
+                      element={
+                        isAuthenticated ? (
+                          <UPassword />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
                     />
-                    <Route path="/order/shiping" element={isAuthenticated?<Shipping />: <Navigate replace to={"/login"} />} />
-                    <Route path="/order/payment/:id" element={isAuthenticated?<MakePayment />: <Navigate replace to={"/login"} />} />
+                    <Route
+                      path="/order/shiping"
+                      element={
+                        isAuthenticated ? (
+                          <Shipping />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
+                    <Route
+                      path="/order/payment/:id"
+                      element={
+                        isAuthenticated ? (
+                          <MakePayment />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
                     <Route
                       path="/order/payment-success"
-                      element={isAuthenticated?<PaymentSuccess />: <Navigate replace to={"/login"} />}
+                      element={
+                        isAuthenticated ? (
+                          <PaymentSuccess />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
                     />
-                    <Route path="/order/review/:id" element={isAuthenticated?<Review />: <Navigate replace to={"/login"} />} />
+                    <Route
+                      path="/order/review/:id"
+                      element={
+                        isAuthenticated ? (
+                          <Review />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
                     {user && user.isAdmin === true && (
                       <>
-                        <Route path="/admin/dashboard" element={isAuthenticated && user && user.isAdmin === true?<Dashboard />: <Navigate replace to={"/products"} />} />
+                        <Route
+                          path="/admin/dashboard"
+                          element={
+                            isAuthenticated && user && user.isAdmin === true ? (
+                              <Dashboard />
+                            ) : (
+                              <Navigate replace to={"/products"} />
+                            )
+                          }
+                        />
                         <Route
                           path="/admin/products"
-                          element={isAuthenticated && user && user.isAdmin === true?<AdminProducts />: <Navigate replace to={"/products"} />}
+                          element={
+                            isAuthenticated && user && user.isAdmin === true ? (
+                              <AdminProducts />
+                            ) : (
+                              <Navigate replace to={"/products"} />
+                            )
+                          }
                         />
-                        <Route path="/admin/orders" element={isAuthenticated && user && user.isAdmin === true?<Orders />: <Navigate replace to={"/products"} />} />
+                        <Route
+                          path="/admin/orders"
+                          element={
+                            isAuthenticated && user && user.isAdmin === true ? (
+                              <Orders />
+                            ) : (
+                              <Navigate replace to={"/products"} />
+                            )
+                          }
+                        />
                         <Route
                           path="/admin/order/update/:id"
-                          element={isAuthenticated && user && user.isAdmin === true?<UpdateOrder />: <Navigate replace to={"/products"} />}
+                          element={
+                            isAuthenticated && user && user.isAdmin === true ? (
+                              <UpdateOrder />
+                            ) : (
+                              <Navigate replace to={"/products"} />
+                            )
+                          }
                         />
                         <Route
                           path="/admin/product/details/:id"
-                          element={isAuthenticated && user && user.isAdmin === true?<UpdateProduct />: <Navigate replace to={"/products"} />}
+                          element={
+                            isAuthenticated && user && user.isAdmin === true ? (
+                              <UpdateProduct />
+                            ) : (
+                              <Navigate replace to={"/products"} />
+                            )
+                          }
                         />
                         <Route
                           path="/admin/create/product"
-                          element={isAuthenticated && user && user.isAdmin === true?<CreateProduct />: <Navigate replace to={"/products"} />}
+                          element={
+                            isAuthenticated && user && user.isAdmin === true ? (
+                              <CreateProduct />
+                            ) : (
+                              <Navigate replace to={"/products"} />
+                            )
+                          }
                         />
                         <Route
                           path="/admin/update/category/:id"
-                          element={isAuthenticated && user && user.isAdmin === true?<UpdateCategory />: <Navigate replace to={"/products"} />}
+                          element={
+                            isAuthenticated && user && user.isAdmin === true ? (
+                              <UpdateCategory />
+                            ) : (
+                              <Navigate replace to={"/products"} />
+                            )
+                          }
                         />
                         <Route
                           path="/admin/categories"
-                          element={isAuthenticated && user && user.isAdmin === true?<AllCategories />: <Navigate replace to={"/products"} />}
+                          element={
+                            isAuthenticated && user && user.isAdmin === true ? (
+                              <AllCategories />
+                            ) : (
+                              <Navigate replace to={"/products"} />
+                            )
+                          }
                         />
-                        <Route path="/admin/users" element={isAuthenticated && user && user.isAdmin === true?<AllUsers />: <Navigate replace to={"/products"} />} />
+                        <Route
+                          path="/admin/users"
+                          element={
+                            isAuthenticated && user && user.isAdmin === true ? (
+                              <AllUsers />
+                            ) : (
+                              <Navigate replace to={"/products"} />
+                            )
+                          }
+                        />
                         <Route
                           path="/admin/user/update/:id"
-                          element={isAuthenticated && user && user.isAdmin === true?<UpdateUser />: <Navigate replace to={"/products"} />}
+                          element={
+                            isAuthenticated && user && user.isAdmin === true ? (
+                              <UpdateUser />
+                            ) : (
+                              <Navigate replace to={"/products"} />
+                            )
+                          }
                         />
                       </>
                     )}
                   </>
-                }
-                <Route
-                  path="*"
-                  element={<Home />}
-                />
+                )}
+                <Route path="*" element={<Home />} />
               </Routes>
             )}
-            </div>
+          </div>
           <Footer />
-          </BrowserRouter>
-          <button
-            className="btnScrollTop"
-            style={{ display: isVisible ? "block" : "none" }}
-            onClick={goTop}
-          >
-            <AiOutlineArrowUp />
-          </button>
-        </div>
+        </BrowserRouter>
+        <button
+          className="btnScrollTop"
+          style={{ display: isVisible ? "block" : "none" }}
+          onClick={goTop}
+        >
+          <AiOutlineArrowUp />
+        </button>
+      </div>
     </GlobalState.Provider>
   );
 }

@@ -28,7 +28,7 @@ const Shipping = () => {
   const [orderDetails, setOrderDetails] = useState([]);
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   const navigate = useNavigate();
 
   const { isError, message, isLoading } = useSelector((state) => state.cartAdd);
@@ -163,7 +163,7 @@ const Shipping = () => {
 
   return (
     <>
-    <MetaDeta title="Confirm Order" />
+      <MetaDeta title="Confirm Order" />
       {isLoading || loading ? (
         <LoadingPage />
       ) : user.address && user.address.division ? (
@@ -230,7 +230,8 @@ const Shipping = () => {
                         to={`/product/${item.productId}`}
                         className="itemName"
                       >
-                        {item.name.slice(0, 45)}{item.name.slice(44, -1)? "...": ""}
+                        {item.name.slice(0, 45)}
+                        {item.name.slice(44, -1) ? "..." : ""}
                       </Link>
                       <div className="itemQuantity">
                         <h1>Quantity: {item.quantity}</h1>
