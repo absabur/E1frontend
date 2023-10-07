@@ -102,14 +102,14 @@ const Review = () => {
           <textarea
             id="comment"
             placeholder="Write a review..."
-            style={{ margin: "1rem", resize: "none" }}
+            style={{ margin: "1rem", resize: "none"}}
             onChange={(e) => setComment(e.target.value)}
             cols="30"
             rows="10"
             value={comment}
           ></textarea>
           <button
-            style={{ margin: "1rem 0", padding: "10px", fontSize: "17px" }}
+            style={{ margin: "1rem 0", padding: "10px", fontSize: "17px" , width:"50%"}}
             onClick={handleClick}
             className="v1button"
           >

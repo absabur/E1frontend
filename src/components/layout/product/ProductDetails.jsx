@@ -51,16 +51,18 @@ const ProductDetails = () => {
   // console.log(error, loading, product)
   useEffect(() => {
     dispatch(getProductDetails(token, params.id));
-    if (error) {
-      setErr(error);
-
-      dispatch(clearErrors());
-    }
-
     dispatch({
       type: RESET_CART_STATE,
     });
-  }, [dispatch, params.id, error]);
+  }, [dispatch, params.id]);
+  useEffect(() => {
+    if (error) {
+      setErr(error);
+      console.log(error);
+      dispatch(clearErrors());
+    }
+  }, [error])
+  
   useEffect(() => {
     if (isError) {
       setErr(isError);
@@ -77,15 +79,17 @@ const ProductDetails = () => {
         dispatch(auth(token));
       }, 1000);
     }
-    if (stars === "all") {
-      setReviews(product.reviews);
+    if (product) {
+      if (stars === "all") {
+        setReviews(product.reviews);
+      }
     }
     let rev1 = [];
     let rev2 = [];
     let rev3 = [];
     let rev4 = [];
     let rev5 = [];
-    if (JSON.stringify(product) !== "{}") {
+    if (product && product.reviews) {
       product.reviews.map((review) => {
         if (review.rating === 1) {
           rev1.push(review);

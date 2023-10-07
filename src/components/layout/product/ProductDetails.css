@@ -34,7 +34,7 @@
   width: 100;
   object-fit: contain;
   margin-left: -1rem;
-  background-color: var(--black);
+  background-color: var(--white);
 }
 
 .productName {
