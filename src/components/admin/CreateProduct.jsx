@@ -11,6 +11,7 @@ import GlobalState from "../../GlobalState";
 const CreateProduct = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   const navigate = useNavigate();
 
   const { loading, error, success } = useSelector((state) => state.newProduct);
@@ -37,7 +38,7 @@ const CreateProduct = () => {
   }, [error, dispatch, success]);
 
   useEffect(() => {
-    dispatch(allCategory());
+    dispatch(allCategory(token));
   }, []);
 
   const createProductSubmitHandler = (e) => {
@@ -57,7 +58,7 @@ const CreateProduct = () => {
       myForm.append("images", image);
     });
 
-    dispatch(createProduct(myForm));
+    dispatch(createProduct(token, myForm));
   };
 
   const createProductImagesChange = (e) => {

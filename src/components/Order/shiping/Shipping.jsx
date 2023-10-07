@@ -28,6 +28,7 @@ const Shipping = () => {
   const [orderDetails, setOrderDetails] = useState([]);
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   const navigate = useNavigate();
 
   const { isError, message, isLoading } = useSelector((state) => state.cartAdd);
@@ -105,13 +106,13 @@ const Shipping = () => {
       number: phoneNumber,
       email,
     };
-    await dispatch(addressAdd(myForm));
-    dispatch(auth());
+    await dispatch(addressAdd(token, myForm));
+    dispatch(auth(token));
   };
 
   const handleDelete = async () => {
-    await dispatch(deleteAddress());
-    dispatch(auth());
+    await dispatch(deleteAddress(token));
+    dispatch(auth(token));
   };
 
   useEffect(() => {

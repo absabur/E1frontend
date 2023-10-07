@@ -25,6 +25,7 @@ const Users = () => {
   const [searchParams, setSearchParams] = useSearchParams({});
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
 
   const [sort, setSort] = useState("");
   const [id, setId] = useState("");
@@ -46,19 +47,19 @@ const Users = () => {
   };
 
   useEffect(() => {
-    dispatch(allUsers(page, limit));
+    dispatch(allUsers(token, page, limit));
   }, []);
 
   useEffect(() => {
     if (searchParams.get("sort")) {
       setSort(searchParams.get("sort"));
 
-      dispatch(allUsers(page, limit, "", searchParams.get("sort")));
+      dispatch(allUsers(token, page, limit, "", searchParams.get("sort")));
     }
     if (searchParams.get("id")) {
       setId(searchParams.get("id"));
 
-      dispatch(allUsers(page, limit, searchParams.get("id"), ""));
+      dispatch(allUsers(token, page, limit, searchParams.get("id"), ""));
     }
   }, [searchParams.get("sort"), searchParams.get("id")]);
 
@@ -67,7 +68,7 @@ const Users = () => {
     setId("");
     setSearchParams({});
 
-    dispatch(allUsers(page, limit));
+    dispatch(allUsers(token, page, limit));
   };
 
   useEffect(() => {
@@ -84,7 +85,7 @@ const Users = () => {
       setMsg("User deleted successfully");
       dispatch({ type: DELETE_USER_RESET });
 
-      dispatch(allUsers(page, limit));
+      dispatch(allUsers(token, page, limit));
     }
   }, [error, deleteError, isDeleted]);
 
@@ -104,7 +105,7 @@ const Users = () => {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(deleteUser(DeleteId));
+    dispatch(deleteUser(token, DeleteId));
     setCancelDiv(false);
   };
 

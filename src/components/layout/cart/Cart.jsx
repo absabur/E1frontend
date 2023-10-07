@@ -21,6 +21,7 @@ const CartItem = () => {
   const { isError } = useSelector((state) => state.cartAdd);
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
 
   useEffect(() => {
     dispatch({
@@ -36,7 +37,7 @@ const CartItem = () => {
       });
     }
     setSubTotal(total);
-  }, [dispatch, user]);
+  }, [user]);
 
   useEffect(() => {
     if (isError) {
@@ -55,15 +56,15 @@ const CartItem = () => {
       image,
     };
 
-    await dispatch(addToCart(data));
+    await dispatch(addToCart(token, data));
 
-    await dispatch(auth());
+    await dispatch(auth(token));
   };
 
   const handleDelete = async (productId) => {
-    await dispatch(deleteCart({ productId }));
+    await dispatch(deleteCart(token, { productId }));
 
-    await dispatch(auth());
+    await dispatch(auth(token));
   };
 
   const handleCheckOut = () => {

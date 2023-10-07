@@ -16,6 +16,7 @@ import MetaDeta from "../../layout/MetaDeta";
 const MyOrders = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   const navigate = useNavigate();
 
   const { orders, error, loading } = useSelector((state) => state.myOrders);
@@ -24,7 +25,7 @@ const MyOrders = () => {
     (state) => state.cancelOrder
   );
   useEffect(() => {
-    dispatch(myOrders());
+    dispatch(myOrders(token));
     if (error) {
       setErr(error);
 
@@ -53,8 +54,8 @@ const MyOrders = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(cancleOrder(cancleId, reason));
-    setCancleDiv(false);
+    dispatch(cancleOrder(token, cancleId, reason));
+    setCancleDiv("");
   };
 
   return (
@@ -93,7 +94,7 @@ const MyOrders = () => {
                 </select>
                 <div className="cancelButtons">
                   <button
-                    onClick={() => setCancleDiv(false)}
+                    onClick={() => setCancleDiv("")}
                     type="reset"
                     style={{
                       fontSize: "16px",

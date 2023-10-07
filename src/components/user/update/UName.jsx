@@ -19,6 +19,7 @@ const UName = () => {
   const [name, setName] = useState(user.name);
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   useEffect(() => {
     if (error) {
       setErr(error);
@@ -26,7 +27,7 @@ const UName = () => {
     }
     if (isUpdated) {
       setMsg("Name Updated successfully");
-      dispatch(auth());
+      dispatch(auth(token));
     }
     dispatch({
       type: UPDATE_PROFILE_RESET,
@@ -41,7 +42,7 @@ const UName = () => {
     const myForm = {
       name: name,
     };
-    dispatch(updateProfile(myForm));
+    dispatch(updateProfile(token, myForm));
   };
 
   return (

@@ -17,13 +17,23 @@ import { CATEGORY_GET_SUCCESS } from "../../constance/admin/categoryConstant";
 import { BackendUrl } from "../../BackendUrl";
 
 export const getProductAdmin =
-  ({ page = 1, limit = 8, sort = "Newest Arrivals", id = "", name = "" }) =>
+  (
+    token,
+    { page = 1, limit = 8, sort = "Newest Arrivals", id = "", name = "" }
+  ) =>
   async (dispatch) => {
     try {
       dispatch({ type: ADMIN_PRODUCT_REQUEST });
+      const config = {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: `access_token=${token};`,
+        },
+      };
       const data = await axios.get(
         `${BackendUrl}/api/product/admin?limit=${limit}&page=${page}&sort=${sort}&id=${id}&name=${name}`,
-        {withCredentials: true}
+        config
       );
       dispatch({ type: ADMIN_PRODUCT_SUCCESS, payload: data });
     } catch (error) {
@@ -34,10 +44,17 @@ export const getProductAdmin =
     }
   };
 
-export const createProduct = (productData) => async (dispatch) => {
+export const createProduct = (token, productData) => async (dispatch) => {
   try {
     dispatch({ type: CREATE_PRODUCT_REQUEST });
-    const config = {withCredentials: true, headers: { "Content-Type": "multipart/form-data" } };
+
+    const config = {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Cookie: `access_token=${token};`,
+      },
+    };
 
     const { data } = await axios.post(
       `${BackendUrl}/api/product/new`,
@@ -53,11 +70,18 @@ export const createProduct = (productData) => async (dispatch) => {
   }
 };
 
-export const deleteProduct = (id) => async (dispatch) => {
+export const deleteProduct = (token, id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
+    const config = {
+      withCredentials: true,
+      headers: { Cookie: `access_token=${token};` },
+    };
 
-    const { data } = await axios.delete(`${BackendUrl}/api/product/${id}`,{withCredentials: true});
+    const { data } = await axios.delete(
+      `${BackendUrl}/api/product/${id}`,
+      config
+    );
     dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data.success });
   } catch (error) {
     dispatch({
@@ -67,12 +91,17 @@ export const deleteProduct = (id) => async (dispatch) => {
   }
 };
 
-export const updateProduct = (id, productData) => async (dispatch) => {
+export const updateProduct = (token, id, productData) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
-
+    const config = {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `access_token=${token};`,
+      },
+    };
 
     const { data } = await axios.put(
       `${BackendUrl}/api/product/${id}`,
@@ -92,8 +121,10 @@ export const updateProduct = (id, productData) => async (dispatch) => {
   }
 };
 
-export const allCategory = () => async (dispatch) => {
-  const { data } = await axios.get(`${BackendUrl}/api/category`,{withCredentials: true});
+export const allCategory = (token) => async (dispatch) => {
+  const { data } = await axios.get(`${BackendUrl}/api/category`, {
+    withCredentials: true,
+  });
   dispatch({
     type: CATEGORY_GET_SUCCESS,
     payload: data.categories,

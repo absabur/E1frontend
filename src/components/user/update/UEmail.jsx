@@ -22,6 +22,7 @@ const UEmail = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   useEffect(() => {
     if (error) {
       setErr(error);
@@ -40,7 +41,7 @@ const UEmail = () => {
       email,
       password,
     };
-    dispatch(verifyEmail(myForm));
+    dispatch(verifyEmail(token, myForm));
   };
 
   const [type, setType] = useState(false);

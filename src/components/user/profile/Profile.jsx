@@ -28,6 +28,7 @@ const Profile = () => {
   const [review, setReview] = useState(0);
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   useEffect(() => {
     if (error) {
       setErr(error);
@@ -59,7 +60,7 @@ const Profile = () => {
   }, [error, dispatch, orders]);
 
   useEffect(() => {
-    dispatch(myOrders());
+    dispatch(myOrders(token));
   }, []);
 
   return (

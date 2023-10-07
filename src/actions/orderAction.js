@@ -19,11 +19,17 @@ import {
 } from "../constance/orderContant";
 import { BackendUrl } from "../BackendUrl";
 
-export const createOrder = (order) => async (dispatch) => {
+export const createOrder = (token, order) => async (dispatch) => {
   try {
     dispatch({ type: CREATE_ORDER_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `access_token=${token};`,
+      },
+    };
 
     const { data } = await axios.post(
       `${BackendUrl}/api/order/new`,
@@ -40,11 +46,18 @@ export const createOrder = (order) => async (dispatch) => {
   }
 };
 
-export const myOrders = () => async (dispatch) => {
+export const myOrders = (token) => async (dispatch) => {
   try {
     dispatch({ type: MY_ORDERS_REQUEST });
+    const config = {
+      withCredentials: true,
+      headers: { Cookie: `access_token=${token};` },
+    };
 
-    const { data } = await axios.get(`${BackendUrl}/api/order/my-orders`,{withCredentials: true});
+    const { data } = await axios.get(
+      `${BackendUrl}/api/order/my-orders`,
+      config
+    );
 
     dispatch({ type: MY_ORDERS_SUCCESS, payload: data.orders });
   } catch (error) {
@@ -55,11 +68,15 @@ export const myOrders = () => async (dispatch) => {
   }
 };
 
-export const getOrderDetails = (id) => async (dispatch) => {
+export const getOrderDetails = (token, id) => async (dispatch) => {
   try {
     dispatch({ type: SINGLE_ORDER_REQUEST });
+    const config = {
+      withCredentials: true,
+      headers: { Cookie: `access_token=${token};` },
+    };
 
-    const { data } = await axios.get(`${BackendUrl}/api/order/${id}`,{withCredentials: true});
+    const { data } = await axios.get(`${BackendUrl}/api/order/${id}`, config);
     dispatch({ type: SINGLE_ORDER_SUCCESS, payload: data.order });
   } catch (error) {
     dispatch({
@@ -70,11 +87,17 @@ export const getOrderDetails = (id) => async (dispatch) => {
 };
 
 export const makePayment =
-  ({ id, way, status, transition }) =>
+  (token, { id, way, status, transition }) =>
   async (dispatch) => {
     try {
       dispatch({ type: PAYMENT_REQUEST });
-      const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+      const config = {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: `access_token=${token};`,
+        },
+      };
 
       const { data } = await axios.put(
         `${BackendUrl}/api/order/update-payment/${id}`,
@@ -92,10 +115,16 @@ export const makePayment =
     }
   };
 
-export const cancleOrder = (id, reason) => async (dispatch) => {
+export const cancleOrder = (token, id, reason) => async (dispatch) => {
   try {
     dispatch({ type: CANCEL_ORDER_REQUEST });
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `access_token=${token};`,
+      },
+    };
 
     const { data } = await axios.put(
       `${BackendUrl}/api/order/cancel/${id}`,

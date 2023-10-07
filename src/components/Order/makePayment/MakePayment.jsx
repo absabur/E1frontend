@@ -25,6 +25,7 @@ const MakePayment = () => {
   const [cod, setCod] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { success, isError, isLoading } = useSelector((state) => state.payment);
   const params = useParams();
@@ -49,7 +50,7 @@ const MakePayment = () => {
   }, [order, error, isError, success]);
 
   useEffect(() => {
-    dispatch(getOrderDetails(params.id));
+    dispatch(getOrderDetails(token, params.id));
   }, []);
 
   const updatePaymentSubmit = (e) => {
@@ -84,7 +85,7 @@ const MakePayment = () => {
         ? ""
         : null,
     };
-    dispatch(makePayment(data));
+    dispatch(makePayment(token, data));
   };
 
   const handleCod = () => {

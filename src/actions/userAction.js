@@ -39,15 +39,20 @@ import {
 } from "../constance/userConstant";
 import { BackendUrl } from "../BackendUrl";
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (token, email, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    };
+
     const data = await axios.post(
       `${BackendUrl}/api/user/login`,
       { email, password },
       config
     );
+    console.log(`${BackendUrl}/api/user/login`);
     dispatch({ type: LOGIN_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -57,11 +62,14 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-export const register = (userData) => async (dispatch) => {
+export const register = (token, userData) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "multipart/form-data" } };
+    const config = {
+      withCredentials: true,
+      headers: { "Content-Type": "multipart/form-data" },
+    };
 
     const data = await axios.post(
       `${BackendUrl}/api/user/new`,
@@ -78,10 +86,14 @@ export const register = (userData) => async (dispatch) => {
   }
 };
 
-export const auth = () => async (dispatch) => {
+export const auth = (token) => async (dispatch) => {
   try {
     dispatch({ type: AUTH_USER_REQUEST });
-    const data = await axios.get(`${BackendUrl}/api/user/user-info`, { withCredentials: true });
+    const config = {
+      withCredentials: true,
+      headers: { Cookie: `access_token=${token};` },
+    };
+    const data = await axios.get(`${BackendUrl}/api/user/user-info`, config);
     dispatch({ type: AUTH_USER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -91,9 +103,13 @@ export const auth = () => async (dispatch) => {
   }
 };
 
-export const logout = () => async (dispatch) => {
+export const logout = (token) => async (dispatch) => {
   try {
-    await axios.post(`${BackendUrl}/api/user/logout`, {},{withCredentials: true});
+    const config = {
+      withCredentials: true,
+      headers: { Cookie: `access_token=${token};` },
+    };
+    await axios.post(`${BackendUrl}/api/user/logout`, config);
     dispatch({ type: LOGOUT_USER_SUCCESS });
   } catch (error) {
     dispatch({
@@ -103,11 +119,17 @@ export const logout = () => async (dispatch) => {
   }
 };
 
-export const updateProfile = (userData) => async (dispatch) => {
+export const updateProfile = (token, userData) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PROFILE_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "multipart/form-data" } };
+    const config = {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Cookie: `access_token=${token};`,
+      },
+    };
 
     const { data } = await axios.put(
       `${BackendUrl}/api/user/update-profile`,
@@ -124,11 +146,17 @@ export const updateProfile = (userData) => async (dispatch) => {
   }
 };
 
-export const changePassword = (passwordData) => async (dispatch) => {
+export const changePassword = (token, passwordData) => async (dispatch) => {
   try {
     dispatch({ type: CHANGE_PASSWORD_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `access_token=${token};`,
+      },
+    };
 
     const { data } = await axios.put(
       `${BackendUrl}/api/user/update-password`,
@@ -145,12 +173,17 @@ export const changePassword = (passwordData) => async (dispatch) => {
   }
 };
 
-export const deleteAccount = () => async (dispatch) => {
+export const deleteAccount = (token) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ACCOUNT_REQUEST });
 
+    const config = {
+      withCredentials: true,
+      headers: { Cookie: `access_token=${token};` },
+    };
     const { data } = await axios.delete(
-      `${BackendUrl}/api/user/delete-profile`, {withCredentials: true}
+      `${BackendUrl}/api/user/delete-profile`,
+      config
     );
 
     dispatch({ type: DELETE_ACCOUNT_SUCCESS, payload: data.success });
@@ -162,11 +195,14 @@ export const deleteAccount = () => async (dispatch) => {
   }
 };
 
-export const forgotPassword = (userData) => async (dispatch) => {
+export const forgotPassword = (token, userData) => async (dispatch) => {
   try {
     dispatch({ type: FORGETE_PASSWORD_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    };
 
     const { data } = await axios.post(
       `${BackendUrl}/api/user/forgot-password`,
@@ -183,11 +219,14 @@ export const forgotPassword = (userData) => async (dispatch) => {
   }
 };
 
-export const resetPassword = (userData) => async (dispatch) => {
+export const resetPassword = (token, userData) => async (dispatch) => {
   try {
     dispatch({ type: RESET_PASSWORD_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    };
 
     const { data } = await axios.put(
       `${BackendUrl}/api/user/reset-password`,
@@ -204,11 +243,14 @@ export const resetPassword = (userData) => async (dispatch) => {
   }
 };
 
-export const signUpVerify = (userData) => async (dispatch) => {
+export const signUpVerify = (token, userData) => async (dispatch) => {
   try {
     dispatch({ type: VERIFY_EMAIL_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    };
 
     const { data } = await axios.post(
       `${BackendUrl}/api/user/signup`,
@@ -225,11 +267,17 @@ export const signUpVerify = (userData) => async (dispatch) => {
   }
 };
 
-export const verifyEmail = (userData) => async (dispatch) => {
+export const verifyEmail = (token, userData) => async (dispatch) => {
   try {
     dispatch({ type: REQUEST_EMAIL_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `access_token=${token};`,
+      },
+    };
 
     const { data } = await axios.post(
       `${BackendUrl}/api/user/update-email-requset`,
@@ -246,11 +294,14 @@ export const verifyEmail = (userData) => async (dispatch) => {
   }
 };
 
-export const confirmEmail = (userData) => async (dispatch) => {
+export const confirmEmail = (token, userData) => async (dispatch) => {
   try {
     dispatch({ type: CONFIRM_EMAIL_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    };
 
     const { data } = await axios.put(
       `${BackendUrl}/api/user/update-email`,

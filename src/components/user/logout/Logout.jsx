@@ -14,6 +14,7 @@ const Logout = () => {
   );
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,7 +28,8 @@ const Logout = () => {
     navigate("/profile");
   };
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logout(token));
+    localStorage.removeItem("access_token")
   };
   return (
     <>

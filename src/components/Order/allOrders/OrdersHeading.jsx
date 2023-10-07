@@ -20,6 +20,7 @@ const Header = () => {
   const [total, setTotal] = useState(0);
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   useEffect(() => {
     if (orders) {
       let topay = 0;
@@ -43,7 +44,7 @@ const Header = () => {
   }, [dispatch, orders]);
 
   useEffect(() => {
-    dispatch(myOrders());
+    dispatch(myOrders(token));
   }, []);
 
   const location = useLocation();

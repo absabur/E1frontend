@@ -25,17 +25,21 @@ const Register = () => {
     password: "",
     cPassword: "",
   });
-  const { loading, isAuthenticated, error, token } = useSelector(
+  const { loading, isAuthenticated, error, token: tokenBack } = useSelector(
     (state) => state.user
     );
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   useEffect(() => {
     if (error) {
       setErr(error);
       dispatch(clearErrors());
     }
-  }, [error, dispatch]);
+    if (tokenBack) {
+      localStorage.setItem("access_token", tokenBack)
+    }
+  }, [error, dispatch, tokenBack]);
   const registerSubmit = (e) => {
     e.preventDefault();
     setAvatarPreview(image);
@@ -47,7 +51,7 @@ const Register = () => {
     myForm.set("password", user.password);
     myForm.set("confirmPassword", user.cPassword);
     myForm.set("avatar", avatar);
-    dispatch(register(myForm));
+    dispatch(register(token, myForm));
   };
 
   const registerDataChange = (e) => {

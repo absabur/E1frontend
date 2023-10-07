@@ -12,11 +12,16 @@ import {
 } from "../../constance/admin/orderConstant";
 import { BackendUrl } from "../../BackendUrl";
 
-export const allOrders = (id, sort) => async (dispatch) => {
+export const allOrders = (token, id, sort) => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_ORDER_REQUEST });
+    const config = {
+      withCredentials: true,
+      headers: { Cookie: `access_token=${token};` },
+    };
     const data = await axios.get(
-      `${BackendUrl}/api/order/all-orders?id=${id}&sort=${sort}`,{withCredentials: true}
+      `${BackendUrl}/api/order/all-orders?id=${id}&sort=${sort}`,
+      config
     );
     dispatch({ type: ADMIN_ORDER_SUCCESS, payload: data });
   } catch (error) {
@@ -27,11 +32,18 @@ export const allOrders = (id, sort) => async (dispatch) => {
   }
 };
 
-export const deleteOrder = (id) => async (dispatch) => {
+export const deleteOrder = (token, id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ORDER_REQUEST });
+    const config = {
+      withCredentials: true,
+      headers: { Cookie: `access_token=${token};` },
+    };
 
-    const { data } = await axios.delete(`${BackendUrl}/api/order/${id}`,{withCredentials: true});
+    const { data } = await axios.delete(
+      `${BackendUrl}/api/order/${id}`,
+      config
+    );
     dispatch({ type: DELETE_ORDER_SUCCESS, payload: data.success });
   } catch (error) {
     dispatch({
@@ -41,12 +53,17 @@ export const deleteOrder = (id) => async (dispatch) => {
   }
 };
 
-export const updateOrder = (id, orderData) => async (dispatch) => {
+export const updateOrder = (token, id, orderData) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_ORDER_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
-
+    const config = {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `access_token=${token};`,
+      },
+    };
 
     const { data } = await axios.put(
       `${BackendUrl}/api/order/${id}`,

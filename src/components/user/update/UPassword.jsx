@@ -28,6 +28,7 @@ const UPassword = () => {
   const [type3, setType3] = useState(false);
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   useEffect(() => {
     if (error) {
       setErr(error);
@@ -35,7 +36,7 @@ const UPassword = () => {
     }
     if (isUpdated) {
       setMsg("Password has been changed successfully");
-      dispatch(logout());
+      dispatch(logout(token));
     }
     dispatch({
       type: UPDATE_PROFILE_RESET,
@@ -49,7 +50,7 @@ const UPassword = () => {
       newPassword,
       confirmPassword,
     };
-    dispatch(changePassword(myForm));
+    dispatch(changePassword(token, myForm));
   };
 
   return (

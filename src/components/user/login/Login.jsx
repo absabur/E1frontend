@@ -16,18 +16,22 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { isAuthenticated, error, token } = useSelector((state) => state.user);
+  const token = localStorage.getItem("access_token")
+  const { isAuthenticated, error, token: tokenBack } = useSelector((state) => state.user);
 
   const handlelogin = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    dispatch(login(token, email, password));
   };
   useEffect(() => {
     if (error) {
       setErr(error);
       dispatch(clearErrors());
     }
-  }, [error, dispatch]);
+    if (tokenBack) {
+      localStorage.setItem("access_token", tokenBack)
+    }
+  }, [error, dispatch, tokenBack]);
   const [type, setType] = useState(false);
   return (
     <>

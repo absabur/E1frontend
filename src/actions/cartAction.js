@@ -11,11 +11,14 @@ import {
 } from "../constance/cartConstant";
 import { BackendUrl } from "../BackendUrl";
 
-export const addToCart = (userData) => async (dispatch) => {
+export const addToCart = (token, userData) => async (dispatch) => {
   try {
     dispatch({ type: ADD_TO_CART_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    };
 
     const { data } = await axios.put(
       `${BackendUrl}/api/user/add-cart`,
@@ -33,9 +36,12 @@ export const addToCart = (userData) => async (dispatch) => {
 };
 
 export const deleteCart =
-  ({ productId }) =>
+  (token, { productId }) =>
   async (dispatch) => {
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    };
     const { data } = await axios.put(
       `${BackendUrl}/api/user/delete-cart`,
       { productId },
@@ -45,11 +51,14 @@ export const deleteCart =
     dispatch({ type: CART_DELETE, payload: data.message });
   };
 
-export const addressAdd = (userData) => async (dispatch) => {
+export const addressAdd = (token, userData) => async (dispatch) => {
   try {
     dispatch({ type: ADD_ADDERSS_REQUEST });
 
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    };
 
     const { data } = await axios.put(
       `${BackendUrl}/api/user/add-address`,
@@ -67,8 +76,12 @@ export const addressAdd = (userData) => async (dispatch) => {
   }
 };
 
-export const deleteAddress = () => async (dispatch) => {
-  const { data } = await axios.put(`${BackendUrl}/api/user/delete-address`,{}, {withCredentials: true});
+export const deleteAddress = (token) => async (dispatch) => {
+  const { data } = await axios.put(
+    `${BackendUrl}/api/user/delete-address`,
+    {},
+    { withCredentials: true }
+  );
 
   dispatch({ type: DELETE_ADDRESS, payload: data.message });
 };

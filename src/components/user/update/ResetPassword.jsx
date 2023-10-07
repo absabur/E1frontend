@@ -24,6 +24,7 @@ const UPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   useEffect(() => {
     if (error) {
       setErr(error);
@@ -46,7 +47,7 @@ const UPassword = () => {
       confirmPassword,
       token: params.token,
     };
-    dispatch(resetPassword(myForm));
+    dispatch(resetPassword(token, myForm));
   };
   const [type, setType] = useState(false);
   const [type2, setType2] = useState(false);

@@ -2,7 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { clearErrors, getOrderDetails, myOrders } from "../../../actions/orderAction";
+import {
+  clearErrors,
+  getOrderDetails,
+  myOrders,
+} from "../../../actions/orderAction";
 
 import LoadingPage from "../../layout/loading/LoadingPage";
 import { reviewProduct } from "../../../actions/productAction";
@@ -16,6 +20,7 @@ const Review = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const params = useParams();
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token");
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { success, isError, isLoading } = useSelector((state) => state.review);
   const [rating, setRating] = useState(5);
@@ -23,7 +28,7 @@ const Review = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getOrderDetails(params.id.slice(0, 24)));
+    dispatch(getOrderDetails(token, params.id.slice(0, 24)));
   }, [params.id, dispatch]);
 
   useEffect(() => {
@@ -39,17 +44,24 @@ const Review = () => {
     }
     if (success) {
       setMsg("Review done");
-      const config = { withCredentials: true, headers: { "Content-Type": "application/json" }};
+      const token = localStorage.getItem("access_token");
+      const config = {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: `access_token=${token};`,
+        },
+      };
       axios.put(`${BackendUrl}/api/order/reviewd`, { id, productId }, config);
       dispatch({ type: REVIEW_RESET });
-      dispatch(myOrders());
+      dispatch(myOrders(token));
       navigate("/profile");
     }
-    if (rating === 5 && comment.length < 10 ) setComment("Satisfied");
-    if (rating === 4 && comment.length < 10 ) setComment("Good");
-    if (rating === 3 && comment.length < 10 ) setComment("Average");
-    if (rating === 2 && comment.length < 10 ) setComment("Poor");
-    if (rating === 1 && comment.length < 10 ) setComment("Bad");
+    if (rating === 5 && comment.length < 10) setComment("Satisfied");
+    if (rating === 4 && comment.length < 10) setComment("Good");
+    if (rating === 3 && comment.length < 10) setComment("Average");
+    if (rating === 2 && comment.length < 10) setComment("Poor");
+    if (rating === 1 && comment.length < 10) setComment("Bad");
   }, [error, success, isError, rating]);
 
   const handleClick = async () => {
@@ -59,7 +71,7 @@ const Review = () => {
       productId: params.id.slice(24, 48),
       orderId: params.id.slice(0, 24),
     };
-    await dispatch(reviewProduct(reviewData));
+    await dispatch(reviewProduct(token, reviewData));
   };
 
   return (

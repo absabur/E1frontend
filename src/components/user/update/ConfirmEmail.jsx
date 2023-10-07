@@ -13,6 +13,7 @@ const ConfirmEmail = () => {
   const { error, message } = useSelector((state) => state.forgotPassword);
   const params = useParams();
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   useEffect(() => {
     if (error) {
       setErr(error);
@@ -27,8 +28,8 @@ const ConfirmEmail = () => {
     const myForm = {
       token: params.token,
     };
-    dispatch(confirmEmail(myForm));
-    dispatch(logout());
+    dispatch(confirmEmail(token,myForm));
+    dispatch(logout(token));
   }, []);
 
   return (

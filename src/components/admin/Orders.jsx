@@ -26,6 +26,7 @@ const Orders = () => {
   const [searchParams, setSearchParams] = useSearchParams({});
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
 
   const navigate = useNavigate();
 
@@ -43,19 +44,19 @@ const Orders = () => {
   };
 
   useEffect(() => {
-    dispatch(allOrders());
+    dispatch(allOrders(token));
   }, []);
 
   useEffect(() => {
     if (searchParams.get("sort")) {
       setSort(searchParams.get("sort"));
 
-      dispatch(allOrders("", searchParams.get("sort")));
+      dispatch(allOrders(token, "", searchParams.get("sort")));
     }
     if (searchParams.get("id")) {
       setId(searchParams.get("id"));
 
-      dispatch(allOrders(searchParams.get("id"), ""));
+      dispatch(allOrders(token, searchParams.get("id"), ""));
     }
   }, [searchParams.get("sort"), searchParams.get("id")]);
 
@@ -64,7 +65,7 @@ const Orders = () => {
     setId("");
     setSearchParams({});
 
-    dispatch(allOrders());
+    dispatch(allOrders(token));
   };
 
   useEffect(() => {
@@ -81,7 +82,7 @@ const Orders = () => {
       setMsg("Order deleted successfully.");
       dispatch({ type: DELETE_ORDER_RESET });
 
-      dispatch(allOrders());
+      dispatch(allOrders(token));
     }
   }, [error, deleteError, isDeleted]);
 
@@ -101,7 +102,7 @@ const Orders = () => {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(deleteOrder(DeleteId));
+    dispatch(deleteOrder(token, DeleteId));
     setCancelDiv(false);
   };
 

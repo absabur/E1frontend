@@ -16,17 +16,21 @@ import { BackendUrl } from "../../BackendUrl";
 const AllCategories = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
-
+  const token = localStorage.getItem("access_token");
   const { categories } = useSelector((state) => state.categories);
   useEffect(() => {
-    dispatch(allCategory());
+    dispatch(allCategory(token));
   }, []);
   const [name, setName] = useState("");
 
   const updateProfileSubmit = async (e) => {
     e.preventDefault();
 
-    const config = { withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    };
+    const token = localStorage.getItem("access_token");
 
     try {
       const { data } = await axios.post(
@@ -38,7 +42,7 @@ const AllCategories = () => {
         setMsg("Category created");
         setName("");
 
-        dispatch(allCategory());
+        dispatch(allCategory(token));
       }
     } catch (error) {
       setErr(error.response.data.error);
@@ -54,14 +58,20 @@ const AllCategories = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("access_token");
+
+    const config = {
+      withCredentials: true,
+      headers: { Cookie: `access_token=${token};` },
+    };
     const { data } = await axios.delete(
       `${BackendUrl}/api/category/${DeleteName}`,
-      { withCredentials: true }
+      config
     );
     if (data.success) {
       setMsg("Category Deleted");
 
-      dispatch(allCategory());
+      dispatch(allCategory(token));
       setCancelDiv(false);
     }
   };

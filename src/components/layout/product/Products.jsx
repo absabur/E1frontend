@@ -15,6 +15,7 @@ import { ALL_PRODUCT_RESET } from "../../../constance/productConstant";
 const Products = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
 
   const [filterToggle, setFilterToggle] = useState(false)
 
@@ -45,7 +46,7 @@ const Products = () => {
     setSort(searchParams.get("sort"));
     setCate(searchParams.get("cate"));
     dispatch(
-      getProduct(search, page, limit, searchParams.get("minPrice"), searchParams.get("maxPrice"), searchParams.get("cate"), searchParams.get("sort"))
+      getProduct(token, search, page, limit, searchParams.get("minPrice"), searchParams.get("maxPrice"), searchParams.get("cate"), searchParams.get("sort"))
     );
   }, [
     dispatch,
@@ -91,7 +92,7 @@ const Products = () => {
   };
 
   useEffect(() => {
-    dispatch(allCategory());
+    dispatch(allCategory(token));
     // window.addEventListener("scroll", () => {
     //   const winScroll =
     //     document.body.scrollTop || document.documentElement.scrollTop;

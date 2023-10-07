@@ -30,6 +30,7 @@ const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams({});
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
 
   let limit = 20;
   const [page, setpage] = useState(1);
@@ -48,21 +49,21 @@ const Products = () => {
   };
 
   useEffect(() => {
-    dispatch(getProductAdmin({ page, limit, name: "", sort: "" }));
+    dispatch(getProductAdmin(token, { page, limit, name: "", sort: "" }));
   }, []);
 
   useEffect(() => {
     if (searchParams.get("id")) {
       setId(searchParams.get("id"));
 
-      dispatch(getProductAdmin({ page, limit, id: searchParams.get("id") }));
+      dispatch(getProductAdmin(token, { page, limit, id: searchParams.get("id") }));
     }
     if (searchParams.get("name") || searchParams.get("sort")) {
       setName(searchParams.get("name"));
 
       setSort(searchParams.get("sort"));
       dispatch(
-        getProductAdmin({
+        getProductAdmin(token, {
           page,
           limit,
 
@@ -84,7 +85,7 @@ const Products = () => {
     setId("");
     setSearchParams({});
     dispatch(
-      getProductAdmin({ page, limit, name: "", sort: "Newest Arrivals" })
+      getProductAdmin(token, { page, limit, name: "", sort: "Newest Arrivals" })
     );
   };
 
@@ -102,7 +103,7 @@ const Products = () => {
       setMsg("Product deleted successfully.");
       dispatch({ type: DELETE_PRODUCT_RESET });
 
-      dispatch(getProductAdmin({ page, limit, name: "", sort: "" }));
+      dispatch(getProductAdmin(token, { page, limit, name: "", sort: "" }));
     }
   }, [error, isDeleted, deleteError]);
 
@@ -126,7 +127,7 @@ const Products = () => {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(deleteProduct(DeleteId));
+    dispatch(deleteProduct(token, DeleteId));
     setCancelDiv(false);
   };
 

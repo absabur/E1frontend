@@ -12,6 +12,7 @@ const UpdateProduct = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const params = useParams();
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   const navigate = useNavigate();
   const { loading, error, isUpdated } = useSelector(
     (state) => state.adminProduct
@@ -29,9 +30,9 @@ const UpdateProduct = () => {
   const [imagesPreview, setImagesPreview] = useState([]);
 
   useEffect(() => {
-    dispatch(getProductDetails(params.id));
+    dispatch(getProductDetails(token, params.id));
 
-    dispatch(allCategory());
+    dispatch(allCategory(token));
   }, []);
 
   useEffect(() => {
@@ -76,7 +77,7 @@ const UpdateProduct = () => {
       myForm.append("images", image);
     });
 
-    dispatch(updateProduct(id, myForm));
+    dispatch(updateProduct(token, id, myForm));
   };
 
   const createProductImagesChange = (e) => {

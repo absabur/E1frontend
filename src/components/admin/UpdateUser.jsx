@@ -14,6 +14,7 @@ const UserUpdate = () => {
   const [role, setRole] = useState("");
   const params = useParams();
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
 
   const { loading, user } = useSelector((state) => state.userInfo);
   const {
@@ -23,7 +24,7 @@ const UserUpdate = () => {
   } = useSelector((state) => state.adminUserUD);
 
   useEffect(() => {
-    dispatch(userInfo(params.id));
+    dispatch(userInfo(token, params.id));
   }, []);
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const UserUpdate = () => {
       setMsg("User Updated successfully.");
       dispatch({ type: UPDATE_USER_RESET });
 
-      dispatch(userInfo(params.id));
+      dispatch(userInfo(token, params.id));
       setRole("");
     }
   }, [error, isUpdated]);
@@ -53,7 +54,7 @@ const UserUpdate = () => {
       data = { isAdmin: false, isBan: false };
     }
 
-    dispatch(updateUser(params.id, data));
+    dispatch(updateUser(token, params.id, data));
   };
 
   return (

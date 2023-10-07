@@ -13,9 +13,10 @@ const MyOrdersToReview = () => {
   const [emptyOrder, setEmptyOrder] = useState(false);
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   const { orders, error, loading } = useSelector((state) => state.myOrders);
   useEffect(() => {
-    dispatch(myOrders());
+    dispatch(myOrders(token));
     if (error) {
       setErr(error);
       dispatch(clearErrors());

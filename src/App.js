@@ -56,8 +56,9 @@ function App() {
   const { loading, user, isAuthenticated } = useSelector(state => state.user);
   const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   useEffect(() => {
-    dispatch(auth());
+    dispatch(auth(token));
   }, []);
 
   const goTop = () => {
@@ -194,36 +195,36 @@ function App() {
                     <Route path="/order/review/:id" element={isAuthenticated?<Review />: <Navigate replace to={"/login"} />} />
                     {user && user.isAdmin === true && (
                       <>
-                        <Route path="/admin/dashboard" element={isAuthenticated && user && user.isAdmin == true?<Dashboard />: <Navigate replace to={"/products"} />} />
+                        <Route path="/admin/dashboard" element={isAuthenticated && user && user.isAdmin === true?<Dashboard />: <Navigate replace to={"/products"} />} />
                         <Route
                           path="/admin/products"
-                          element={isAuthenticated && user && user.isAdmin == true?<AdminProducts />: <Navigate replace to={"/products"} />}
+                          element={isAuthenticated && user && user.isAdmin === true?<AdminProducts />: <Navigate replace to={"/products"} />}
                         />
-                        <Route path="/admin/orders" element={isAuthenticated && user && user.isAdmin == true?<Orders />: <Navigate replace to={"/products"} />} />
+                        <Route path="/admin/orders" element={isAuthenticated && user && user.isAdmin === true?<Orders />: <Navigate replace to={"/products"} />} />
                         <Route
                           path="/admin/order/update/:id"
-                          element={isAuthenticated && user && user.isAdmin == true?<UpdateOrder />: <Navigate replace to={"/products"} />}
+                          element={isAuthenticated && user && user.isAdmin === true?<UpdateOrder />: <Navigate replace to={"/products"} />}
                         />
                         <Route
                           path="/admin/product/details/:id"
-                          element={isAuthenticated && user && user.isAdmin == true?<UpdateProduct />: <Navigate replace to={"/products"} />}
+                          element={isAuthenticated && user && user.isAdmin === true?<UpdateProduct />: <Navigate replace to={"/products"} />}
                         />
                         <Route
                           path="/admin/create/product"
-                          element={isAuthenticated && user && user.isAdmin == true?<CreateProduct />: <Navigate replace to={"/products"} />}
+                          element={isAuthenticated && user && user.isAdmin === true?<CreateProduct />: <Navigate replace to={"/products"} />}
                         />
                         <Route
                           path="/admin/update/category/:id"
-                          element={isAuthenticated && user && user.isAdmin == true?<UpdateCategory />: <Navigate replace to={"/products"} />}
+                          element={isAuthenticated && user && user.isAdmin === true?<UpdateCategory />: <Navigate replace to={"/products"} />}
                         />
                         <Route
                           path="/admin/categories"
-                          element={isAuthenticated && user && user.isAdmin == true?<AllCategories />: <Navigate replace to={"/products"} />}
+                          element={isAuthenticated && user && user.isAdmin === true?<AllCategories />: <Navigate replace to={"/products"} />}
                         />
-                        <Route path="/admin/users" element={isAuthenticated && user && user.isAdmin == true?<AllUsers />: <Navigate replace to={"/products"} />} />
+                        <Route path="/admin/users" element={isAuthenticated && user && user.isAdmin === true?<AllUsers />: <Navigate replace to={"/products"} />} />
                         <Route
                           path="/admin/user/update/:id"
-                          element={isAuthenticated && user && user.isAdmin == true?<UpdateUser />: <Navigate replace to={"/products"} />}
+                          element={isAuthenticated && user && user.isAdmin === true?<UpdateUser />: <Navigate replace to={"/products"} />}
                         />
                       </>
                     )}

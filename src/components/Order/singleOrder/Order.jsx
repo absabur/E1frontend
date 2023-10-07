@@ -12,11 +12,12 @@ const Order = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const params = useParams();
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
-    dispatch(getOrderDetails(params.id));
+    dispatch(getOrderDetails(token, params.id));
   }, [params.id, dispatch]);
 
   useEffect(() => {

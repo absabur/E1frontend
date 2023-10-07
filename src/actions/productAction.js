@@ -14,7 +14,16 @@ import {
 import { BackendUrl } from "../BackendUrl";
 
 export const getProduct =
-  (search="" ,page = 1,limit = 8,minPrice = 0,maxPrice = 1000000,cate = "",sort = "Top Sales") =>
+  (
+    token,
+    search = "",
+    page = 1,
+    limit = 8,
+    minPrice = 0,
+    maxPrice = 1000000,
+    cate = "",
+    sort = "Top Sales"
+  ) =>
   async (dispatch) => {
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST });
@@ -30,7 +39,7 @@ export const getProduct =
     }
   };
 
-export const getProductDetails = (id) => async (dispatch) => {
+export const getProductDetails = (token, id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
     const data = await axios.get(`${BackendUrl}/api/product/${id}`);
@@ -43,10 +52,16 @@ export const getProductDetails = (id) => async (dispatch) => {
   }
 };
 
-export const reviewProduct = (reviewData) => async (dispatch) => {
+export const reviewProduct = (token, reviewData) => async (dispatch) => {
   try {
     dispatch({ type: REVIEW_REQUEST });
-    const config = {withCredentials: true, headers: { "Content-Type": "application/json" }};
+    const config = {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `access_token=${token};`,
+      },
+    };
 
     const { data } = await axios.put(
       `${BackendUrl}/api/product/create-review`,

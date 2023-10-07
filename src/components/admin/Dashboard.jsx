@@ -9,17 +9,18 @@ import { allUsers } from "../../actions/admin/userAction.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   const { pagination } = useSelector((state) => state.products);
   const { pagination: userCount } = useSelector((state) => state.adminUsers);
 
   const { orders, amount } = useSelector((state) => state.adminOrders);
 
   useEffect(() => {
-    dispatch(getProductAdmin({ limit: 100000000 }));
+    dispatch(getProductAdmin(token, { limit: 100000000 }));
 
-    dispatch(allOrders());
+    dispatch(allOrders(token));
 
-    dispatch(allUsers(1, 100000000));
+    dispatch(allUsers(token, 1, 100000000));
   }, []);
 
 

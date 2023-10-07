@@ -17,6 +17,7 @@ const DeleteProfile = () => {
   );
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   const navigate = useNavigate();
   useEffect(() => {
     if (error) {
@@ -31,7 +32,8 @@ const DeleteProfile = () => {
     navigate("/profile");
   };
   const handleDelete = () => {
-    dispatch(deleteAccount());
+    dispatch(deleteAccount(token));
+    localStorage.removeItem("access_token")
   };
   return (
     <>

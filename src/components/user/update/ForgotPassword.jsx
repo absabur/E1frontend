@@ -18,6 +18,7 @@ const UEmail = () => {
   const [email, setEmail] = useState("");
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   useEffect(() => {
     if (error) {
       setErr(error);
@@ -36,7 +37,7 @@ const UEmail = () => {
     const myForm = {
       email: email,
     };
-    dispatch(forgotPassword(myForm));
+    dispatch(forgotPassword(token, myForm));
   };
 
   return (

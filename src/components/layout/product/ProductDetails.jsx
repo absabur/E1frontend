@@ -28,6 +28,7 @@ const ProductDetails = () => {
   const [reviews, setReviews] = useState([]);
   const params = useParams();
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   const navigate = useNavigate();
   const { loading, error, product } = useSelector(
     (state) => state.productDetails
@@ -44,7 +45,7 @@ const ProductDetails = () => {
   const { isError, message } = useSelector((state) => state.cartAdd);
   // console.log(error, loading, product)
   useEffect(() => {
-    dispatch(getProductDetails(params.id));
+    dispatch(getProductDetails(token, params.id));
     if (error) {
       setErr(error);
 
@@ -68,7 +69,7 @@ const ProductDetails = () => {
         type: RESET_CART_STATE,
       });
       setTimeout(() => {
-        dispatch(auth());
+        dispatch(auth(token));
       }, 1000);
     }
     if (stars === "all") {
@@ -125,7 +126,7 @@ const ProductDetails = () => {
 
     if (product) {
       // "", 1, 30, 0, 1000000, product.category, ""
-      dispatch(getProduct());
+      dispatch(getProduct(token));
     }
   }, [isError, message, stars, product]);
 
@@ -147,7 +148,7 @@ const ProductDetails = () => {
       image: product.images[0].url,
     };
 
-    await dispatch(addToCart(data));
+    await dispatch(addToCart(token, data));
   };
 
   const handleBuy = (productId, name, price, quantity, image) => {

@@ -20,6 +20,7 @@ const UImage = () => {
   const [avatarPreview, setAvatarPreview] = useState("");
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
   useEffect(() => {
     if (user) {
       setAvatarPreview(user.avatar.url);
@@ -30,7 +31,7 @@ const UImage = () => {
     }
     if (isUpdated) {
       setMsg("Profile Updated successfully");
-      dispatch(auth());
+      dispatch(auth(token));
     }
     dispatch({
       type: UPDATE_PROFILE_RESET,
@@ -42,7 +43,7 @@ const UImage = () => {
     const myForm = new FormData();
 
     myForm.set("avatar", avatar);
-    dispatch(updateProfile(myForm));
+    dispatch(updateProfile(token, myForm));
   };
 
   const updateProfileDataChange = (e) => {

@@ -14,6 +14,7 @@ const Order = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const params = useParams();
   const dispatch = useDispatch();
+  const token = localStorage.getItem("access_token")
 
   const { order, error, loading } = useSelector((state) => state.orderDetails);
 
@@ -27,7 +28,7 @@ const Order = () => {
   const [reason, setReason] = useState("");
 
   useEffect(() => {
-    dispatch(getOrderDetails(params.id));
+    dispatch(getOrderDetails(token, params.id));
   }, [params.id, dispatch]);
 
   useEffect(() => {
@@ -44,14 +45,14 @@ const Order = () => {
       setMsg("Order Updated successfully.");
       dispatch({ type: UPDATE_ORDER_RESET });
 
-      dispatch(getOrderDetails(params.id));
+      dispatch(getOrderDetails(token, params.id));
     }
   }, [error, isUpdated, updateError]);
 
   const handleChange = (e) => {
     e.preventDefault();
 
-    dispatch(updateOrder(params.id, { status, reason }));
+    dispatch(updateOrder(token, params.id, { status, reason }));
   };
 
   return (
