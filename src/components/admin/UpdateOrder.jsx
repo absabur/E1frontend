@@ -60,7 +60,7 @@ const Order = () => {
       <MetaDeta title="Change Order Status" />
       {loading || isLoading ? (
         <LoadingPage />
-      ) : order  ? (
+      ) : JSON.stringify(order) !== "{}" && order ? (
         <div className="orderDetails">
           <div className="shipingInfo">
             <b style={{textAlign: "center", fontSize: "20px"}}>Shiping Details</b>

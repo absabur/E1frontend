@@ -35,7 +35,7 @@ const Order = () => {
       <MetaDeta title="Confirm Order" />
       {loading ? (
         <LoadingPage />
-      ) : order ? (
+      ) : JSON.stringify(order) !== "{}" && order ? (
         <div className="orderDetails">
           <div className="shipingInfo">
             <b style={{textAlign: "center", fontSize: "20px"}}>Shiping Details</b>
