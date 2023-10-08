@@ -59,6 +59,13 @@ const UImage = () => {
     reader.readAsDataURL(e.target.files[0]);
   };
 
+  const handleChooseImage = () => {
+    console.log(avatar);
+    if (avatar === "") {
+      setErr("Choose an image")
+    }
+  }
+
   return (
     <>
       <MetaDeta title="Update Image" />
@@ -72,23 +79,24 @@ const UImage = () => {
             <form encType="multipart/form-data" onSubmit={updateProfileSubmit}>
               <h1>Update Image</h1>
               <span className="img-label">
-                <label htmlFor="image">Change Profile Image</label>
-                <img className="image" src={avatarPreview} alt="Avatar" />
+                <label htmlFor="file-upload">
+                  <img className="image" src={avatarPreview} alt="Avatar" />
+                </label>
               </span>
-
-              <div id="updateProfileImage">
-                <input
-                  type="file"
-                  name="avatar"
-                  accept="image/*"
-                  required
-                  onChange={updateProfileDataChange}
-                />
-              </div>
+              <input
+                id="file-upload"
+                type="file"
+                name="avatar"
+                accept="image/*"
+                required
+                onChange={updateProfileDataChange}
+                style={{display: "none"}}
+              />
               <input
                 type="submit"
                 value="Update"
                 className="v1button submitButton"
+                onClick={handleChooseImage}
               />
             </form>
           </div>

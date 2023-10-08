@@ -18,7 +18,7 @@ import GlobalState from "../../../GlobalState";
 const Register = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const params = useParams();
-  const [avatar, setAvatar] = useState(image);
+  const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(image);
   const [user, setUser] = useState({
     name: "",
@@ -75,6 +75,13 @@ const Register = () => {
   };
   const [type, setType] = useState(false);
   const [type2, setType2] = useState(false);
+
+  const handleChooseImage = () => {
+    console.log(avatar);
+    if (avatar === "") {
+      setErr("Choose an image")
+    }
+  }
 
   return (
     <>
@@ -134,23 +141,24 @@ const Register = () => {
                 </p>
               </div>
               <span className="img-label">
-                <label htmlFor="image">Add Profile Image</label>
-                <img className="image" src={avatarPreview} alt="Avatar" />
+                <label style={{margin: "20px "}} htmlFor="file-upload" >
+                  <img style={{marginTop: "0"}} className="image" src={avatarPreview} alt="Avatar" />
+                </label>
               </span>
-
-              <div id="registerImage">
-                <input
-                  type="file"
-                  name="avatar"
-                  accept="image/*"
-                  onChange={registerDataChange}
-                  required
-                />
-              </div>
+              <input
+                id="file-upload"
+                type="file"
+                name="avatar"
+                accept="image/*"
+                onChange={registerDataChange}
+                required
+                style={{display: "none"}}
+              />
               <input
                 type="submit"
                 value="Register"
                 className="v2button submitButton"
+                onClick={handleChooseImage}
               />
             </form>
             <p>
