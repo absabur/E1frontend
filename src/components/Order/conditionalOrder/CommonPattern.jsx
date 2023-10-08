@@ -56,18 +56,21 @@ const CommonPattern = ({ orderStatus, head }) => {
     }
   }, [orders]);
   const [cancleDiv, setCancleDiv] = useState("");
-  const [cancleId, setCancelId] = useState("");
   const [reason, setReason] = useState("");
 
   const handleCancel = (id) => {
     setCancleDiv(id);
-    setCancelId(id);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(cancleOrder(token, cancleId, reason));
-    setCancleDiv("");
+  const handleSubmit = () => {
+    if (reason) {
+      dispatch(cancleOrder(token, cancleDiv, reason));
+      setCancleDiv("");
+      setReason("")
+    }
+    else{
+      setErr("Select Reason")
+    }
   };
 
   return (
@@ -89,16 +92,16 @@ const CommonPattern = ({ orderStatus, head }) => {
           {orders &&
             orders.toReversed().map((order) =>
               order.orderStatus === orderStatus ? (
-                <div key={order._id} className="orderCard">
+                <Link to={cancleDiv? `` :`/order/${order._id}`} className="orderCard">
                   {cancleDiv == order._id ? (
                     <div id="cancel" className="cancelDiv">
-                      <p>Order Id: {cancleId}</p>
+                      <p>Order Id: {cancleDiv}</p>
                       <form onSubmit={handleSubmit}>
                         <select
                           required
                           onChange={(e) => setReason(e.target.value)}
                         >
-                          <option value="">Choose</option>
+                          <option value="">Select Reason</option>
                           <option value="Unexpected Order">
                             Unexpected Order
                           </option>
@@ -124,6 +127,7 @@ const CommonPattern = ({ orderStatus, head }) => {
                             Undo
                           </button>
                           <button
+                            onClick={handleSubmit}
                             type="submit"
                             className="v1button"
                             style={{ fontSize: "16px", padding: "10px" }}
@@ -134,12 +138,10 @@ const CommonPattern = ({ orderStatus, head }) => {
                       </form>
                     </div>
                   ) : null}
-                  <Link
-                    style={{ color: "var(--v1)" }}
-                    to={`/order/${order._id}`}
+                  <strong
                   >
                     Order: {order._id}
-                  </Link>
+                  </strong>
                   <br />
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
@@ -231,7 +233,7 @@ const CommonPattern = ({ orderStatus, head }) => {
                       </Link>
                     ) : null}
                   </div>
-                </div>
+                </Link>
               ) : null
             )}
         </>

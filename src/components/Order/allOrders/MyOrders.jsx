@@ -7,7 +7,7 @@ import {
 } from "../../../actions/orderAction";
 import LoadingPage from "../../layout/loading/LoadingPage";
 import "./MyOrders.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import OrdersHeading from "./OrdersHeading";
 import GlobalState from "../../../GlobalState";
 import { CANCEL_ORDER_RESET } from "../../../constance/orderContant";
@@ -43,19 +43,21 @@ const MyOrders = () => {
   }, [error, isError, success]);
 
   const [cancleDiv, setCancleDiv] = useState("");
-  const [cancleId, setCancelId] = useState("");
   const [reason, setReason] = useState("");
 
   const handleCancel = (id) => {
     setCancleDiv(id);
-    setCancelId(id);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    dispatch(cancleOrder(token, cancleId, reason));
-    setCancleDiv("");
+  const handleSubmit = () => {
+    if (reason) {
+      dispatch(cancleOrder(token, cancleDiv, reason));
+      setCancleDiv("");
+      setReason("")
+    }
+    else{
+      setErr("Select Reason")
+    }
   };
 
   return (
@@ -76,16 +78,16 @@ const MyOrders = () => {
           )}
           {orders &&
             orders.toReversed().map((order) => (
-              <div key={order._id} className="orderCard">
+              <Link to={cancleDiv? `` :`/order/${order._id}`} key={order._id} className="orderCard">
                 {cancleDiv == order._id ? (
                   <div id="cancel" className="cancelDiv">
-                    <p>Order Id: {cancleId}</p>
-                    <form onSubmit={handleSubmit}>
+                    <p>Order Id: {cancleDiv}</p>
+                    <form>
                       <select
                         required
                         onChange={(e) => setReason(e.target.value)}
                       >
-                        <option value="">Choose</option>
+                        <option value="">Select Reason</option>
                         <option value="Unexpected Order">
                           Unexpected Order
                         </option>
@@ -109,6 +111,7 @@ const MyOrders = () => {
                           Undo
                         </button>
                         <button
+                          onClick={handleSubmit}
                           type="submit"
                           className="v1button"
                           style={{ fontSize: "16px", padding: "10px" }}
@@ -119,9 +122,9 @@ const MyOrders = () => {
                     </form>
                   </div>
                 ) : null}
-                <Link style={{ color: "var(--v1)" }} to={`/order/${order._id}`}>
+                <strong>
                   Order: {order._id}
-                </Link>
+                </strong>
                 <br />
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
@@ -214,7 +217,7 @@ const MyOrders = () => {
                     </Link>
                   ) : null}
                 </div>
-              </div>
+              </Link>
             ))}
         </>
       )}

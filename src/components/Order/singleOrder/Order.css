@@ -29,3 +29,7 @@
     padding: 10px;
 }
 
+.shipingInfo b{
+    margin-bottom: 10px;
+    display: block;
+}

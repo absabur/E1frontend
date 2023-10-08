@@ -35,20 +35,20 @@ const Order = () => {
       <MetaDeta title="Confirm Order" />
       {loading ? (
         <LoadingPage />
-      ) : JSON.stringify(order) !== "{}" && order ? (
+      ) : order ? (
         <div className="orderDetails">
           <div className="shipingInfo">
-            <b>Shiping Details</b>
+            <b style={{textAlign: "center", fontSize: "20px"}}>Shiping Details</b>
             <br />
-            <b>Name: {order.user.name}</b>
+            <b>Name: {order.user && order.user.name}</b>
             <br />
-            <b>Email: {order.user.email}</b>
+            <b>Email: {order.user && order.user.email}</b>
             <br />
-            <b>Number: {order.shippingInfo.phoneNo}</b>
+            <b>Number: {order.user && order.shippingInfo.phoneNo}</b>
             <br />
             <p style={{ opacity: "0.7" }}>
               Address:{" "}
-              {`${order.shippingInfo.division}, ${order.shippingInfo.district}, ${order.shippingInfo.subDistrict}, ${order.shippingInfo.address}`}
+              {order.user && `${order.shippingInfo.division}, ${order.shippingInfo.district}, ${order.shippingInfo.subDistrict}, ${order.shippingInfo.address}`}
             </p>
           </div>
           <h4 style={{ margin: "10px" }}>
@@ -81,7 +81,7 @@ const Order = () => {
               Order:{" "}
               <span
                 onClick={(e) => handleCopyText(e.currentTarget.innerHTML)}
-                style={{ color: "var(--v1)" }}
+                style={{ color: "var(--v1)", cursor: "pointer" }}
               >
                 {order._id}
               </span>

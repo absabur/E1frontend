@@ -35,13 +35,11 @@ const Shipping = () => {
   const { loading, error, status, newOrder } = useSelector(
     (state) => state.newOrder
   );
+ 
 
   useEffect(() => {
     if (isError) {
       setErr(isError);
-    }
-    if (message) {
-      setMsg(message);
     }
     if (error) {
       setErr(error);
@@ -50,7 +48,11 @@ const Shipping = () => {
     if (status) {
       sessionStorage.setItem("order-from", "done");
       dispatch(clearErrors());
+    }    
+    if (message) {
+      setMsg(message);
     }
+    dispatch({type: RESET_CART_STATE})
     // if (sessionStorage.getItem("order-from") === "done") {
     //   navigate("/order/payment");
     // }
@@ -59,10 +61,10 @@ const Shipping = () => {
     }
   }, [
     isError,
-    message,
     user,
     error,
     status,
+    message,
     sessionStorage.getItem("order-form"),
   ]);
 
