@@ -8,7 +8,8 @@
 }
 
 .paymentForm {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -27,7 +28,7 @@
 
 .mainForm div {
   padding: 10px;
-  margin: 0.3rem;
+  margin: 0.3rem 0;
   width: 100%;
 }
 
@@ -72,5 +73,6 @@
   .paymentForm {
     margin: 0;
     width: 100%;
+    max-width: 100vw;
   }
 }

@@ -5,7 +5,7 @@ footer {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
   padding-bottom: 0;
   margin-top: auto;
 }

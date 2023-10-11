@@ -113,7 +113,7 @@ const MakePayment = () => {
                   encType="multipart/form-data"
                   onSubmit={updatePaymentSubmit}
                 >
-                  <div style={{ margin: "auto 1rem", textAlign: "center" }}>
+                  <div style={{ margin: "auto", textAlign: "center" }}>
                     <h3>Order Id: {orderInfo._id}</h3>
                     <h3>Ammount: ৳{orderInfo.totalPrice}</h3>
                   </div>

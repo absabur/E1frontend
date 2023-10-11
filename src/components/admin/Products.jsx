@@ -243,7 +243,7 @@ const Products = () => {
                       <p className="prices">{product.price}</p>
                       <div className="action">
                         {cancelDiv === product._id ? (
-                          <div id="cancel" className="cancelDiv">
+                          <div id="cancel" className="cancelDiv cancel-div-admin">
                             <p>Product Id: {DeleteId}</p>
                             <form onSubmit={handleDeleteSubmit}>
                               <div className="cancelButtons">

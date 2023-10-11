@@ -211,7 +211,7 @@ const Users = () => {
                       </p>
                       <div className="action">
                         {cancelDiv === user._id ? (
-                            <div id="cancel" className="cancelDiv">
+                            <div id="cancel" className="cancelDiv cancel-div-admin">
                               <p>User Id: {DeleteId}</p>
                               <form onSubmit={handleDeleteSubmit}>
                                 <div className="cancelButtons">
