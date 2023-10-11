@@ -77,94 +77,99 @@ const AllCategories = () => {
   };
 
   return (
-    <>
-      <MetaDeta title="Categories" />
-      <div
-        className="updatePage"
-        style={{ flexDirection: "column", position: "relative" }}
-      >
-        {cancelDiv ? (
-          <div id="cancel" className="cancelDiv">
-            <h2>Category: {DeleteName}</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="cancelButtons">
-                <button
-                  onClick={() => setCancelDiv(false)}
-                  type="reset"
-                  style={{
-                    fontSize: "16px",
-                    padding: "10px",
-                    border: "1px solid var(--black)",
-                    cursor: "pointer",
-                  }}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="v1button"
-                  style={{ fontSize: "16px", padding: "10px" }}
-                >
-                  Delete
-                </button>
-              </div>
-            </form>
-          </div>
-        ) : null}
-
-        <div>
-          <h1 style={{ marginTop: "1rem" }}>Categories</h1>
-          {categories &&
-            categories.map((category) => (
-              <div key={category._id} className="allCategory">
-                <p>{category.name}</p>
-                <div>
-                  <button className="editDelete">
-                    <Link
-                      className="editDelete"
-                      to={`/admin/update/category/${category._id}`}
-                    >
-                      <AiOutlineEdit />
-                    </Link>
+    <div style={{width: "100%", position: "relative", }}>
+      {
+        cancelDiv ? <div onClick={()=> setCancelDiv(false)} style={{position: "absolute", width: "100%", height: "100%",backgroundColor: "rgba(0, 0, 0, 0.5)", zIndex: "11"}}></div> : null
+      }
+      <>
+        <MetaDeta title="Categories" />
+        <div
+          className="updatePage"
+          style={{ flexDirection: "column", position: "relative" }}
+        >
+          {cancelDiv ? (
+            <div id="cancel" className="cancelDiv">
+              <h2>Category: {DeleteName}</h2>
+              <form onSubmit={handleSubmit}>
+                <div className="cancelButtons">
+                  <button
+                    onClick={() => setCancelDiv(false)}
+                    type="reset"
+                    style={{
+                      fontSize: "16px",
+                      padding: "10px",
+                      border: "1px solid var(--black)",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Cancel
                   </button>
                   <button
-                    className="editDelete"
-                    onClick={() => handleDelete(category.name)}
+                    type="submit"
+                    className="v1button"
+                    style={{ fontSize: "16px", padding: "10px" }}
                   >
-                    <FaRegTrashCan />
+                    Delete
                   </button>
                 </div>
-              </div>
-            ))}
-        </div>
-        <div className="updateForm singleUpdate">
-          <form encType="multipart/form-data" onSubmit={updateProfileSubmit}>
-            <h1>Create Category</h1>
-            <div className="updateName">
-              <label htmlFor="name">
-                <MdOutlineCategory />
-              </label>
-              <input
-                type="text"
-                placeholder="Category Name"
-                name="name"
-                value={name}
-                required
-                onChange={(e) => setName(e.target.value)}
-              />
-              {name && (
-                <RxCross1 className="crossIcon" onClick={() => setName("")} />
-              )}
+              </form>
             </div>
-            <input
-              type="submit"
-              value="Create"
-              className="v1button submitButton"
-            />
-          </form>
+          ) : null}
+
+          <div>
+            <h1 style={{ marginTop: "1rem" }}>Categories</h1>
+            {categories &&
+              categories.map((category) => (
+                <div key={category._id} className="allCategory">
+                  <p>{category.name}</p>
+                  <div>
+                    <button className="editDelete">
+                      <Link
+                        className="editDelete"
+                        to={`/admin/update/category/${category._id}`}
+                      >
+                        <AiOutlineEdit />
+                      </Link>
+                    </button>
+                    <button
+                      className="editDelete"
+                      onClick={() => handleDelete(category.name)}
+                    >
+                      <FaRegTrashCan />
+                    </button>
+                  </div>
+                </div>
+              ))}
+          </div>
+          <div className="updateForm singleUpdate">
+            <form encType="multipart/form-data" onSubmit={updateProfileSubmit}>
+              <h1>Create Category</h1>
+              <div className="updateName">
+                <label htmlFor="name">
+                  <MdOutlineCategory />
+                </label>
+                <input
+                  type="text"
+                  placeholder="Category Name"
+                  name="name"
+                  value={name}
+                  required
+                  onChange={(e) => setName(e.target.value)}
+                />
+                {name && (
+                  <RxCross1 className="crossIcon" onClick={() => setName("")} />
+                )}
+              </div>
+              <input
+                type="submit"
+                value="Create"
+                className="v1button submitButton"
+              />
+            </form>
+          </div>
         </div>
-      </div>
-    </>
+      </>
+    </div>
   );
 };
 

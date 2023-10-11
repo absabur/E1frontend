@@ -118,11 +118,11 @@ const Products = () => {
     setMsg(`You have copied "${text}"`);
   };
 
-  const [cancelDiv, setCancelDiv] = useState(false);
+  const [cancelDiv, setCancelDiv] = useState("");
   const [DeleteId, setDeleteId] = useState("");
 
   const handleDelete = (id) => {
-    setCancelDiv(true);
+    setCancelDiv(id);
     setDeleteId(id);
   };
 
@@ -130,196 +130,201 @@ const Products = () => {
     e.preventDefault();
 
     dispatch(deleteProduct(token, DeleteId));
-    setCancelDiv(false);
+    setCancelDiv("");
   };
 
   return (
-    <>
-      <MetaDeta title="Products for Admin" />
-      {loading || isLoading ? (
-        <LoadingPage />
-      ) : (
-        <>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-              width: "100%",
-              overflow: "hidden",
-              position: "relative",
-            }}
-          >
-            {cancelDiv ? (
-              <div id="cancel" className="cancelDiv">
-                <p>Product Id: {DeleteId}</p>
-                <form onSubmit={handleDeleteSubmit}>
-                  <div className="cancelButtons">
-                    <button
-                      onClick={() => setCancelDiv(false)}
-                      type="reset"
-                      style={{
-                        fontSize: "16px",
-                        padding: "10px",
-                        border: "1px solid var(--black)",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="v1button"
-                      style={{ fontSize: "16px", padding: "10px" }}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </form>
-              </div>
-            ) : null}
-            <form onSubmit={handleSubmit} className="search">
-              <div className="id">
-                <label htmlFor="id">Id: </label>
-                <input
-                  value={id}
-                  disabled={sort || name ? true : false}
-                  onChange={(e) => setId(e.target.value)}
-                  type="text"
-                  placeholder="Search by id"
-                />
-              </div>
-              <div className="name">
-                <label htmlFor="name">Name: </label>
-                <input
-                  value={name}
-                  disabled={id ? true : false}
-                  onChange={(e) => setName(e.target.value)}
-                  type="text"
-                  placeholder="Search by name"
-                />
-              </div>
-              <div className="sort">
-                <label htmlFor="sort">Sort</label>
-                <select
-                  value={sort}
-                  disabled={id ? true : false}
-                  onChange={(e) => setSort(e.target.value)}
-                  name="sort"
-                  id="sort"
-                >
-                  <option value="default">Default</option>
-                  <option value="Top Sales">Top Sales</option>
-                  <option value="Top Reviews">Top Reviews</option>
-                  <option value="Newest Arrivals">Newest Arrivals</option>
-                  <option value="Price Low to High">Price Low to High</option>
-                  <option value="Price High to Low">Price High to Low</option>
-                  <option value="Stock Low to High">Stock Low to High</option>
-                  <option value="Stock High to Low">Stock High to Low</option>
-                  <option value="High Rated">High Rated</option>
-                </select>
-              </div>
-              <div>
-                <button onClick={handleReset} className="v1button find">
-                  Reset
-                </button>
-                <button
-                  disabled={id && id.length !== 24 ? true : false}
-                  className="v2button find"
-                  type="submit"
-                >
-                  Find
-                </button>
-              </div>
-            </form>
+    <div style={{width: "100%", position: "relative",minHeight: "70vh" }}>
+      {
+        cancelDiv ? <div onClick={()=> setCancelDiv("")} style={{position: "absolute", width: "100%", height: "100%",backgroundColor: "rgba(0, 0, 0, 0.7)", zIndex: "11"}}></div> : null
+      }
+      <>
+        <MetaDeta title="Products for Admin" />
+        {loading || isLoading ? (
+          <LoadingPage />
+        ) : (
+          <>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+                width: "100%",
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
+              <form onSubmit={handleSubmit} className="search">
+                <div className="id">
+                  <label htmlFor="id">Id: </label>
+                  <input
+                    value={id}
+                    disabled={sort || name ? true : false}
+                    onChange={(e) => setId(e.target.value)}
+                    type="text"
+                    placeholder="Search by id"
+                  />
+                </div>
+                <div className="name">
+                  <label htmlFor="name">Name: </label>
+                  <input
+                    value={name}
+                    disabled={id ? true : false}
+                    onChange={(e) => setName(e.target.value)}
+                    type="text"
+                    placeholder="Search by name"
+                  />
+                </div>
+                <div className="sort">
+                  <label htmlFor="sort">Sort</label>
+                  <select
+                    value={sort}
+                    disabled={id ? true : false}
+                    onChange={(e) => setSort(e.target.value)}
+                    name="sort"
+                    id="sort"
+                  >
+                    <option value="default">Default</option>
+                    <option value="Top Sales">Top Sales</option>
+                    <option value="Top Reviews">Top Reviews</option>
+                    <option value="Newest Arrivals">Newest Arrivals</option>
+                    <option value="Price Low to High">Price Low to High</option>
+                    <option value="Price High to Low">Price High to Low</option>
+                    <option value="Stock Low to High">Stock Low to High</option>
+                    <option value="Stock High to Low">Stock High to Low</option>
+                    <option value="High Rated">High Rated</option>
+                  </select>
+                </div>
+                <div>
+                  <button onClick={handleReset} className="v1button find">
+                    Reset
+                  </button>
+                  <button
+                    disabled={id && id.length !== 24 ? true : false}
+                    className="v2button find"
+                    type="submit"
+                  >
+                    Find
+                  </button>
+                </div>
+              </form>
 
-            <div className="table">
-              <div
-                className="productChinCard"
-                style={{ backgroundColor: "var(--v1)", color: "var(--white)" }}
-              >
-                <b className="id">Id</b>
-                <b className="name">Name</b>
-                <b className="stock">Stock</b>
-                <b className="prices">Price</b>
-                <b className="action">Action</b>
-              </div>
-              {products &&
-                products.map((product) => (
-                  <div key={product._id} className="productChinCard">
-                    <p
-                      onClick={(e) => handleCopyText(e.currentTarget.innerHTML)}
-                      className="id copy"
-                    >
-                      {product._id}
-                    </p>
-                    <p className="name">
-                      {product.name.slice(0, 60)}
-                      {product.name.slice(59, 1000) ? "..." : null}
-                    </p>
-                    <p
-                      className="stock"
-                      style={product.Stock === 0 ? { color: "red" } : null}
-                    >
-                      {product.Stock}
-                    </p>
-                    <p className="prices">{product.price}</p>
-                    <div className="action">
-                      <button>
-                        <Link to={`/admin/product/details/${product._id}`}>
-                          <AiOutlineEdit />
-                        </Link>
-                      </button>
-                      <button onClick={() => handleDelete(product._id)}>
-                        <FaRegTrashCan />
-                      </button>
+              <div className="table">
+                <div
+                  className="productChinCard"
+                  style={{ backgroundColor: "var(--v1)", color: "var(--white)" }}
+                >
+                  <b className="id">Id</b>
+                  <b className="name">Name</b>
+                  <b className="stock">Stock</b>
+                  <b className="prices">Price</b>
+                  <b className="action">Action</b>
+                </div>
+                {products &&
+                  products.map((product) => (
+                    <div key={product._id} className="productChinCard">
+                      <p
+                        onClick={(e) => handleCopyText(e.currentTarget.innerHTML)}
+                        className="id copy"
+                      >
+                        {product._id}
+                      </p>
+                      <p className="name">
+                        {product.name.slice(0, 60)}
+                        {product.name.slice(59, 1000) ? "..." : null}
+                      </p>
+                      <p
+                        className="stock"
+                        style={product.Stock === 0 ? { color: "red" } : null}
+                      >
+                        {product.Stock}
+                      </p>
+                      <p className="prices">{product.price}</p>
+                      <div className="action">
+                        {cancelDiv === product._id ? (
+                          <div id="cancel" className="cancelDiv">
+                            <p>Product Id: {DeleteId}</p>
+                            <form onSubmit={handleDeleteSubmit}>
+                              <div className="cancelButtons">
+                                <button
+                                  onClick={() => setCancelDiv("")}
+                                  type="reset"
+                                  style={{
+                                    fontSize: "16px",
+                                    padding: "10px",
+                                    border: "1px solid var(--black)",
+                                    cursor: "pointer",
+                                  }}
+                                >
+                                  Cancel
+                                </button>
+                                <button
+                                  type="submit"
+                                  className="v1button"
+                                  style={{ fontSize: "16px", padding: "10px" }}
+                                >
+                                  Delete
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+                        ) : null}
+                        <button>
+                          <Link to={`/admin/product/details/${product._id}`}>
+                            <AiOutlineEdit />
+                          </Link>
+                        </button>
+                        <button onClick={() => handleDelete(product._id)}>
+                          <FaRegTrashCan />
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
-            </div>
-
-            {!products ? (
-              <div
-                style={{
-                  minHeight: "500px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <h1>Products not found</h1>
+                  ))}
               </div>
-            ) : null}
-          </div>
-          {pagination && pagination.number_of_Products <= limit ? (
-            <div style={{ height: "1rem" }}></div>
-          ) : (
-            <div className="pagination">
-              <button onClick={() => setpage(1)} className="f-l-arrow">
-                {"<<"}
-              </button>
-              <Pagination
-                variant="outlined"
-                shape="rounded"
-                count={pagination && pagination.number_of_Pages}
-                page={pagination && pagination.currentPage}
-                color="secondary"
-                onChange={handlePageChange}
-              />
-              <button
-                onClick={() =>
-                  setpage(pagination && pagination.number_of_Pages)
-                }
-                className="f-l-arrow"
-              >
-                {">>"}
-              </button>
+
+              {!products ? (
+                <div
+                  style={{
+                    minHeight: "500px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <h1>Products not found</h1>
+                </div>
+              ) : null}
             </div>
-          )}
-        </>
-      )}
-    </>
+            {pagination && pagination.number_of_Products <= limit ? (
+              <div style={{ height: "1rem" }}></div>
+            ) : (
+              <div className="pagination">
+                <button onClick={() => setpage(1)} className="f-l-arrow">
+                  {"<<"}
+                </button>
+                <Pagination
+                  variant="outlined"
+                  shape="rounded"
+                  count={pagination && pagination.number_of_Pages}
+                  page={pagination && pagination.currentPage}
+                  color="secondary"
+                  onChange={handlePageChange}
+                />
+                <button
+                  onClick={() =>
+                    setpage(pagination && pagination.number_of_Pages)
+                  }
+                  className="f-l-arrow"
+                >
+                  {">>"}
+                </button>
+              </div>
+            )}
+          </>
+        )}
+      </>
+    </div>
   );
 };
 

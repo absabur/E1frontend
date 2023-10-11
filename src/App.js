@@ -37,6 +37,7 @@ import MyOrdersToProcess from "./components/Order/conditionalOrder/MyOrdersToPro
 import MyOrdersToShip from "./components/Order/conditionalOrder/MyOrdersToShip.jsx";
 import MyOrdersToReceive from "./components/Order/conditionalOrder//MyOrdersToReceive.jsx";
 import MyOrdersToReview from "./components/Order/conditionalOrder/MyOrdersToReview.jsx";
+import MyCanceledOrder from "./components/Order/conditionalOrder/MyCanceledOrder.jsx";
 import Order from "./components/Order/singleOrder/Order";
 import PaymentSuccess from "./components/Order/singleOrder/PaymentSuccess.jsx";
 import Review from "./components/Order/singleOrder/Review";
@@ -266,6 +267,17 @@ function App() {
                       element={
                         isAuthenticated ? (
                           <MyOrdersToReview />
+                        ) : (
+                          <Navigate replace to={"/login"} />
+                        )
+                      }
+                    />
+                    
+                    <Route
+                      path="/myorders/canceled"
+                      element={
+                        isAuthenticated ? (
+                          <MyCanceledOrder />
                         ) : (
                           <Navigate replace to={"/login"} />
                         )

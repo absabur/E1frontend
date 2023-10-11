@@ -94,11 +94,11 @@ const Users = () => {
     setMsg(`You have copied "${text}"`);
   };
 
-  const [cancelDiv, setCancelDiv] = useState(false);
+  const [cancelDiv, setCancelDiv] = useState("");
   const [DeleteId, setDeleteId] = useState("");
 
   const handleDelete = (id) => {
-    setCancelDiv(true);
+    setCancelDiv(id);
     setDeleteId(id);
   };
 
@@ -106,192 +106,196 @@ const Users = () => {
     e.preventDefault();
 
     dispatch(deleteUser(token, DeleteId));
-    setCancelDiv(false);
+    setCancelDiv("");
   };
 
   return (
-    <>
-      <MetaDeta title="Users for Admin" />
-      {loading || isLoading ? (
-        <LoadingPage />
-      ) : (
-        <>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: "1rem",
-              justifyContent: "center",
-              flexDirection: "column",
-              width: "100%",
-              overflow: "hidden",
-              position: "relative",
-            }}
-          >
-            {cancelDiv ? (
-              <div id="cancel" className="cancelDiv">
-                <p>User Id: {DeleteId}</p>
-                <form onSubmit={handleDeleteSubmit}>
-                  <div className="cancelButtons">
-                    <button
-                      onClick={() => setCancelDiv(false)}
-                      type="reset"
-                      style={{
-                        fontSize: "16px",
-                        padding: "10px",
-                        border: "1px solid var(--black)",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="v1button"
-                      style={{ fontSize: "16px", padding: "10px" }}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </form>
-              </div>
-            ) : null}
-            <form onSubmit={handleSubmit} className="search">
-              <div className="id">
-                <label htmlFor="id">Id: </label>
-                <input
-                  value={searchParams.get("id")}
-                  disabled={searchParams.get("sort") ? true : false}
-                  onChange={(e) => setId(e.target.value)}
-                  type="text"
-                  placeholder="Search by id"
-                />
-              </div>
-              <div className="sort">
-                <label htmlFor="sort">Status: </label>
-                <select
-                  value={sort}
-                  disabled={searchParams.get("id") ? true : false}
-                  onChange={(e) => setSort(e.target.value)}
-                  name="sort"
-                  id="sort"
+    <div style={{width: "100%", position: "relative",minHeight: "70vh" }}>
+      {
+        cancelDiv ? <div onClick={()=> setCancelDiv("")} style={{position: "absolute", width: "100%", height: "100%",backgroundColor: "rgba(0, 0, 0, 0.7)", zIndex: "11"}}></div> : null
+      }
+      <>
+        <MetaDeta title="Users for Admin" />
+        {loading || isLoading ? (
+          <LoadingPage />
+        ) : (
+          <>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "1rem",
+                justifyContent: "center",
+                flexDirection: "column",
+                width: "100%",
+                overflow: "hidden",
+              }}
+            >
+              <form onSubmit={handleSubmit} className="search">
+                <div className="id">
+                  <label htmlFor="id">Id: </label>
+                  <input
+                    value={searchParams.get("id")}
+                    disabled={searchParams.get("sort") ? true : false}
+                    onChange={(e) => setId(e.target.value)}
+                    type="text"
+                    placeholder="Search by id"
+                  />
+                </div>
+                <div className="sort">
+                  <label htmlFor="sort">Status: </label>
+                  <select
+                    value={sort}
+                    disabled={searchParams.get("id") ? true : false}
+                    onChange={(e) => setSort(e.target.value)}
+                    name="sort"
+                    id="sort"
+                  >
+                    <option value="">Choose</option>
+                    <option value="users">All Users</option>
+                    <option value="admin">Admins</option>
+                    <option value="ban">Banned User</option>
+                  </select>
+                </div>
+                <div>
+                  <button onClick={handleReset} className="v1button find">
+                    Reset
+                  </button>
+                  <button
+                    disabled={id && id.length !== 24 ? true : false}
+                    className="v2button find"
+                    type="submit"
+                  >
+                    Find
+                  </button>
+                </div>
+              </form>
+
+              {users && users ? (
+                <h4 style={{ marginBottom: "1rem" }}>
+                  Number of users: {users.length}
+                </h4>
+              ) : null}
+
+              <div className="table">
+                <div
+                  className="productChinCard"
+                  style={{ backgroundColor: "var(--v1)", color: "var(--white)" }}
                 >
-                  <option value="">Choose</option>
-                  <option value="users">All Users</option>
-                  <option value="admin">Admins</option>
-                  <option value="ban">Banned User</option>
-                </select>
-              </div>
-              <div>
-                <button onClick={handleReset} className="v1button find">
-                  Reset
-                </button>
-                <button
-                  disabled={id && id.length !== 24 ? true : false}
-                  className="v2button find"
-                  type="submit"
-                >
-                  Find
-                </button>
-              </div>
-            </form>
+                  <b className="id">Id</b>
+                  <b className="email">Email</b>
+                  <b className="userName">Name</b>
+                  <b className="status">Role</b>
+                  <b className="action">Action</b>
+                </div>
 
-            {users && users ? (
-              <h4 style={{ marginBottom: "1rem" }}>
-                Number of users: {users.length}
-              </h4>
-            ) : null}
-
-            <div className="table">
-              <div
-                className="productChinCard"
-                style={{ backgroundColor: "var(--v1)", color: "var(--white)" }}
-              >
-                <b className="id">Id</b>
-                <b className="email">Email</b>
-                <b className="userName">Name</b>
-                <b className="status">Role</b>
-                <b className="action">Action</b>
-              </div>
-
-              {users &&
-                users.map((user) => (
-                  <div key={user._id} className="productChinCard">
-                    <p
-                      onClick={(e) => handleCopyText(e.currentTarget.innerHTML)}
-                      className="id copy"
-                    >
-                      {user._id}
-                    </p>
-                    <p className="email">{user.email}</p>
-                    <p className="userName">{user.name}</p>
-                    <p className="status">
-                      {user.isAdmin ? (
-                        <span style={{ color: "green" }}>Admin</span>
-                      ) : user.isBan ? (
-                        <span style={{ color: "red" }}>Banned</span>
-                      ) : (
-                        "User"
-                      )}
-                    </p>
-                    <div className="action">
-                      <button>
-                        <Link to={`/admin/user/update/${user._id}`}>
-                          <AiOutlineEdit />
-                        </Link>
-                      </button>
-                      {user.isAdmin ? null : (
-                        <button onClick={() => handleDelete(user._id)}>
-                          <FaRegTrashCan />
+                {users &&
+                  users.map((user) => (
+                    <div key={user._id} className="productChinCard">
+                      <p
+                        onClick={(e) => handleCopyText(e.currentTarget.innerHTML)}
+                        className="id copy"
+                      >
+                        {user._id}
+                      </p>
+                      <p className="email">{user.email}</p>
+                      <p className="userName">{user.name}</p>
+                      <p className="status">
+                        {user.isAdmin ? (
+                          <span style={{ color: "green" }}>Admin</span>
+                        ) : user.isBan ? (
+                          <span style={{ color: "red" }}>Banned</span>
+                        ) : (
+                          "User"
+                        )}
+                      </p>
+                      <div className="action">
+                        {cancelDiv === user._id ? (
+                            <div id="cancel" className="cancelDiv">
+                              <p>User Id: {DeleteId}</p>
+                              <form onSubmit={handleDeleteSubmit}>
+                                <div className="cancelButtons">
+                                  <button
+                                    onClick={() => setCancelDiv("")}
+                                    type="reset"
+                                    style={{
+                                      fontSize: "16px",
+                                      padding: "10px",
+                                      border: "1px solid var(--black)",
+                                      cursor: "pointer",
+                                    }}
+                                  >
+                                    Cancel
+                                  </button>
+                                  <button
+                                    type="submit"
+                                    className="v1button"
+                                    style={{ fontSize: "16px", padding: "10px" }}
+                                  >
+                                    Delete
+                                  </button>
+                                </div>
+                              </form>
+                            </div>
+                          ) : null}
+                        <button>
+                          <Link to={`/admin/user/update/${user._id}`}>
+                            <AiOutlineEdit />
+                          </Link>
                         </button>
-                      )}
+                        {user.isAdmin ? null : (
+                          <button onClick={() => handleDelete(user._id)}>
+                            <FaRegTrashCan />
+                          </button>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
-            </div>
+                  ))}
+              </div>
 
-            {pagination && pagination.number_of_Users <= limit ? (
-              <div style={{ height: "1rem" }}></div>
-            ) : (
-              <div className="pagination">
-                <button onClick={() => setpage(1)} className="f-l-arrow">
-                  {"<<"}
-                </button>
-                <Pagination
-                  variant="outlined"
-                  shape="rounded"
-                  count={pagination && pagination.number_of_Pages}
-                  page={pagination && pagination.currentPage}
-                  color="secondary"
-                  onChange={handlePageChange}
-                />
-                <button
-                  onClick={() =>
-                    setpage(pagination && pagination.number_of_Pages)
-                  }
-                  className="f-l-arrow"
+              {pagination && pagination.number_of_Users <= limit ? (
+                <div style={{ height: "1rem" }}></div>
+              ) : (
+                <div className="pagination">
+                  <button onClick={() => setpage(1)} className="f-l-arrow">
+                    {"<<"}
+                  </button>
+                  <Pagination
+                    variant="outlined"
+                    shape="rounded"
+                    count={pagination && pagination.number_of_Pages}
+                    page={pagination && pagination.currentPage}
+                    color="secondary"
+                    onChange={handlePageChange}
+                  />
+                  <button
+                    onClick={() =>
+                      setpage(pagination && pagination.number_of_Pages)
+                    }
+                    className="f-l-arrow"
+                  >
+                    {">>"}
+                  </button>
+                </div>
+              )}
+
+              {JSON.stringify(users) === "[]" ? (
+                <div
+                  style={{
+                    minHeight: "500px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
-                  {">>"}
-                </button>
-              </div>
-            )}
-
-            {JSON.stringify(users) === "[]" ? (
-              <div
-                style={{
-                  minHeight: "500px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <h1>No user</h1>
-              </div>
-            ) : null}
-          </div>
-        </>
-      )}
-    </>
+                  <h1>No user</h1>
+                </div>
+              ) : null}
+            </div>
+          </>
+        )}
+      </>
+    </div>
   );
 };
 

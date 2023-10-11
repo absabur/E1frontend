@@ -123,6 +123,7 @@
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
+  padding-bottom: 1rem;
 }
 
 .productChinCard {
@@ -295,6 +296,7 @@
 }
 
 .productChinCard .action {
+  position: relative;
   width: 20%;
   display: flex;
   align-items: center;
@@ -441,6 +443,11 @@ create product */
   margin-right: 1.5rem;
   font-size: 20px;
   font-weight: 600;
+}
+
+.cancelDiv{
+  margin-left: -80px;
+  height: 80px;
 }
 
 @media screen and (max-width: 800px) {

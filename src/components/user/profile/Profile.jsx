@@ -5,10 +5,11 @@ import { FaShippingFast } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { GiReceiveMoney } from "react-icons/gi";
 import { GoCodeReview } from "react-icons/go";
+import { MdOutlineCancelPresentation } from "react-icons/md";
 import MetaDeta from "../../layout/MetaDeta";
 import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { auth, clearErrors } from "../../../actions/userAction";
+import { clearErrors } from "../../../actions/userAction";
 import LoadingPage from "../../layout/loading/LoadingPage";
 
 import "./Profile.css";
@@ -26,6 +27,7 @@ const Profile = () => {
   const [ship, setShip] = useState(0);
   const [receive, setReceive] = useState(0);
   const [review, setReview] = useState(0);
+  const [cancel, setCancel] = useState(0);
 
   const dispatch = useDispatch();
   const token = localStorage.getItem("access_token_abs_ecommerce");
@@ -40,11 +42,13 @@ const Profile = () => {
       let ship = 0;
       let receive = 0;
       let review = 0;
+      let cancel = 0;
       orders.map((order) => {
         if (order.orderStatus === "pay") topay += 1;
         if (order.orderStatus === "processing") process += 1;
         if (order.orderStatus === "shipping") ship += 1;
         if (order.orderStatus === "receive") receive += 1;
+        if (order.orderStatus === "canceled") cancel += 1;
         if (order.orderStatus === "delivered") {
           order.orderItems.map((item) => {
             if (item.review === "not") review += 1;
@@ -56,6 +60,7 @@ const Profile = () => {
       setShip(ship);
       setReceive(receive);
       setReview(review);
+      setCancel(cancel)
     }
   }, [error, dispatch, orders]);
 
@@ -162,6 +167,11 @@ const Profile = () => {
                 <p className={`numberOrder`}>{review}</p>
                 <GoCodeReview />
                 <p>To Review</p>
+              </Link>
+              <Link className="card" to="/myorders/canceled">
+                <p className={`numberOrder`}>{cancel}</p>
+                <MdOutlineCancelPresentation />
+                <p>Canceled</p>
               </Link>
             </div>
           </div>
