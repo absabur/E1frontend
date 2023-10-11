@@ -39,11 +39,15 @@ const UImage = () => {
   }, [error, isUpdated, user, dispatch]);
   const updateProfileSubmit = (e) => {
     e.preventDefault();
+    if (avatar === "") {
+      setErr("Choose an image")
+    }else{
+      const myForm = new FormData();
+  
+      myForm.set("avatar", avatar);
+      dispatch(updateProfile(token, myForm));
+    }
 
-    const myForm = new FormData();
-
-    myForm.set("avatar", avatar);
-    dispatch(updateProfile(token, myForm));
   };
 
   const updateProfileDataChange = (e) => {
@@ -59,11 +63,6 @@ const UImage = () => {
     reader.readAsDataURL(e.target.files[0]);
   };
 
-  const handleChooseImage = () => {
-    if (avatar === "") {
-      setErr("Choose an image")
-    }
-  }
 
   return (
     <>
@@ -87,7 +86,6 @@ const UImage = () => {
                 type="file"
                 name="avatar"
                 accept="image/*"
-                required
                 onChange={updateProfileDataChange}
                 style={{display: "none"}}
               />
@@ -95,7 +93,6 @@ const UImage = () => {
                 type="submit"
                 value="Update"
                 className="v1button submitButton"
-                onClick={handleChooseImage}
               />
             </form>
           </div>

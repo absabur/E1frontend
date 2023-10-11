@@ -45,16 +45,19 @@ const Register = () => {
   }, [error, dispatch, tokenBack]);
   const registerSubmit = (e) => {
     e.preventDefault();
-    setAvatarPreview(image);
+    if (avatar === "") {
+      setErr("Choose an image")
+    }else{
+      const myForm = new FormData();
+  
+      myForm.set("rtoken", params.token);
+      myForm.set("name", user.name);
+      myForm.set("password", user.password);
+      myForm.set("confirmPassword", user.cPassword);
+      myForm.set("avatar", avatar);
+      dispatch(register(token, myForm));
+    }
 
-    const myForm = new FormData();
-
-    myForm.set("rtoken", params.token);
-    myForm.set("name", user.name);
-    myForm.set("password", user.password);
-    myForm.set("confirmPassword", user.cPassword);
-    myForm.set("avatar", avatar);
-    dispatch(register(token, myForm));
   };
 
   const registerDataChange = (e) => {
@@ -76,12 +79,6 @@ const Register = () => {
   const [type, setType] = useState(false);
   const [type2, setType2] = useState(false);
 
-  const handleChooseImage = () => {
-    console.log(avatar);
-    if (avatar === "") {
-      setErr("Choose an image")
-    }
-  }
 
   return (
     <>
@@ -151,14 +148,12 @@ const Register = () => {
                 name="avatar"
                 accept="image/*"
                 onChange={registerDataChange}
-                required
                 style={{display: "none"}}
               />
               <input
                 type="submit"
                 value="Register"
                 className="v2button submitButton"
-                onClick={handleChooseImage}
               />
             </form>
             <p>
