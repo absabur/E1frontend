@@ -60,7 +60,6 @@ const UImage = () => {
   };
 
   const handleChooseImage = () => {
-    console.log(avatar);
     if (avatar === "") {
       setErr("Choose an image")
     }

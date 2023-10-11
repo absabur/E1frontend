@@ -13,6 +13,8 @@ import Cart from "./components/layout/cart/Cart.jsx";
 import Profile from "./components/user/profile/Profile";
 import Login from "./components/user/login/Login";
 import Register from "./components/user/register/Register";
+import About from "./components/about/About"
+import Contact from "./components/contact/Contact"
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./actions/userAction";
 import React, { useEffect, useState } from "react";
@@ -157,6 +159,8 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register/:token" element={<Register />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
                 <Route
                   path="/profile/forgot/password"
                   element={<ForgotPassword />}
@@ -470,8 +474,7 @@ function App() {
           <Footer />
         </BrowserRouter>
         <button
-          className="btnScrollTop"
-          style={{ display: isVisible ? "block" : "none" }}
+          className={`btnScrollTop ${isVisible ? "showScroll" : "hideScroll"}`}
           onClick={goTop}
         >
           <AiOutlineArrowUp />
