@@ -48,7 +48,7 @@ const ProductDetails = () => {
   const [count5, setCount5] = useState(0);
 
   const { isError, message } = useSelector((state) => state.cartAdd);
-  // console.log(error, loading, product)
+  
   useEffect(() => {
     dispatch(getProductDetails(token, params.id));
     dispatch({
@@ -58,7 +58,6 @@ const ProductDetails = () => {
   useEffect(() => {
     if (error) {
       setErr(error);
-      console.log(error);
       dispatch(clearErrors());
     }
   }, [error])

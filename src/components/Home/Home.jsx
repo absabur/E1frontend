@@ -8,6 +8,7 @@ import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import LoadingPage from "../layout/loading/LoadingPage";
 import GlobalState from "../../GlobalState";
+import { allCategory } from "../../actions/admin/productsAction";
 
 const Home = () => {
   const { setErr } = useContext(GlobalState);
@@ -15,7 +16,12 @@ const Home = () => {
   const token = localStorage.getItem("access_token_abs_ecommerce");
 
   const { loading, error, products } = useSelector((state) => state.products);
-  // useSelector((state) => console.log(state.products));
+
+  const { categories } = useSelector((state) => state.categories);
+
+  useEffect(() => {
+    dispatch(allCategory(token));
+  }, []);
 
   useEffect(() => {
     dispatch(getProduct(token));
@@ -27,19 +33,34 @@ const Home = () => {
     dispatch(clearErrors());
   }
 
+
   return (
     <div>
       <MetaDeta title="ABS-ECommerce" />
       <div className="banner">
-        <p>Welcome to Ecommerce</p>
-        <h1>FIND AMAZING PRODUCTS BELOW</h1>
+          <p className="welcome">Welcome to Ecommerce</p>
+          <h1 className="find-product">FIND AMAZING PRODUCTS BELOW</h1>
 
-        <a href="#container">
-          <button>
-            Scroll <CgMouse />
-          </button>
-        </a>
+          <a className="scroll" href="#container">
+            <button>
+              Scroll <CgMouse />
+            </button>
+          </a>
       </div>
+      
+      {
+        categories && 
+        <div className="home-categories">
+          <h1 className="categories-head">Categories</h1>
+          {
+            categories.map((cate)=> (
+            <Link className="category-card" to={`/products?search=&minPrice=null&maxPrice=null&cate=${cate._id}&sort=null`}>
+              <p>{cate.name}</p>
+            </Link>
+            ))
+          }
+        </div>
+      }
 
       <div className="container" id="container">
         <h2 className="homeHeading">Featured Products</h2>

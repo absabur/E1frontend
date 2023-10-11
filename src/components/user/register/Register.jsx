@@ -36,8 +36,13 @@ const Register = () => {
   const token = localStorage.getItem("access_token_abs_ecommerce");
   useEffect(() => {
     if (error) {
-      setErr(error);
-      dispatch(clearErrors());
+      if(error === "Could not decode base64") {
+        setErr("Image is too large");
+        dispatch(clearErrors());
+      }else{
+        setErr(error);
+        dispatch(clearErrors());
+      }
     }
     if (tokenBack) {
       localStorage.setItem("access_token_abs_ecommerce", tokenBack);
@@ -150,6 +155,7 @@ const Register = () => {
                 onChange={registerDataChange}
                 style={{display: "none"}}
               />
+              <p style={{color: "rgb(89, 89, 27)", margin: "10px"}}>Image should be less than 500kb</p>
               <input
                 type="submit"
                 value="Register"

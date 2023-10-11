@@ -8,21 +8,21 @@
   flex-direction: column;
   text-align: center;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   color: var(--white);
 }
 
-.banner > h1 {
+.find-product {
   margin: 5vmax;
 
   font: 600 2.5vmax "Roboto";
 }
 
-.banner > p {
+.welcome {
   font: 300 1.4vmax "Lucida Sans";
 }
 
-.banner > a > button {
+.scroll > button {
   cursor: url("../../images/pointer.png"), auto;
   border: 1px solid var(--black);
   border-radius: 0;
@@ -31,9 +31,50 @@
   width: 9vmax;
   font: 500 1vmax "Roboto";
 }
-.banner > a > button:hover {
+.scroll button:hover {
   background-color: rgba(255, 255, 255, 0);
   color: var(--white);
+}
+
+.home-categories{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.categories-head{
+  width: 100%;
+  margin: 1rem 0 3rem 0;
+  font-size: 18px;
+  opacity: 0.6;
+}
+
+.category-card{
+  margin: 1rem 10px;
+  width: 150px;
+  height: 100px;
+  background-color: transparent;
+  box-shadow: 0 0 10px var(--v1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--black);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px;
+  text-align: center;
+  transition: all 0.3s
+}
+
+.category-card:hover{
+  text-decoration: underline;
+  color: var(--v1);
+  box-shadow: 0 0 10px var(--black);
 }
 
 /* .banner::after {

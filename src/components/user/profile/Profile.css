@@ -118,9 +118,9 @@
   font-size: 18px;
   height: 100px;
   width: 150px;
-  background-color: aquamarine;
+  background-color: var(--back);
   border-radius: 10px;
-  box-shadow: 0 0 5px var(--black);
+  box-shadow: 0 0 5px var(--v1);
   display: flex;
   align-items: center;
   justify-content: space-around;

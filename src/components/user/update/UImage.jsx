@@ -25,10 +25,17 @@ const UImage = () => {
     if (user) {
       setAvatarPreview(user.avatar.url);
     }
+    
     if (error) {
-      setErr(error);
-      dispatch(clearErrors());
+      if(error === "Could not decode base64") {
+        setErr("Image is too large");
+        dispatch(clearErrors());
+      }else{
+        setErr(error);
+        dispatch(clearErrors());
+      }
     }
+
     if (isUpdated) {
       setMsg("Profile Updated successfully");
       dispatch(auth(token));
@@ -89,6 +96,7 @@ const UImage = () => {
                 onChange={updateProfileDataChange}
                 style={{display: "none"}}
               />
+              <p style={{color: "rgb(89, 89, 27)", margin: "10px"}}>Image should be less than 500kb</p>
               <input
                 type="submit"
                 value="Update"
