@@ -37,10 +37,10 @@ const UpdateProduct = () => {
 
   useEffect(() => {
     if (error) {
-      if(error === "Could not decode base64") {
+      if (error === "Could not decode base64") {
         setErr("Image is too large");
         dispatch({ type: UPDATE_PRODUCT_RESET });
-      }else{
+      } else {
         setErr(error);
         dispatch({ type: UPDATE_PRODUCT_RESET });
       }
@@ -197,7 +197,9 @@ const UpdateProduct = () => {
                   onChange={createProductImagesChange}
                   multiple
                 />
-                <p style={{color: "rgb(89, 89, 27)", margin: "10px"}}>Image should be less than 500kb</p>
+                <p style={{ color: "rgb(153, 153, 0)", margin: "10px" }}>
+                  Image should be less than 700kb
+                </p>
               </div>
 
               <div id="createProductFormImage">

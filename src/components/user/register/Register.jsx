@@ -36,10 +36,10 @@ const Register = () => {
   const token = localStorage.getItem("access_token_abs_ecommerce");
   useEffect(() => {
     if (error) {
-      if(error === "Could not decode base64") {
+      if (error === "Could not decode base64") {
         setErr("Image is too large");
         dispatch(clearErrors());
-      }else{
+      } else {
         setErr(error);
         dispatch(clearErrors());
       }
@@ -51,10 +51,10 @@ const Register = () => {
   const registerSubmit = (e) => {
     e.preventDefault();
     if (avatar === "") {
-      setErr("Choose an image")
-    }else{
+      setErr("Choose an image");
+    } else {
       const myForm = new FormData();
-  
+
       myForm.set("rtoken", params.token);
       myForm.set("name", user.name);
       myForm.set("password", user.password);
@@ -62,7 +62,6 @@ const Register = () => {
       myForm.set("avatar", avatar);
       dispatch(register(token, myForm));
     }
-
   };
 
   const registerDataChange = (e) => {
@@ -83,7 +82,6 @@ const Register = () => {
   };
   const [type, setType] = useState(false);
   const [type2, setType2] = useState(false);
-
 
   return (
     <>
@@ -143,8 +141,13 @@ const Register = () => {
                 </p>
               </div>
               <span className="img-label">
-                <label style={{margin: "20px "}} htmlFor="file-upload" >
-                  <img style={{marginTop: "0"}} className="image" src={avatarPreview} alt="Avatar" />
+                <label style={{ margin: "20px " }} htmlFor="file-upload">
+                  <img
+                    style={{ marginTop: "0" }}
+                    className="image"
+                    src={avatarPreview}
+                    alt="Avatar"
+                  />
                 </label>
               </span>
               <input
@@ -153,9 +156,11 @@ const Register = () => {
                 name="avatar"
                 accept="image/*"
                 onChange={registerDataChange}
-                style={{display: "none"}}
+                style={{ display: "none" }}
               />
-              <p style={{color: "rgb(89, 89, 27)", margin: "10px"}}>Image should be less than 500kb</p>
+              <p style={{ color: "rgb(153, 153, 0)", margin: "10px" }}>
+                Image should be less than 700kb
+              </p>
               <input
                 type="submit"
                 value="Register"

@@ -25,12 +25,12 @@ const UImage = () => {
     if (user) {
       setAvatarPreview(user.avatar.url);
     }
-    
+
     if (error) {
-      if(error === "Could not decode base64") {
+      if (error === "Could not decode base64") {
         setErr("Image is too large");
         dispatch(clearErrors());
-      }else{
+      } else {
         setErr(error);
         dispatch(clearErrors());
       }
@@ -47,14 +47,13 @@ const UImage = () => {
   const updateProfileSubmit = (e) => {
     e.preventDefault();
     if (avatar === "") {
-      setErr("Choose an image")
-    }else{
+      setErr("Choose an image");
+    } else {
       const myForm = new FormData();
-  
+
       myForm.set("avatar", avatar);
       dispatch(updateProfile(token, myForm));
     }
-
   };
 
   const updateProfileDataChange = (e) => {
@@ -69,7 +68,6 @@ const UImage = () => {
 
     reader.readAsDataURL(e.target.files[0]);
   };
-
 
   return (
     <>
@@ -94,9 +92,11 @@ const UImage = () => {
                 name="avatar"
                 accept="image/*"
                 onChange={updateProfileDataChange}
-                style={{display: "none"}}
+                style={{ display: "none" }}
               />
-              <p style={{color: "rgb(89, 89, 27)", margin: "10px"}}>Image should be less than 500kb</p>
+              <p style={{ color: "rgb(153, 153, 0)", margin: "10px" }}>
+                Image should be less than 700kb
+              </p>
               <input
                 type="submit"
                 value="Update"
