@@ -119,7 +119,7 @@ const Header = () => {
           <Link to="/myorders/to-receive">
             <span className="countOrders">{receive}</span>
             <br />
-            To Receive
+            Receive
           </Link>
           <div style={about} className="aboutLine ULine"></div>
         </div>

@@ -80,9 +80,9 @@ const CommonPattern = ({ orderStatus, head }) => {
       }
       <div className="allOrders">
         <MetaDeta title="Pending Orders" />
-        <OrdersHeading />
+        {head === "Canceled" ? null: <OrdersHeading />}
   
-        <h2 className="myOrderHead">My Orders To {head}</h2>
+        <h2 className="myOrderHead">My Orders {head === "Pay" || head === "Receive" ? "To "+head: head}</h2>
   
         {loading || isLoading ? (
           <LoadingPage />
