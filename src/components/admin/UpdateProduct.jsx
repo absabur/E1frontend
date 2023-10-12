@@ -119,7 +119,6 @@ const UpdateProduct = () => {
       ) : (
         <div className="signUpPage" style={{ padding: "2rem 0" }}>
           <div className="productCreate">
-            <MetaDeta title="Create Product" />
             <h1>Update Product</h1>
             <form
               encType="multipart/form-data"
