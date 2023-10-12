@@ -228,27 +228,38 @@
 .reviewCard {
   width: 350px;
   height: 150px;
-  padding: 10px;
+  padding: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
   box-shadow: 0 0 5px black;
   margin: 10px;
 }
 
 .reviewCard .user {
   display: flex;
-  width: 30%;
+  align-self: flex-start;
   align-items: center;
   justify-content: space-around;
+  flex-direction: row;
+  margin-bottom: 5px;
+}
+
+.reviewCard .user img{
+  margin-right: 1rem;
+  border-radius: 50%;
+}
+
+.name-stars{
+  display: flex;
   flex-direction: column;
-  padding: 5px;
 }
 
 .commentReview {
   height: 100%;
-  width: 70%;
-  border-left: 1px solid var(--black);
+  width: 100%;
+  border-top: 1px solid var(--black);
   padding: 0.5rem;
   overflow: scroll;
 }

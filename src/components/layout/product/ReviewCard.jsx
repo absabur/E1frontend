@@ -13,9 +13,11 @@ const ReviewCard = ({ review }) => {
   return (
     <div className="reviewCard">
       <div className="user">
-        <img src={profilePng} alt="User" />
-        <p style={{textDecoration: "underLine"}}>{review.name}</p>
-        <ReactStars {...options} />
+        <img src={review.image? review.image : profilePng} alt="User" />
+        <div className="name-stars">
+          <p style={{textDecoration: "underLine", textAlign: "center"}}>{review.name}</p>
+          <ReactStars {...options} />
+        </div>
       </div>
       <div className="commentReview"><p className="reviewCardComment">{review.comment}</p></div>
     </div>
