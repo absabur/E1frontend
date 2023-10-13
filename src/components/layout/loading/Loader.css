@@ -59,7 +59,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-image: linear-gradient(to right, var(--v1), var(--blue),  var(--v2));
+  background-image: linear-gradient(to right, var(--black), var(--blue),  var(--black));
+  animation: back 1s linear infinite;
   opacity: 0.5;
 }
 
@@ -97,9 +98,6 @@
   0%{
     transform: rotate(360deg);
   }
-  /* 50%{
-    transform: rotate(180deg);
-  } */
   100%{
     transform: rotate(0deg);
   }
@@ -109,9 +107,6 @@
   0%{
     transform: rotate(0deg);
   }
-  /* 50%{
-    transform: rotate(-180deg);
-  } */
   100%{
     transform: rotate(360deg);
   }
@@ -147,7 +142,19 @@
   }
 }
 
-@keyframes dotA {
+@keyframes back {
+  0%{
+    opacity: 0.5;
+  }
+  50%{
+    opacity: 0.1;
+  }
+  100%{
+    opacity: 0.5;
+  }
+}
+
+/* @keyframes dotA {
   0%{
     left: 0%;
   }
@@ -166,4 +173,4 @@
   100%{
     left: 100%;
   }
-}
+} */
