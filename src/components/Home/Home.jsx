@@ -9,13 +9,14 @@ import { useSelector, useDispatch } from "react-redux";
 import LoadingPage from "../layout/loading/LoadingPage";
 import GlobalState from "../../GlobalState";
 import { allCategory } from "../../actions/admin/productsAction";
+import LoadingDiv from "../layout/loading/LoadingDiv";
 
 const Home = () => {
   const { setErr } = useContext(GlobalState);
   const dispatch = useDispatch();
   const token = localStorage.getItem("access_token_abs_ecommerce");
 
-  const { loading, error, products } = useSelector((state) => state.products);
+  const { loading, error, products, productsForCategory } = useSelector((state) => state.products);
 
   const { categories } = useSelector((state) => state.categories);
 
@@ -61,7 +62,7 @@ const Home = () => {
               </div>
               <div style={{overflow: "auto", width: "100%"}}>
                 <div className="product-slider">
-                  {products && products.map((product)=> (
+                  {productsForCategory ? productsForCategory.map((product)=> (
                       <>{product.category === cate._id ? 
                         <Link to={`/product/${product._id}`} className="product-in-slider">
                           <div className="img">
@@ -74,7 +75,7 @@ const Home = () => {
                           </div>
                         </Link>
                       : null}</>
-                  ))}
+                  )): <LoadingDiv />}
                 </div>
               </div>
             </div>))

@@ -18,7 +18,7 @@ export const getProduct =
     token,
     search = "",
     page = 1,
-    limit = 8,
+    limit = 30,
     minPrice = 0,
     maxPrice = 1000000,
     cate = "",
@@ -30,7 +30,11 @@ export const getProduct =
       const data = await axios.get(
         `${BackendUrl}/api/product?search=${search}&limit=${limit}&page=${page}&lte=${maxPrice}&gte=${minPrice}&category=${cate}&sort=${sort}`
       );
-      dispatch({ type: ALL_PRODUCT_SUCCESS, payload: data });
+      const forCategory = await axios.get(
+        `${BackendUrl}/api/product?search=${search}&limit=${Infinity}&page=${page}&lte=${maxPrice}&gte=${minPrice}&category=${cate}&sort=${sort}`
+        );
+      data.forCategory = forCategory
+      dispatch({ type: ALL_PRODUCT_SUCCESS, payload: {data, forCategory} });
     } catch (error) {
       dispatch({
         type: ALL_PRODUCT_FAILES,

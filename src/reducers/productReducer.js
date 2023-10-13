@@ -36,8 +36,9 @@ export const productReducer = (
     case ADMIN_PRODUCT_SUCCESS:
       return {
         loading: false,
-        pagination: action.payload.data.pagination,
-        products: action.payload.data.products,
+        pagination: action.payload.data.data.pagination,
+        products: action.payload.data.data.products,
+        productsForCategory: action.payload.forCategory.data.products
       };
     case ALL_PRODUCT_FAILES:
     case ADMIN_PRODUCT_FAILES:
