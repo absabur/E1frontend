@@ -5,6 +5,7 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAILES,
+  PRODUCT_DETAILS_RESET,
   CLEARE_ERRORS,
   REVIEW_REQUEST,
   REVIEW_SUCCESS,
@@ -78,6 +79,12 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
         loading: false,
         error: action.payload,
       };
+    case PRODUCT_DETAILS_RESET:
+      return {
+        loading: null,
+        error: null,
+        product: null,
+      }
     case CLEARE_ERRORS:
       return {
         ...state,

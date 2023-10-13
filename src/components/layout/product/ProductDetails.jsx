@@ -24,6 +24,7 @@ import { RiStarSFill } from "react-icons/ri";
 import GlobalState from "../../../GlobalState";
 import MetaDeta from "../MetaDeta";
 import ProductCard from "../../Home/ProductCard";
+import { ALL_PRODUCT_RESET } from "../../../constance/productConstant";
 
 const ProductDetails = () => {
   const { setErr, setMsg } = useContext(GlobalState);
@@ -48,6 +49,10 @@ const ProductDetails = () => {
   const [count5, setCount5] = useState(0);
 
   const { isError, message } = useSelector((state) => state.cartAdd);
+
+  useEffect(() => {
+    dispatch({type: ALL_PRODUCT_RESET})
+  }, [])
   
   useEffect(() => {
     dispatch(getProductDetails(token, params.id));
@@ -134,7 +139,7 @@ const ProductDetails = () => {
 
     if (product) {
       // "", 1, 30, 0, 1000000, product.category, ""
-      dispatch(getProduct(token));
+      dispatch(getProduct(token, "", 1, 30, 0, 10000000, product.category, "Top Sales"));
     }
   }, [isError, message, stars, product]);
 
