@@ -35,7 +35,7 @@ export const getProductAdmin =
         `${BackendUrl}/api/product/admin?limit=${limit}&page=${page}&sort=${sort}&id=${id}&name=${name}`,
         config
       );
-      const forCategory = {data: {products: {}}}
+      const forCategory = {data: {products: []}}
       dispatch({ type: ADMIN_PRODUCT_SUCCESS, payload: {data, forCategory} });
     } catch (error) {
       dispatch({
