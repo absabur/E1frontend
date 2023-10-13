@@ -28,6 +28,7 @@
   height: 30vw;
   overflow: hidden;
   text-align: center;
+  padding: 1rem;
 }
 
 .productImage img {
