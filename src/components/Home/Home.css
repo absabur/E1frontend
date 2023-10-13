@@ -1,9 +1,10 @@
 .banner {
-  background-image: url("../../images/cover.jfif");
+  background-image: url("../../images/cover.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vmin;
+  padding: 2rem 0;
+  height: 60vmin;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -46,35 +47,60 @@
 }
 
 .categories-head{
-  width: 100%;
-  margin: 1rem 0 3rem 0;
+  width: max-content;
+  padding: 10px;
+  margin: 1rem 0;
   font-size: 18px;
   opacity: 0.6;
+  border-bottom: 1px solid var(--black);
 }
 
-.category-card{
-  margin: 1rem 10px;
-  width: 150px;
-  height: 100px;
-  background-color: transparent;
-  box-shadow: 0 0 10px var(--v1);
+.slider-head{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 2rem;
+  background-color: rgb(255, 255, 255);
+}
+
+.product-slider{
+  display: flex;
+  width: max-content;
+  max-width: "200vw";
+}
+
+.product-in-slider{
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  text-decoration: none;
+  box-shadow: 0 0 10px rgb(190, 190, 190);
+  margin: 10px;
+  width: 20vw;
+  height: 10vw;
+  min-height: 100px;
+  min-width: 200px;
   color: var(--black);
-  font-size: 18px;
-  font-weight: 600;
-  padding: 10px;
-  text-align: center;
-  transition: all 0.3s
+  text-decoration: none;
+  transition: all 0.3s;
 }
 
-.category-card:hover{
-  text-decoration: underline;
-  color: var(--v1);
-  box-shadow: 0 0 10px var(--black);
+.product-in-slider:hover{
+  box-shadow: 0 0 5px var(--black);
+}
+
+.product-in-slider .img{
+  height: 100%;
+  width: 40%;
+}
+
+.product-in-slider .details{
+  height: 100%;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 10px;
 }
 
 /* .banner::after {
@@ -92,9 +118,9 @@
 .homeHeading {
   text-align: center;
   font-family: Roboto;
-  font-size: 1.4vmax;
+  font-size: 18px;
   border-bottom: 1px solid rgba(21, 21, 21, 0.5);
-  width: 20vmax;
+  width: max-content;
   padding: 1vmax;
   margin: 5vmax auto;
   color: rgb(0, 0, 0, 0.7);

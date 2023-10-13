@@ -54,10 +54,30 @@ const Home = () => {
           <h1 className="categories-head">Categories</h1>
           {
             categories.map((cate)=> (
-            <Link className="category-card" to={`/products?search=&minPrice=null&maxPrice=null&cate=${cate._id}&sort=null`}>
-              <p>{cate.name}</p>
-            </Link>
-            ))
+            <div style={{ display: "flex", alignItems: "flex-start", flexDirection: "column", width: "100%", margin: "5px 0", boxShadow: "0 0 20px rgb(180, 180, 180)"}}>
+              <div className="slider-head">
+                <h3>{cate.name}</h3>
+                <Link style={{color: "var(--v1)"}} to={`/products?search=&minPrice=null&maxPrice=null&cate=${cate._id}&sort=null`}>See All</Link>
+              </div>
+              <div style={{overflow: "auto", width: "100%"}}>
+                <div className="product-slider">
+                  {products && products.map((product)=> (
+                      <>{product.category === cate._id ? 
+                        <Link to={`/product/${product._id}`} className="product-in-slider">
+                          <div className="img">
+                            <img src={product.images[0].url} alt="image" />
+                          </div>
+                          <div className="details">
+                            <p>{product.name.slice(0, 25)}...</p>
+                            <p style={{opacity: '0.7'}}>Sold: {product.sold}</p>
+                            <strong>৳{product.price}</strong>
+                          </div>
+                        </Link>
+                      : null}</>
+                  ))}
+                </div>
+              </div>
+            </div>))
           }
         </div>
       }
