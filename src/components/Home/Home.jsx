@@ -68,7 +68,7 @@ const Home = () => {
                             <img src={product.images[0].url} alt="image" />
                           </div>
                           <div className="details">
-                            <p>{product.name.slice(0, 25)}...</p>
+                            <p>{product.name.slice(0, 20)}...</p>
                             <p style={{opacity: '0.7'}}>Sold: {product.sold}</p>
                             <strong>৳{product.price}</strong>
                           </div>

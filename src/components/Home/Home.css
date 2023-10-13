@@ -65,7 +65,7 @@
 
 .product-slider{
   display: flex;
-  width: max-content;
+  width: auto;
 }
 
 .product-in-slider{
