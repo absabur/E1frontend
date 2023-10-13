@@ -42,7 +42,7 @@ const Home = () => {
           <p className="welcome">Welcome to Ecommerce</p>
           <h1 className="find-product">FIND AMAZING PRODUCTS BELOW</h1>
 
-          <a className="scroll" href="#container">
+          <a className="scroll" href="#category">
             <button>
               Scroll <CgMouse />
             </button>
@@ -51,7 +51,7 @@ const Home = () => {
       
       {
         categories && 
-        <div className="home-categories">
+        <div className="home-categories" id="category">
           <h1 className="categories-head">Categories</h1>
           {
             categories.map((cate)=> (
