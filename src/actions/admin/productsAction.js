@@ -35,9 +35,7 @@ export const getProductAdmin =
         `${BackendUrl}/api/product/admin?limit=${limit}&page=${page}&sort=${sort}&id=${id}&name=${name}`,
         config
       );
-      const forCategory = await axios.get(
-        `${BackendUrl}/api/product/admin?limit=${Infinity}&page=${1}&sort=${sort}&id=${id}&name=${name}`,
-        );
+      const forCategory = {data: {products: {}}}
       dispatch({ type: ADMIN_PRODUCT_SUCCESS, payload: {data, forCategory} });
     } catch (error) {
       dispatch({
