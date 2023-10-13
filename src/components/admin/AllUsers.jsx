@@ -27,6 +27,7 @@ const Users = () => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("access_token_abs_ecommerce");
 
+  const [name, setName] = useState("");
   const [sort, setSort] = useState("");
   const [id, setId] = useState("");
   const [page, setpage] = useState(1);
@@ -37,8 +38,8 @@ const Users = () => {
     if (id) {
       setSearchParams({ id });
     }
-    if (sort) {
-      setSearchParams({ sort });
+    if (sort || name) {
+      setSearchParams({ sort, name });
     }
   };
 
@@ -51,20 +52,20 @@ const Users = () => {
   }, []);
 
   useEffect(() => {
-    if (searchParams.get("sort")) {
+    if (searchParams.get("sort") || searchParams.get("name")) {
       setSort(searchParams.get("sort"));
-
-      dispatch(allUsers(token, page, limit, "", searchParams.get("sort")));
+      setName(searchParams.get("name"));
+      dispatch(allUsers(token, page, limit, "", searchParams.get("sort"), searchParams.get("name")));
     }
     if (searchParams.get("id")) {
       setId(searchParams.get("id"));
-
-      dispatch(allUsers(token, page, limit, searchParams.get("id"), ""));
+      dispatch(allUsers(token, page, limit, searchParams.get("id"), "", ""));
     }
-  }, [searchParams.get("sort"), searchParams.get("id")]);
+  }, [searchParams.get("sort"), searchParams.get("id"), searchParams.get("name")]);
 
   const handleReset = () => {
     setSort("");
+    setName("");
     setId("");
     setSearchParams({});
 
@@ -136,17 +137,27 @@ const Users = () => {
                   <label htmlFor="id">Id: </label>
                   <input
                     value={searchParams.get("id")}
-                    disabled={searchParams.get("sort") ? true : false}
+                    disabled={sort || name ? true : false}
                     onChange={(e) => setId(e.target.value)}
                     type="text"
                     placeholder="Search by id"
+                  />
+                </div>
+                <div className="name">
+                  <label htmlFor="name">Name/Email: </label>
+                  <input
+                    value={name}
+                    disabled={id ? true : false}
+                    onChange={(e) => setName(e.target.value)}
+                    type="text"
+                    placeholder="Search by name/email"
                   />
                 </div>
                 <div className="sort">
                   <label htmlFor="sort">Status: </label>
                   <select
                     value={sort}
-                    disabled={searchParams.get("id") ? true : false}
+                    disabled={id ? true : false}
                     onChange={(e) => setSort(e.target.value)}
                     name="sort"
                     id="sort"
@@ -162,7 +173,7 @@ const Users = () => {
                     Reset
                   </button>
                   <button
-                    disabled={id && id.length !== 24 ? true : false}
+                    disabled={id ? id.length !== 24 ? true : false : false}
                     className="v2button find"
                     type="submit"
                   >

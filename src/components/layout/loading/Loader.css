@@ -59,7 +59,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-image: linear-gradient(to right, var(--black), var(--blue),  var(--black));
+  background-image: linear-gradient(to right, var(--v1), var(--blue),  var(--v2));
   animation: back 1s linear infinite;
   opacity: 0.5;
 }

@@ -15,7 +15,7 @@ import {
 } from "../../constance/admin/userConstant";
 import { BackendUrl } from "../../BackendUrl";
 
-export const allUsers = (token, page, limit, id, sort) => async (dispatch) => {
+export const allUsers = (token, page, limit, id, sort, name) => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_USER_REQUEST });
     const config = {
@@ -23,7 +23,7 @@ export const allUsers = (token, page, limit, id, sort) => async (dispatch) => {
       withCredentials: true
     };
     const data = await axios.get(
-      `${BackendUrl}/api/user/all-users?id=${id}&sort=${sort}`,
+      `${BackendUrl}/api/user/all-users?id=${id}&sort=${sort}&name=${name}`,
       config
     );
     dispatch({ type: ADMIN_USER_SUCCESS, payload: data });
