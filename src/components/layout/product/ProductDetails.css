@@ -246,8 +246,8 @@
 .spec-sub-body h3 {
   width: 30%;
   font-size: 18px;
-  font-weight: 300;
-  opacity: 0.7;
+  font-weight: 400;
+  opacity: 0.6;
   padding: 0 2px;
 }
 
@@ -255,7 +255,7 @@
 .spec-sub-body xmp {
   width: 70%;
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
   padding: 0 10px;
 }
 
