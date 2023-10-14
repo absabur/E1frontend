@@ -356,8 +356,8 @@ const CreateProduct = () => {
                           {
                             spec.details.map((sub)=> (
                               <div className="spec-sub-body" style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-                                <h3>{sub.name}</h3>
-                                <pre>{sub.spec}</pre>
+                                <h3 className="sub-head">{sub.name}</h3>
+                                <pre className="sub-spec">{sub.spec}</pre>
                                 <div className="spec-action">
                                   {cancelDiv === sub ? (
                                     <div id="cancel" className="cancelDiv cancel-div-admin">

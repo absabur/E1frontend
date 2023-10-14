@@ -616,6 +616,13 @@
     border: none;
     width: 100%;
   }
+  .spec-sub-body h3{
+    font-size: 16px;
+    opacity: 0.7;
+  }
+  .spec-sub-body pre{
+    font-size: 14px;
+  }
 }
 
 @media screen and (max-width: 370px) {
