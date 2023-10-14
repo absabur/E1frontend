@@ -282,6 +282,7 @@ const ProductDetails = () => {
                         spec.details.map((sub)=> (
                           <div className="spec-sub-body">
                             <h3>{sub.name}</h3>
+                            <div className="border-line"></div>
                             <pre>{sub.spec}</pre>
                           </div>
                         ))
