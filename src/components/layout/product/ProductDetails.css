@@ -609,13 +609,13 @@
 }
 
 @media screen and (max-width: 700px) {
-  .spec-sub-body{
+  /* .spec-sub-body{
     flex-direction: column;
-  }
-  .spec-sub-body h3, .spec-sub-body pre{
+  } */
+  /* .spec-sub-body h3, .spec-sub-body pre{
     border: none;
     width: 100%;
-  }
+  } */
   .spec-sub-body h3{
     font-size: 16px;
     opacity: 0.7;
