@@ -83,7 +83,7 @@ const Home = () => {
         </div>
       }
 
-      <div className="container" id="container">
+      <div className="container related-products" id="container">
         <h2 className="homeHeading">Featured Products</h2>
         {loading ? (
           <LoadingPage />

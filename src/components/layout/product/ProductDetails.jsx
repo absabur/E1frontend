@@ -188,7 +188,7 @@ const ProductDetails = () => {
               textAlign: "center",
               padding: "1rem 0",
               borderBottom: "var(--white) double 2px",
-              backgroundColor: "rgb(218, 223, 217)",
+              backgroundColor: "var(--back)",
             }}
           >
             Product Category: {product.category}
@@ -282,8 +282,7 @@ const ProductDetails = () => {
                         spec.details.map((sub)=> (
                           <div className="spec-sub-body">
                             <h3>{sub.name}</h3>
-                            <div className="border-line"></div>
-                            <pre>{sub.spec}</pre>
+                            <xmp style={{ whiteSpace: "pre-wrap" }}>{sub.spec}</xmp>
                           </div>
                         ))
                       }
@@ -392,8 +391,7 @@ const ProductDetails = () => {
             {/* <button>Submit Review</button> */}
           </div>
           <div
-            className="container"
-            style={{ borderTop: "2px solid var(--white)" }}
+            className="container related-products"
           >
             <h2 className="homeHeading">Related Product</h2>
             {isLoading ? (

@@ -42,8 +42,11 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 1rem 0;
+  padding: 1rem 0 2rem 0;
   flex-wrap: wrap;
+  background-color: var(--white);
+  box-shadow: 0 0 5px var(--black);
+  margin: 10px 0;
 }
 
 .categories-head{
