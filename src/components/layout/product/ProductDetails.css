@@ -241,18 +241,20 @@
   width: 30%;
   font-size: 20px;
   font-weight: 600;
+  padding: 0 2px;
 }
 
 .border-line{
   height: 100%;
-  width: 2px solid var(--black);
+  width: 2px;
+  background-color: var(--black);
   opacity: 0.5;
 }
 
 .spec-sub-body pre{
   width: 70%;
   font-size: 18px;
-  padding: 0 15px;
+  padding: 0 10px;
 }
 
 .descHead {
