@@ -4,7 +4,7 @@ import { register } from "../../../actions/userAction";
 import { useSelector, useDispatch } from "react-redux";
 import LoadingPage from "../../layout/loading/LoadingPage";
 import { clearErrors } from "../../../actions/userAction";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 
 import "./Register.css";
 import { AiOutlineUnlock } from "react-icons/ai";
@@ -18,6 +18,7 @@ import GlobalState from "../../../GlobalState";
 const Register = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const params = useParams();
+  const navigate = useNavigate()
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(image);
   const [user, setUser] = useState({
@@ -39,6 +40,11 @@ const Register = () => {
       if (error === "Could not decode base64") {
         setErr("Image is too large");
         dispatch(clearErrors());
+      } else if (error === "jwt expired"){
+        navigate("/signup")
+        setTimeout(() => {
+          setMsg("TimeOut ! Verify your email again.")
+        }, 400);
       } else {
         setErr(error);
         dispatch(clearErrors());
