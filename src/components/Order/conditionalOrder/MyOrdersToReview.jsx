@@ -64,7 +64,7 @@ const MyOrdersToReview = () => {
                       <div className="img">
                         <img src={item.image} alt="" />
                       </div>
-                      <div className="productDetails">
+                      <div className="productDetails"  style={{boxShadow: "0 0 0"}}>
                         <p className="productName">
                           {item.name.slice(0, 32)}
                           {item.name.slice(31, -1) ? "..." : ""}

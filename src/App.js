@@ -479,7 +479,7 @@ function App() {
                     )}
                   </>
                 )}
-                <Route path="*" element={<Home />} />
+                <Route path="*" element={isAuthenticated ? <Home /> : <Login />} />
               </Routes>
             )}
           </div>

@@ -156,7 +156,7 @@ const MyOrders = () => {
                       <div className="img">
                         <img src={item.image} alt="" />
                       </div>
-                      <div className="productDetails">
+                      <div className="productDetails" style={{boxShadow: "0 0 0"}}>
                         <p className="productName">
                           {item.name.slice(0, 15)}
                           {item.name.slice(14, -1) ? "..." : ""}

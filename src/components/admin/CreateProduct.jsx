@@ -50,7 +50,7 @@ const CreateProduct = () => {
     if (success) {
       setMsg("Product Created Successfully");
       dispatch({ type: CREATE_PRODUCT_RESET });
-      navigate("/admin/dashboard");
+      navigate("/admin/products");
     }
   }, [error, dispatch, success]);
 

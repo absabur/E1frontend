@@ -34,8 +34,6 @@
 .cartImage {
   width: 40%;
   height: 100%;
-  /* border-right: 2px solid var(--black); */
-  box-shadow: 5px 0 5px black;
   background-color: var(--white);
 }
 
