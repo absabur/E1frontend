@@ -77,12 +77,16 @@ const UserUpdate = () => {
                       style={{ marginTop: "1rem" }}
                       className="editIconSection"
                     >
-                      Name: <br />
-                      {user.name}
+                      <p>
+                        Name: <br />
+                        {user.name}
+                      </p>
                     </h3>
                     <h4 className="editIconSection">
-                      Email:
-                      <br />
+                      <p>
+                        Email:
+                        <br />
+                      </p>
                       {user.email}
                     </h4>
                     <p style={{ marginBottom: "20px" }}>

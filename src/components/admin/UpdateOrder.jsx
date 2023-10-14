@@ -65,15 +65,15 @@ const Order = () => {
           <div className="shipingInfo">
             <b style={{textAlign: "center", fontSize: "20px"}}>Shiping Details</b>
             <br />
-            <b>Name: {order.user && order.user.name}</b>
+            <b>Name: {order.shippingInfo.name && order.shippingInfo.name}</b>
             <br />
-            <b>Email: {order.user && order.user.email}</b>
+            <b>Email: {order.shippingInfo && order.shippingInfo.email}</b>
             <br />
-            <b>Number: {order.user && order.shippingInfo.phoneNo}</b>
+            <b>Number: {order.shippingInfo && order.shippingInfo.phoneNo}</b>
             <br />
             <p style={{ opacity: "0.7" }}>
               Address:{" "}
-              {order.user && `${order.shippingInfo.division}, ${order.shippingInfo.district}, ${order.shippingInfo.subDistrict}, ${order.shippingInfo.address}`}
+              {order.shippingInfo && `${order.shippingInfo.division}, ${order.shippingInfo.district}, ${order.shippingInfo.subDistrict}, ${order.shippingInfo.address}`}
             </p>
           </div>
           <div className="paymentDetails">

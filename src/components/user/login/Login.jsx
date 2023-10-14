@@ -29,7 +29,7 @@ const Login = () => {
   };
   useEffect(() => {
     if (error) {
-      setErr(error)
+      setErr(error);
       dispatch(clearErrors());
     }
     if (tokenBack) {
@@ -40,7 +40,7 @@ const Login = () => {
   return (
     <>
       {isAuthenticated ? (
-        <Navigate replace to={"/profile"} />
+        <Navigate replace to={"/"} />
       ) : (
         <div className="loginPage">
           <div className="loginForm">

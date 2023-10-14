@@ -47,7 +47,7 @@ const UEmail = () => {
       {loading ? (
         <LoadingPage />
       ) : isAuthenticated ? (
-        <Navigate replace to={"/profile"} />
+        <Navigate replace to={"/"} />
       ) : (
         <div className="updatePage">
           <div className="updateForm singleUpdate">

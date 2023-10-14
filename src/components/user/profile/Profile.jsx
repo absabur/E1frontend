@@ -85,16 +85,20 @@ const Profile = () => {
             </div>
             <div className="userDetails">
               <h3 style={{ marginTop: "1rem" }} className="editIconSection">
-                Name: <br />
-                {user.name}
+                <p>
+                  Name: <br />
+                  {user.name}
+                </p>
                 <Link to="/profile/update/name">
                   <FiEdit className="editIcon" />
                 </Link>
               </h3>
               <h4 className="editIconSection">
-                Email:
-                <br />
-                {user.email}
+                <p>
+                  Email:
+                  <br />
+                  {user.email}
+                </p>
                 <Link to="/profile/update/email">
                   <FiEdit className="editIcon" />
                 </Link>

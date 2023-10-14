@@ -28,8 +28,8 @@
 }
 
 .imageSection img {
-  height: 300px;
-  width: 300px;
+  height: 150px;
+  width: 150px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--v1);
@@ -60,13 +60,17 @@
   border-radius: 10px;
 }
 
+.editIconSection p {
+  overflow: auto;
+}
+
 .editIcon{
   font-size: 27px;
   color: var(--black);
 }
 
 .userDetails {
-  width: 30%;
+  width: 50%;
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
@@ -141,10 +145,6 @@
 }
 
 @media screen and (max-width: 920px) {
-  .imageSection img {
-    height: 150px;
-    width: 150px;
-  }
   .userInfo {
     flex-direction: column;
     min-height: 550px;

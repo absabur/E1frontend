@@ -127,7 +127,7 @@
 }
 
 .productChinCard {
-  min-width: 1000px;
+  min-width: 1200px;
   width: 100%;
   height: 50px;
   display: flex;
@@ -137,7 +137,7 @@
 }
 
 .productChinCard .id {
-  width: 30%;
+  width: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,7 +209,7 @@
 }
 
 .productChinCard .name {
-  width: 30%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -221,7 +221,7 @@
 }
 
 .productChinCard .userName {
-  width: 30%;
+  width: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -233,7 +233,7 @@
 }
 
 .productChinCard .email {
-  width: 30%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -245,7 +245,7 @@
 }
 
 .productChinCard .stock {
-  width: 10%;
+  width: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -255,7 +255,7 @@
 }
 
 .productChinCard .numberOfProduct {
-  width: 15%;
+  width: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,7 +276,7 @@
 }
 
 .productChinCard .totalAmount {
-  width: 20%;
+  width: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -297,7 +297,7 @@
 
 .productChinCard .action {
   position: relative;
-  width: 20%;
+  width: 15%;
   display: flex;
   align-items: center;
   justify-content: space-around;

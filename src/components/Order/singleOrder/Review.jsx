@@ -54,7 +54,7 @@ const Review = () => {
       axios.put(`${BackendUrl}/api/order/reviewd`, { id, productId }, config);
       dispatch({ type: REVIEW_RESET });
       dispatch(myOrders(token));
-      navigate("/profile");
+      navigate(`/product/${productId}#reviews`);
     }
     if (rating === 5 && comment.length < 10) setComment("Satisfied");
     if (rating === 4 && comment.length < 10) setComment("Good");

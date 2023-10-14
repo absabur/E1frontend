@@ -37,7 +37,7 @@ const CommonPattern = ({ orderStatus, head }) => {
     if (success) {
       setMsg("Order Canceled");
       dispatch({ type: CANCEL_ORDER_RESET });
-      navigate("/profile");
+      navigate("/");
     }
   }, [error, dispatch, isError, success]);
 
@@ -66,24 +66,34 @@ const CommonPattern = ({ orderStatus, head }) => {
     if (reason) {
       dispatch(cancleOrder(token, cancleDiv, reason));
       setCancleDiv("");
-      setReason("")
-    }
-    else{
-      setErr("Select Reason")
+      setReason("");
+    } else {
+      setErr("Select Reason");
     }
   };
 
   return (
-    <div style={{width: "100%", position: "relative", }}>
-      {
-        cancleDiv ? <div onClick={()=> setCancleDiv("")} style={{position: "absolute", width: "100%", height: "100%",backgroundColor: "rgba(0, 0, 0, 0.6)", zIndex: "11"}}></div> : null
-      }
+    <div style={{ width: "100%", position: "relative" }}>
+      {cancleDiv ? (
+        <div
+          onClick={() => setCancleDiv("")}
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            zIndex: "11",
+          }}
+        ></div>
+      ) : null}
       <div className="allOrders">
         <MetaDeta title="Pending Orders" />
-        {head === "Canceled" ? null: <OrdersHeading />}
-  
-        <h2 className="myOrderHead">My Orders {head === "Pay" || head === "Receive" ? "To "+head: head}</h2>
-  
+        {head === "Canceled" ? null : <OrdersHeading />}
+
+        <h2 className="myOrderHead">
+          My Orders {head === "Pay" || head === "Receive" ? "To " + head : head}
+        </h2>
+
         {loading || isLoading ? (
           <LoadingPage />
         ) : (
@@ -96,7 +106,10 @@ const CommonPattern = ({ orderStatus, head }) => {
             {orders &&
               orders.toReversed().map((order) =>
                 order.orderStatus === orderStatus ? (
-                  <Link to={cancleDiv? `` :`/order/${order._id}`} className="orderCard">
+                  <Link
+                    to={cancleDiv ? `` : `/order/${order._id}`}
+                    className="orderCard"
+                  >
                     {cancleDiv == order._id ? (
                       <div id="cancel" className="cancelDiv">
                         <p>Order Id: {cancleDiv}</p>
@@ -109,7 +122,9 @@ const CommonPattern = ({ orderStatus, head }) => {
                             <option value="Unexpected Order">
                               Unexpected Order
                             </option>
-                            <option value="Change of Mind">Change of Mind</option>
+                            <option value="Change of Mind">
+                              Change of Mind
+                            </option>
                             <option value="Duplicate Order">
                               Duplicate Order
                             </option>
@@ -142,13 +157,13 @@ const CommonPattern = ({ orderStatus, head }) => {
                         </form>
                       </div>
                     ) : null}
-                    <strong
-                    >
-                      Order: {order._id}
-                    </strong>
+                    <strong>Order: {order._id}</strong>
                     <br />
                     <div
-                      style={{ display: "flex", justifyContent: "space-between" }}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
                     >
                       <span>
                         Placed on: {order.createdAt.slice(0, 10)}{" "}

@@ -35,7 +35,6 @@ const Shipping = () => {
   const { loading, error, status, newOrder } = useSelector(
     (state) => state.newOrder
   );
- 
 
   useEffect(() => {
     if (isError) {
@@ -48,11 +47,11 @@ const Shipping = () => {
     if (status) {
       sessionStorage.setItem("order-from", "done");
       dispatch(clearErrors());
-    }    
+    }
     if (message) {
       setMsg(message);
     }
-    dispatch({type: RESET_CART_STATE})
+    dispatch({ type: RESET_CART_STATE });
     // if (sessionStorage.getItem("order-from") === "done") {
     //   navigate("/order/payment");
     // }
@@ -81,7 +80,7 @@ const Shipping = () => {
       setOrderDetails(user.cart);
     }
     if (buyNow === "done") {
-      navigate("/profile");
+      navigate("/");
     }
   }, []);
 
@@ -143,6 +142,7 @@ const Shipping = () => {
   const handleConfirm = async () => {
     const orderData = {
       shippingInfo: {
+        name: user.name,
         address: user.address.address,
         division: user.address.division,
         district: user.address.district,

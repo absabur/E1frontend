@@ -18,7 +18,7 @@ import GlobalState from "../../../GlobalState";
 const Register = () => {
   const { setErr, setMsg } = useContext(GlobalState);
   const params = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(image);
   const [user, setUser] = useState({
@@ -40,10 +40,10 @@ const Register = () => {
       if (error === "Could not decode base64") {
         setErr("Image is too large");
         dispatch(clearErrors());
-      } else if (error === "jwt expired"){
-        navigate("/signup")
+      } else if (error === "jwt expired") {
+        navigate("/signup");
         setTimeout(() => {
-          setMsg("TimeOut ! Verify your email again.")
+          setMsg("TimeOut ! Verify your email again.");
         }, 400);
       } else {
         setErr(error);
@@ -94,7 +94,7 @@ const Register = () => {
       {loading ? (
         <LoadingPage />
       ) : isAuthenticated ? (
-        <Navigate replace to={"/profile"} />
+        <Navigate replace to={"/"} />
       ) : (
         <div className="signUpPage">
           <div className="signUpForm">

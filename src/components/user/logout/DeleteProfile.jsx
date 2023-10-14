@@ -28,7 +28,7 @@ const DeleteProfile = () => {
     });
   }, [error, dispatch, isAuthenticated]);
   const handleCancle = () => {
-    navigate("/profile");
+    navigate("/");
   };
   const handleDelete = () => {
     const token = localStorage.getItem("access_token_abs_ecommerce");

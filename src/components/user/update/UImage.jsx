@@ -75,7 +75,7 @@ const UImage = () => {
       {loading ? (
         <LoadingPage />
       ) : isUpdated ? (
-        <Navigate replace to={"/profile"} />
+        <Navigate replace to={"/"} />
       ) : (
         <div className="updatePage">
           <div className="updateForm singleUpdate">
