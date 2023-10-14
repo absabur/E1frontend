@@ -270,6 +270,28 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
+          {
+            product.specification? 
+              <div className="specification">
+                <h1 className="spch-head">Specification</h1>
+                {
+                  product.specification.map((spec)=> (
+                    <div className="spec-body">
+                      <h2 className="spec-body-head">{spec.heading}</h2>
+                      {
+                        spec.details.map((sub)=> (
+                          <div className="spec-sub-body">
+                            <h3>{sub.name}</h3>
+                            <pre>{sub.spec}</pre>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  ))
+                }
+              </div>
+            : null
+          }
           <div className="description">
             <h3 className="descHead">Description</h3>
             <xmp style={{ whiteSpace: "pre-wrap", width: "100%" }}>

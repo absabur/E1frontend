@@ -1,0 +1,86 @@
+.productCreate{
+    width: 100%;
+    display: flex;
+}
+
+.productCreate form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.productCreate .div1{
+    display: flex;
+    width: 100%;
+}
+
+.div1 .innerDiv1, .productDescription {
+    width: 45%;
+    margin: auto;
+}
+
+
+.productSpecification{
+    width: 70%;
+    margin: 1rem auto;
+    padding: 10px;
+    border: 1px solid var(--black);
+}
+
+#createProductFormFile{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#createProductFormImage{
+    display: flex;
+    box-shadow: 0 0 5px var(--black);
+    align-items: center;
+    justify-content: flex-start;
+    overflow: auto;
+}
+
+#createProductFormImage img{
+    width: 200px;
+    height: 200px;
+    border: 2px solid var(--black);
+}
+
+.spec-action{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    align-self: flex-end;
+}
+
+.spec-order{
+    display: flex;
+    flex-direction: column;
+}
+
+.spec-action .trash{
+    background-color: var(--v2);
+    font-size: 20px;
+}
+
+@media screen and (max-width: 720px) {
+    .productCreate .div1{
+        flex-direction: column;
+    }
+    .div1 .innerDiv1, .productDescription{
+        width: 90%;
+        margin: 1rem auto;
+    }
+    .productSpecification{
+        width: 100%;
+    }
+    
+    #createProductFormFile{
+        width: 90%;
+    }
+}

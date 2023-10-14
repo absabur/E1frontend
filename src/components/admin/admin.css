@@ -355,6 +355,10 @@ create product */
   box-shadow: 0 0 10px var(--black);
 }
 
+.productSpecification{
+  margin: 1rem 0;
+}
+
 .productName,
 .productPrice,
 .productStock,
