@@ -3,7 +3,7 @@ import MetaDeta from "../../layout/MetaDeta";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, login } from "../../../actions/userAction";
 
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { MdEmail } from "react-icons/md";
 import { RiKeyLine } from "react-icons/ri";
@@ -16,6 +16,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const token = localStorage.getItem("access_token_abs_ecommerce");
   const {
     isAuthenticated,
@@ -42,7 +43,7 @@ const Login = () => {
       {isAuthenticated ? (
         <Navigate replace to={"/"} />
       ) : (
-        <div className="loginPage">
+        <div className="loginPage" onClick={()=> navigate("/login")}>
           <div className="loginForm">
             <MetaDeta title="Login" />
             <h1>login</h1>
