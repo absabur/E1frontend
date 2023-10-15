@@ -69,6 +69,9 @@ const ProductDetails = () => {
   
   useEffect(() => {
     if (isError) {
+      if (isError === "You must login first.") {
+        navigate("/login")
+      }
       setErr(isError);
       dispatch({
         type: RESET_CART_STATE,

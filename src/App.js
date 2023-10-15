@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import GlobalState from "./GlobalState";
 import { AiOutlineArrowUp } from "react-icons/ai";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Header from "./components/layout/Header/Header.jsx";
 import Home from "./components/Home/Home";
 import Footer from "./components/layout/Footer/Footer";
