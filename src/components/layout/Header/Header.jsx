@@ -8,10 +8,11 @@ import { GiCrossedBones } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import Search from "../product/Search";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import GlobalState from "../../../GlobalState";
 import logo from "../../../images/logo.png";
 import { animateScroll } from 'react-scroll';
+import { auth } from "../../../actions/userAction";
 
 
 const Header = () => {
@@ -25,7 +26,11 @@ const Header = () => {
   const [cart, setcart] = useState({ width: "0" });
 
   const {toggle, setToggle} = useContext(GlobalState)
+  // @ts-ignore
+  const { isAuthenticated, user, loading } = useSelector((state) => state.user);
+  const token = localStorage.getItem("access_token_abs_ecommerce");
   const location = useLocation();
+  const dispatch = useDispatch()
   useEffect(() => {
     if (location.pathname === "/") {
       sethome({ width: "100%" });
@@ -79,8 +84,6 @@ const Header = () => {
       duration: 0
     });
   }, [location.pathname]);
-  // @ts-ignore
-  const { isAuthenticated, user, loading } = useSelector((state) => state.user);
 
   return (
     <>
@@ -122,7 +125,7 @@ const Header = () => {
             {loading ? "" : isAuthenticated ? (
               <div className="navbar-flex">
                 <div className="cartNav">
-                  <Link className="cartArea" to="/cart">
+                  <Link onClick={()=> dispatch(auth(token))} className="cartArea" to="/cart">
                     <p className="cartCount">{user && user.cart && user.cart.length}</p>
                     {
                       user && user.cart.length  ? 

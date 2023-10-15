@@ -14,6 +14,7 @@ import { ALL_PRODUCT_RESET } from "../../../constance/productConstant";
 
 const Products = () => {
   const { setErr, setMsg } = useContext(GlobalState);
+  const [loderFirst, setLoderFirst] = useState(true)
   const dispatch = useDispatch();
   const token = localStorage.getItem("access_token_abs_ecommerce");
 
@@ -33,8 +34,13 @@ const Products = () => {
 
   const { categories } = useSelector((state) => state.categories);
   let search = searchParams.get("search") || "";
-
   let limit = 20;
+
+  useEffect(() => {
+    dispatch({ type: ALL_PRODUCT_RESET });
+    dispatch(allCategory(token));
+  }, []);
+
   useEffect(() => {
     dispatch({ type: ALL_PRODUCT_RESET });
     if (error) {
@@ -57,8 +63,8 @@ const Products = () => {
         searchParams.get("sort")
       )
     );
+    setLoderFirst(false)
   }, [
-    dispatch,
     search,
     page,
     limit,
@@ -97,12 +103,8 @@ const Products = () => {
     } else {
       setSearchParams({ search: "" });
     }
-    window.location.reload();
+    // window.location.reload();
   };
-
-  useEffect(() => {
-    dispatch(allCategory(token));
-  }, []);
 
   const sortedKey = [
     "Default",
@@ -115,7 +117,7 @@ const Products = () => {
 
   return (
     <>
-      {loading ? (
+      {loading || loderFirst ? (
         <LoadingPage />
       ) : (
         <div style={{width: "100%", position: "relative"}}>

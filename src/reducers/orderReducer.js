@@ -47,6 +47,7 @@ export const newOrderReducer = (state = {}, action) => {
                 ...state,
                 error: null,
                 status: null,
+                newOrder: null,
             }    
         default:
             return{

@@ -11,6 +11,7 @@ import { TbTrash } from "react-icons/tb";
 import "./Shiping.css";
 import { Link, useNavigate } from "react-router-dom";
 import GlobalState from "../../../GlobalState";
+import { CLEARE_ERRORS } from "../../../constance/orderContant";
 const address = require("@bangladeshi/bangladesh-address");
 
 const Shipping = () => {
@@ -52,11 +53,10 @@ const Shipping = () => {
       setMsg(message);
     }
     dispatch({ type: RESET_CART_STATE });
-    // if (sessionStorage.getItem("order-from") === "done") {
-    //   navigate("/order/payment");
-    // }
     if (sessionStorage.getItem("order-from") === "done") {
       navigate(`/order/payment/${newOrder._id}`);
+      sessionStorage.removeItem("order-from")
+      dispatch({type: CLEARE_ERRORS})
     }
   }, [
     isError,
@@ -77,7 +77,10 @@ const Shipping = () => {
       setOrderDetails([JSON.parse(sessionStorage.getItem("order-details"))]);
     }
     if (buyNow === "cart") {
-      setOrderDetails(user.cart);
+      const final = user.cart.filter((item)=> {
+        if (item.quantity !== 0) return item
+      })
+      setOrderDetails(final);
     }
     if (buyNow === "done") {
       navigate("/");
@@ -220,29 +223,34 @@ const Shipping = () => {
               {orderDetails &&
                 orderDetails.length > 0 &&
                 orderDetails.map((item) => (
-                  <div key={item.productId} className="cartCard">
-                    <Link
-                      to={`/product/${item.productId}`}
-                      className="cartImage"
-                    >
-                      <img src={item.image} alt="img" />
-                    </Link>
-                    <div className="cartDetails">
+                <>
+                  {
+                    item.quantity === 0 ? null :
+                    <div key={item.productId} className="cartCard">
                       <Link
                         to={`/product/${item.productId}`}
-                        className="itemName"
+                        className="cartImage"
                       >
-                        {item.name.slice(0, 45)}
-                        {item.name.slice(44, -1) ? "..." : ""}
+                        <img src={item.image} alt="img" />
                       </Link>
-                      <div className="itemQuantity">
-                        <h1>Quantity: {item.quantity}</h1>
+                      <div className="cartDetails">
+                        <Link
+                          to={`/product/${item.productId}`}
+                          className="itemName"
+                        >
+                          {item.name.slice(0, 45)}
+                          {item.name.slice(44, -1) ? "..." : ""}
+                        </Link>
+                        <div className="itemQuantity">
+                          <h1>Quantity: {item.quantity}</h1>
+                        </div>
+                        <h3 className="price">
+                          Price: ৳{item.price * item.quantity}
+                        </h3>
                       </div>
-                      <h3 className="price">
-                        Price: ৳{item.price * item.quantity}
-                      </h3>
                     </div>
-                  </div>
+                  }
+                </>
                 ))}
 
               <div className="totalCheck">

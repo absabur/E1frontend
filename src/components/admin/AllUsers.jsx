@@ -48,7 +48,7 @@ const Users = () => {
   };
 
   useEffect(() => {
-    dispatch(allUsers(token, page, limit));
+    dispatch(allUsers(token, page, limit, token, page, limit, searchParams.get("id"), searchParams.get("sort"),  searchParams.get("name")));
   }, []);
 
   useEffect(() => {
@@ -86,7 +86,7 @@ const Users = () => {
       setMsg("User deleted successfully");
       dispatch({ type: DELETE_USER_RESET });
 
-      dispatch(allUsers(token, page, limit));
+      dispatch(allUsers(token, page, limit, searchParams.get("id"), searchParams.get("sort"),  searchParams.get("name")));
     }
   }, [error, deleteError, isDeleted]);
 

@@ -223,7 +223,6 @@ const CreateProduct = () => {
       }
       setSpecification(process)
       navigate("#specification")
-      console.log("done");
     })
   }
   

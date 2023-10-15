@@ -49,7 +49,7 @@ const Products = () => {
   };
 
   useEffect(() => {
-    dispatch(getProductAdmin(token, { page, limit, name: "", sort: "" }));
+    dispatch(getProductAdmin(token, { page, limit, name: searchParams.get("name"), sort: searchParams.get("sort"), id: searchParams.get("id") }));
   }, []);
 
   useEffect(() => {
@@ -68,9 +68,7 @@ const Products = () => {
         getProductAdmin(token, {
           page,
           limit,
-
           name: searchParams.get("name"),
-
           sort: searchParams.get("sort"),
         })
       );
@@ -105,7 +103,7 @@ const Products = () => {
       setMsg("Product deleted successfully.");
       dispatch({ type: DELETE_PRODUCT_RESET });
 
-      dispatch(getProductAdmin(token, { page, limit, name: "", sort: "" }));
+      dispatch(getProductAdmin(token, { page, limit, name: searchParams.get("name"), sort: searchParams.get("sort"), id: searchParams.get("id") }));
     }
   }, [error, isDeleted, deleteError]);
 

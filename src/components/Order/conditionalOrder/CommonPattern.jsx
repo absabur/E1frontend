@@ -37,7 +37,7 @@ const CommonPattern = ({ orderStatus, head }) => {
     if (success) {
       setMsg("Order Canceled");
       dispatch({ type: CANCEL_ORDER_RESET });
-      navigate("/");
+      // navigate("/");
     }
   }, [error, dispatch, isError, success]);
 

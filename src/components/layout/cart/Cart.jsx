@@ -6,7 +6,6 @@ import LoadingPage from "../loading/LoadingPage";
 import { auth } from "../../../actions/userAction";
 import { Link } from "react-router-dom";
 import { addToCart, deleteCart } from "../../../actions/cartAction";
-import { clearErrors } from "../../../actions/productAction";
 import { RESET_CART_STATE } from "../../../constance/cartConstant";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import GlobalState from "../../../GlobalState";
@@ -24,30 +23,25 @@ const CartItem = () => {
   const token = localStorage.getItem("access_token_abs_ecommerce");
 
   useEffect(() => {
-    dispatch({
-      type: RESET_CART_STATE,
-    });
-  }, []);
-
-  useEffect(() => {
-    let total = 0;
     if (user.cart) {
+      let total = 0;
       user.cart.map((item) => {
         total += Number(item.quantity) * Number(item.price);
       });
+      setSubTotal(total);
     }
-    setSubTotal(total);
-  }, [user]);
-
-  useEffect(() => {
     if (isError) {
       setErr(isError);
-
-      dispatch(clearErrors());
+      dispatch({type: RESET_CART_STATE});
     }
-  }, [dispatch, user, isError]);
+  }, [user, isError]);
+
 
   const handleChange = async (productId, quantity, name, price, image) => {
+    if (quantity === 0){
+      setErr("Quantity can't be 0")
+      return;
+    }
     const data = {
       productId,
       quantity,
@@ -57,23 +51,29 @@ const CartItem = () => {
     };
 
     await dispatch(addToCart(token, data));
-
     await dispatch(auth(token));
   };
 
   const handleDelete = async (productId) => {
     await dispatch(deleteCart(token, { productId }));
-
     await dispatch(auth(token));
   };
 
-  const handleCheckOut = () => {
+  const handleCheckOut = async () => {
     sessionStorage.setItem("order-from", "cart");
     sessionStorage.removeItem("order-details");
+    await dispatch(auth(token))
     dispatch({
       type: RESET_CART_STATE,
     });
   };
+
+  useEffect(() => {
+    dispatch({
+      type: RESET_CART_STATE,
+    });
+  }, []);
+  
 
   return (
     <>
@@ -87,12 +87,12 @@ const CartItem = () => {
             {user && user.cart && user.cart.length > 0 ? (
               <>
                 {user.cart.map((item) => (
-                  <div key={item.productId} className="cartCard">
+                  <div key={item.productId} className="cartCard" style={item.quantity === 0 ? {backgroundColor: "rgba(128, 128, 128, 0.4)"}: {}}>
                     <Link
                       to={`/product/${item.productId}`}
                       className="cartImage"
                     >
-                      <img src={item.image} alt="img" />
+                      <img src={item.image} alt="img" style={item.quantity === 0 ? {opacity: "0.5"}: {}}/>
                     </Link>
                     <div className="cartDetails">
                       <Link
@@ -106,6 +106,7 @@ const CartItem = () => {
                         <h1>Quantity: {item.quantity}</h1>
                         <div className="quantityChange">
                           <button
+                            disabled={item.quantity === 0 ? true : false}
                             onClick={() =>
                               handleChange(
                                 item.productId,
@@ -126,6 +127,7 @@ const CartItem = () => {
                             id=""
                           />
                           <button
+                            disabled={item.quantity === 0 ? true : false}
                             onClick={() =>
                               handleChange(
                                 item.productId,
@@ -151,7 +153,7 @@ const CartItem = () => {
                         <button
                           onClick={() => handleDelete(item.productId)}
                           className="v1button removeButton"
-                          style={{ padding: "5px 10px" }}
+                          style={{ padding: "5px", width: "auto" }}
                         >
                           Remove
                         </button>
@@ -159,6 +161,11 @@ const CartItem = () => {
                     </div>
                   </div>
                 ))}
+
+                {/* <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                  <h3>See latest stock Before CheckOut</h3>
+                  <button onClick={()=> dispatch(auth(token))}>Latest stock</button>
+                </div> */}
 
                 <div className="totalCheck">
                   <h1>Total Price: ৳{subTotal}</h1>

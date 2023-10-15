@@ -60,7 +60,7 @@ const Home = () => {
                 <h3>{cate.name}</h3>
                 <Link style={{color: "var(--v1)"}} to={`/products?search=&minPrice=null&maxPrice=null&cate=${cate._id}&sort=null`}>See All</Link>
               </div>
-              <div style={{overflow: "auto", width: "100%"}}>
+              <div className="slider-parent">
                 <div className="product-slider">
                   {productsForCategory ? productsForCategory.map((product)=> (
                       <>{product.category === cate._id ? 

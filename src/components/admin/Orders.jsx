@@ -44,8 +44,9 @@ const Orders = () => {
   };
 
   useEffect(() => {
-    dispatch(allOrders(token));
+    dispatch(allOrders(token, searchParams.get("id"), searchParams.get("sort")));
   }, []);
+  
 
   useEffect(() => {
     if (searchParams.get("sort")) {
@@ -58,7 +59,7 @@ const Orders = () => {
 
       dispatch(allOrders(token, searchParams.get("id"), ""));
     }
-  }, [searchParams.get("sort"), searchParams.get("id")]);
+  }, [searchParams.get("sort"), searchParams.get("id"), id, sort]);
 
   const handleReset = () => {
     setSort("");
@@ -81,8 +82,7 @@ const Orders = () => {
     if (isDeleted) {
       setMsg("Order deleted successfully.");
       dispatch({ type: DELETE_ORDER_RESET });
-
-      dispatch(allOrders(token));
+      dispatch(allOrders(token, searchParams.get("id"), searchParams.get("sort")));
     }
   }, [error, deleteError, isDeleted]);
 
@@ -91,11 +91,11 @@ const Orders = () => {
     setMsg(`You have copied "${text}"`);
   };
 
-  const [cancelDiv, setCancelDiv] = useState(false);
+  const [cancelDiv, setCancelDiv] = useState("");
   const [DeleteId, setDeleteId] = useState("");
 
   const handleDelete = (id) => {
-    setCancelDiv(true);
+    setCancelDiv(id);
     setDeleteId(id);
   };
 
@@ -125,34 +125,6 @@ const Orders = () => {
               position: "relative",
             }}
           >
-            {cancelDiv ? (
-              <div id="cancel" className="cancelDiv">
-                <p>Order Id: {DeleteId}</p>
-                <form onSubmit={handleDeleteSubmit}>
-                  <div className="cancelButtons">
-                    <button
-                      onClick={() => setCancelDiv(false)}
-                      type="reset"
-                      style={{
-                        fontSize: "16px",
-                        padding: "10px",
-                        border: "1px solid var(--black)",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="v1button"
-                      style={{ fontSize: "16px", padding: "10px" }}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </form>
-              </div>
-            ) : null}
             <form onSubmit={handleSubmit} className="search">
               <div className="id">
                 <label htmlFor="id">Id: </label>
@@ -245,6 +217,34 @@ const Orders = () => {
                     <p className="numberOfProduct">{order.orderItems.length}</p>
                     <p className="totalAmount">৳{order.totalPrice}</p>
                     <div className="action">
+                      {cancelDiv === order._id ? (
+                        <div id="cancel" className="cancelDiv cancel-div-admin">
+                          <p>Order Id: {DeleteId}</p>
+                          <form onSubmit={handleDeleteSubmit}>
+                            <div className="cancelButtons">
+                              <button
+                                onClick={() => setCancelDiv(false)}
+                                type="reset"
+                                style={{
+                                  fontSize: "16px",
+                                  padding: "10px",
+                                  border: "1px solid var(--black)",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                Cancel
+                              </button>
+                              <button
+                                type="submit"
+                                className="v1button"
+                                style={{ fontSize: "16px", padding: "10px" }}
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      ) : null}
                       <button>
                         <Link to={`/admin/order/update/${order._id}`}>
                           {order.orderStatus === "delivered" ||

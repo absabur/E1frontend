@@ -104,7 +104,6 @@ input {
 
 .removeButton {
   font-size: 16px;
-  padding: 1vw;
 }
 
 .priceAndDelete {
@@ -135,12 +134,12 @@ input {
 }
 
 .totalCheck h1 {
-  font-size: 15px;
+  font-size: 20px;
   margin: 0.5rem 0;
 }
 
 .checkButton {
-  padding: 1.2vw;
+  padding: 5px;
   font-size: 18px;
   margin-bottom: 1rem;
 }
