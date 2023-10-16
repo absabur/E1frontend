@@ -48,7 +48,7 @@ const Users = () => {
   };
 
   useEffect(() => {
-    dispatch(allUsers(token, page, limit, token, page, limit, searchParams.get("id"), searchParams.get("sort"),  searchParams.get("name")));
+    dispatch(allUsers(token, page, limit, searchParams.get("id"), searchParams.get("sort"), searchParams.get("name")));
   }, []);
 
   useEffect(() => {

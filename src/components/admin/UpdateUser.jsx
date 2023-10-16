@@ -92,7 +92,7 @@ const UserUpdate = () => {
                     <p style={{ marginBottom: "20px" }}>
                       <span>Joined On: </span>
                       <br />
-                      {user.createdAt.slice(0, 10)}
+                      {user.createDate? user.createDate.date+", "+user.createDate.formatedTime :user.createdAt.slice(0, 10)}
                     </p>
                     <h3 style={{ marginBottom: "20px" }}>
                       Role:{" "}

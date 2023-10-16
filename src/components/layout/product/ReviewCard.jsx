@@ -10,6 +10,7 @@ const ReviewCard = ({ review }) => {
     activeColor: "tomato",
     isHalf: true
   };
+  console.log(review);
   return (
     <div className="reviewCard">
       <div className="user">
@@ -17,6 +18,7 @@ const ReviewCard = ({ review }) => {
         <div className="name-stars">
           <p style={{textDecoration: "underLine", textAlign: "center"}}>{review.name}</p>
           <ReactStars {...options} />
+          <span>{review.reviewDate.date? review.reviewDate.date : review.reviewDate.slice(0,15)}</span>
         </div>
       </div>
       <div className="commentReview"><p className="reviewCardComment">{review.comment}</p></div>

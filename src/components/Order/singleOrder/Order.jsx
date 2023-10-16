@@ -89,8 +89,7 @@ const Order = () => {
             <br />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span style={{ opacity: "0.7" }}>
-                Placed on: {order.createdAt.slice(0, 10)}{" "}
-                {order.createdAt.slice(11, 19)}
+                Placed on: {order.paidAt.date ? order.paidAt.date+", "+order.paidAt.formatedTime : order.paidAt.slice(0, 10)+" "+order.paidAt.slice(11, 19)}
               </span>
               <span>. {order.paymentInfo.status}</span>
             </div>
