@@ -170,18 +170,12 @@ function App() {
                   path="/reset-password/:token"
                   element={<ResetPassword />}
                 />
+                <Route
+                  path="/mail-update/:token"
+                  element={<ConfirmEmail />}
+                />
                 {isAuthenticated && (
                   <>
-                    <Route
-                      path="/mail-update/:token"
-                      element={
-                        isAuthenticated ? (
-                          <ConfirmEmail />
-                        ) : (
-                          <Navigate replace to={"/login"} />
-                        )
-                      }
-                    />
                     <Route
                       path="/logout"
                       element={
