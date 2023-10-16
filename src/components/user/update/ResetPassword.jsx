@@ -60,7 +60,7 @@ const UPassword = () => {
         <div className="updatePage">
           <div className="updateForm singleUpdate">
             <MetaDeta title="Reset Password" />
-            <h1>Change Password</h1>
+            <h1>Reset Password</h1>
             <form encType="multipart/form-data" onSubmit={updateProfileSubmit}>
               <div>
                 <label htmlFor="newPassword">
