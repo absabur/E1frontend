@@ -118,7 +118,7 @@ const Profile = () => {
               <Link className="v2button" to="/profile/update/password">
                 Change Password
               </Link>
-              <Link className="v2button" to="/profile/forgot/password">
+              <Link className="v2button" to="/forgot/password">
                 Reset Password
               </Link>
               <Link className="v2button" to="/logout">

@@ -163,11 +163,11 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route
-                  path="/profile/forgot/password"
+                  path="/forgot/password"
                   element={<ForgotPassword />}
                 />
                 <Route
-                  path="/profile/reset-password/:token"
+                  path="/reset-password/:token"
                   element={<ResetPassword />}
                 />
                 {isAuthenticated && (

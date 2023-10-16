@@ -43,11 +43,11 @@ const Login = () => {
       {isAuthenticated ? (
         <Navigate replace to={"/"} />
       ) : (
-        <div className="loginPage" onClick={()=> navigate("/login")}>
+        <div className="loginPage">
           <div className="loginForm">
             <MetaDeta title="Login" />
             <h1>login</h1>
-            <form onSubmit={handlelogin} encType="application/json">
+            <form onClick={()=> navigate("/login")} onSubmit={handlelogin} encType="application/json">
               <div>
                 <label htmlFor="email">
                   <MdEmail />
@@ -79,16 +79,16 @@ const Login = () => {
                   {type ? <PiEyeDuotone /> : <PiEyeClosedDuotone />}
                 </p>
               </div>
-              <div className="f-pass">
-                <span></span>
-                <Link to="/profile/forgot/password">Forgete password?</Link>
-              </div>
               <input
                 className="v2button submitButton"
                 type="submit"
                 value="Login"
               />
             </form>
+            <div className="f-pass">
+              <span></span>
+              <Link to="/forgot/password">Forgete password?</Link>
+            </div>
             <p>
               Don't have an account? <Link to="/signup">Sign Up</Link>
             </p>
