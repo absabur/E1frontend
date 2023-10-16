@@ -47,8 +47,8 @@ const Login = () => {
           <div className="loginForm">
             <MetaDeta title="Login" />
             <h1>login</h1>
-            <form onClick={()=> navigate("/login")} onSubmit={handlelogin} encType="application/json">
-              <div>
+            <form onSubmit={handlelogin} encType="application/json">
+              <div onClick={()=> navigate("/login")}>
                 <label htmlFor="email">
                   <MdEmail />
                 </label>
@@ -62,7 +62,7 @@ const Login = () => {
                   placeholder="Enter your email"
                 />
               </div>
-              <div>
+              <div onClick={()=> navigate("/login")}>
                 <label htmlFor="password">
                   <RiKeyLine />
                 </label>
@@ -79,16 +79,16 @@ const Login = () => {
                   {type ? <PiEyeDuotone /> : <PiEyeClosedDuotone />}
                 </p>
               </div>
+              <div className="f-pass">
+                <span></span>
+                <Link to="/forgot/password">Forgete password?</Link>
+              </div>
               <input
                 className="v2button submitButton"
                 type="submit"
                 value="Login"
               />
             </form>
-            <div className="f-pass">
-              <span></span>
-              <Link to="/forgot/password">Forgete password?</Link>
-            </div>
             <p>
               Don't have an account? <Link to="/signup">Sign Up</Link>
             </p>
