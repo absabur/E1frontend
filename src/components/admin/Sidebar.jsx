@@ -19,7 +19,7 @@ const Sidebar = () => {
         <section className='sideSection'>
             <h3>Product</h3>
             <Link onClick={()=> setToggle(false)} to="/admin/products">All Product</Link>
-            <Link onClick={()=> setToggle(false)} to="/admin/create/product">New Product</Link>
+            <Link onClick={()=> setToggle(false)} to="/admin/create/product">Create Product</Link>
         </section>
         <section className='sideSection'>
             <h3>Category</h3>

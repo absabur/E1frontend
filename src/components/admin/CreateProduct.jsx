@@ -11,6 +11,8 @@ import "./productForm.css"
 import { BiSolidUpArrow } from 'react-icons/bi';
 import { BiSolidDownArrow } from 'react-icons/bi';
 import { BsFillTrash3Fill } from 'react-icons/bs';
+import { BsFillArrowDownCircleFill } from 'react-icons/bs';
+import { BsArrowUpCircleFill } from 'react-icons/bs';
 
 const CreateProduct = () => {
   const { setErr, setMsg } = useContext(GlobalState);
@@ -23,6 +25,7 @@ const CreateProduct = () => {
   const { categories } = useSelector((state) => state.categories);
 
   const [cancelDiv, setCancelDiv] = useState({});
+  const [miniMaxi, setMiniMaxi] = useState(true)
 
   const [tempHead, setTempHead] = useState("")
   const [tempSubHead, setTempSubHead] = useState("")
@@ -310,7 +313,8 @@ const CreateProduct = () => {
 
               {
                 JSON.stringify(specification) && specification ? 
-                  <div id="specification" className="specification" style={{boxShadow: "0 0 2px var(--black)"}}>
+                  <div id="specification" className={`${miniMaxi? "minimise" : null} specification`}>
+                    <p className="minimaxi v1button" onClick={()=> setMiniMaxi(!miniMaxi)}>{ miniMaxi? "Maximise": "Minimise"} <br />{miniMaxi? <BsFillArrowDownCircleFill />: <BsArrowUpCircleFill />}</p>
                     <h1 className="spch-head" style={{fontSize: "20px", margin: "10px"}}>Specification Preview</h1>
                     {
                       specification && specification.map((spec)=> (
@@ -396,6 +400,10 @@ const CreateProduct = () => {
                     }
                   </div>
                 : null
+              }
+              {
+                !miniMaxi && 
+                <p className="minimaxi v1button" style={{textAlign: "center"}} onClick={()=> setMiniMaxi(!miniMaxi)}>{miniMaxi? <BsFillArrowDownCircleFill />: <BsArrowUpCircleFill />} <br />{ miniMaxi? "Maximise": "Minimise"}</p>
               }
               
               <div className="productSpecification">

@@ -9,6 +9,8 @@ import { getProductDetails } from "../../actions/productAction";
 import GlobalState from "../../GlobalState";
 import { BiSolidUpArrow } from 'react-icons/bi';
 import { BiSolidDownArrow } from 'react-icons/bi';
+import { BsFillArrowDownCircleFill } from 'react-icons/bs';
+import { BsArrowUpCircleFill } from 'react-icons/bs';
 import { BsFillTrash3Fill } from 'react-icons/bs';
 
 const UpdateProduct = () => {
@@ -26,6 +28,7 @@ const UpdateProduct = () => {
   const { categories } = useSelector((state) => state.categories);
 
   const [cancelDiv, setCancelDiv] = useState({});
+  const [miniMaxi, setMiniMaxi] = useState(true)
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -335,7 +338,8 @@ const UpdateProduct = () => {
 
               {
                 JSON.stringify(specification) && specification ? 
-                  <div id="specification" className="specification" style={{boxShadow: "0 0 2px var(--black)"}}>
+                  <div id="specification" className={`${miniMaxi? "minimise" : null} specification`}>
+                    <p className="minimaxi v1button" onClick={()=> setMiniMaxi(!miniMaxi)}>{ miniMaxi? "Maximise": "Minimise"} <br />{miniMaxi? <BsFillArrowDownCircleFill />: <BsArrowUpCircleFill />}</p>
                     <h1 className="spch-head" style={{fontSize: "20px", margin: "10px"}}>Specification Preview</h1>
                     {
                       specification && specification.map((spec)=> (
@@ -422,6 +426,11 @@ const UpdateProduct = () => {
                   </div>
                 : null
               }
+              {
+                !miniMaxi && 
+                <p className="minimaxi v1button" style={{textAlign: "center"}} onClick={()=> setMiniMaxi(!miniMaxi)}>{miniMaxi? <BsFillArrowDownCircleFill />: <BsArrowUpCircleFill />} <br />{ miniMaxi? "Maximise": "Minimise"}</p>
+              }
+
               
               <div className="productSpecification">
                 <label htmlFor="specification">Add Specification</label>

@@ -19,6 +19,18 @@
     margin: auto;
 }
 
+.minimise{
+    height: 125px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.minimaxi{
+    padding: 5px;
+    font-size: 20px;
+    display: inline;
+    margin: auto;
+}
 
 .productSpecification{
     width: 70%;

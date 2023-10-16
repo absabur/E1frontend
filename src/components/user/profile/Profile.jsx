@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import Login from "../login/Login"
 import { MdPayment } from "react-icons/md";
 import { LuPackagePlus } from "react-icons/lu";
 import { FaShippingFast } from "react-icons/fa";
@@ -181,7 +182,7 @@ const Profile = () => {
           </div>
         </div>
       ) : (
-        <Navigate replace to={"/login"} />
+        <Login />
       )}
     </>
   );
