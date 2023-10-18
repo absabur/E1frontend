@@ -6,14 +6,15 @@ import { getProductAdmin } from "../../actions/admin/productsAction.js";
 import { allOrders } from "../../actions/admin/orderAction.js";
 import MetaDeta from "../layout/MetaDeta.jsx";
 import { allUsers } from "../../actions/admin/userAction.js";
+import LoadingPage from "../layout/loading/LoadingPage";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("access_token_abs_ecommerce");
-  const { pagination } = useSelector((state) => state.products);
-  const { pagination: userCount } = useSelector((state) => state.adminUsers);
+  const {loading: productLoad,  pagination } = useSelector((state) => state.products);
+  const {loading: userLoad, pagination: userCount } = useSelector((state) => state.adminUsers);
 
-  const { orders, amount } = useSelector((state) => state.adminOrders);
+  const {loading: orderLoad, orders, amount } = useSelector((state) => state.adminOrders);
 
   useEffect(() => {
     dispatch(getProductAdmin(token, { limit: 100000000 }));
@@ -29,18 +30,33 @@ const Dashboard = () => {
       <div className="preview">
         <h1>DashBoard</h1>
         <div className="overView">
-          <Link to="/admin/products" className="products">
-            Products <br />
-            {pagination && pagination.number_of_Products}
+          <Link to="/admin/products" className="products dashview">
+            <span>Products</span>
+            { productLoad? 
+              <div style={{height: "20px", width: "20px", display: "flex", alignItems: "center", justifyContent: "center", position: "relative"}}>
+                <div className="dot1 dot11"></div>
+                <div className="dot2 dot22"></div>
+              </div>
+               : <span>{pagination && pagination.number_of_Products}</span>}
             {/* {products && products.length} */}
           </Link>
-          <Link to="/admin/orders" className="orders">
-            Orders <br />
-            {orders && orders.length}
+          <Link to="/admin/orders" className="orders dashview">
+            <span>Orders</span>
+            {orderLoad ? 
+              <div style={{height: "20px", width: "20px", display: "flex", alignItems: "center", justifyContent: "center", position: "relative"}}>
+                <div className="dot1 dot11"></div>
+                <div className="dot2 dot22"></div>
+              </div>
+               : <span>{orders && orders.length}</span>}
           </Link>
-          <Link to="/admin/users" className="users">
-            Users <br />
-            {userCount && userCount.number_of_Users}
+          <Link to="/admin/users" className="users dashview">
+            <span>Users</span>
+            {userLoad ? 
+              <div style={{height: "20px", width: "20px", display: "flex", alignItems: "center", justifyContent: "center", position: "relative"}}>
+                <div className="dot1 dot11"></div>
+                <div className="dot2 dot22"></div>
+              </div>
+               : <span>{userCount && userCount.number_of_Users}</span>}
           </Link>
         </div>
       </div>

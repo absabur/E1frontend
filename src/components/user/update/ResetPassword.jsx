@@ -79,7 +79,7 @@ const UPassword = () => {
                   {type ? <PiEyeDuotone /> : <PiEyeClosedDuotone />}
                 </p>
               </div>
-              <div>
+              <div style={{marginBottom: "10px"}}>
                 <label htmlFor="password">
                   <AiFillLock />
                 </label>
@@ -96,8 +96,9 @@ const UPassword = () => {
                   {type2 ? <PiEyeDuotone /> : <PiEyeClosedDuotone />}
                 </p>
               </div>
+              <p style={newPassword !== confirmPassword ? {visibility: "visible", color: "red", margin: "10px 0"} : {visibility: "hidden", color: "red", margin: "10px 0"}}>Password did not match</p>
               <input
-                style={{ marginTop: "1rem" }}
+                style={newPassword !== confirmPassword ? {visibility: "hidden"} : { marginTop: "1rem" }}
                 type="submit"
                 value="Confirm"
                 className="v1button submitButton"
