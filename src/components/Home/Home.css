@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: space-around;
   color: var(--white);
+  margin-bottom: 0.5vmax;
 }
 
 .find-product {
@@ -38,7 +39,8 @@
 }
 
 .home-categories{
-  width: 100%;
+  width: 98%;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -46,7 +48,7 @@
   flex-wrap: wrap;
   background-color: var(--white);
   box-shadow: 0 0 5px var(--black);
-  margin: 10px 0;
+  margin: 0.5vmax auto;
 }
 
 .categories-head{
@@ -173,7 +175,7 @@
 
 .productCard a:hover {
   box-shadow: 0 0 10px var(--black);
-  transform: translateY(-10px);
+  transform: translateY(-2px);
 }
 
 .productCard a img {

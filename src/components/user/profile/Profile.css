@@ -14,7 +14,7 @@
   justify-content: space-around;
   min-height: 350px;
   box-shadow: 0 0 5px var(--black);
-  width: 96%;
+  width: 98%;
   margin: auto;
   padding: 1rem;
   border-radius: 5px;
@@ -50,7 +50,7 @@
   padding: 5px;
 }
 
-.editIconSection{
+.editIconSection {
   width: 100%;
   display: flex;
   align-items: center;
@@ -64,7 +64,7 @@
   overflow: auto;
 }
 
-.editIcon{
+.editIcon {
   font-size: 27px;
   color: var(--black);
 }
@@ -84,7 +84,7 @@
 }
 
 .othersDetails {
-  width: 96%;
+  width: 98%;
   margin: 1rem auto;
   min-height: 300px;
   display: flex;
@@ -104,7 +104,7 @@
   flex-wrap: wrap;
 }
 
-.numberOrder{
+.numberOrder {
   border: 2px solid var(--black);
   color: var(--white);
   border-radius: 50%;
@@ -121,10 +121,11 @@
 .status .card {
   font-size: 18px;
   height: 100px;
-  width: 150px;
+  width: 145px;
   background-color: var(--back);
   border-radius: 10px;
-  box-shadow: 0 0 5px var(--v1);
+  border: 1px solid var(--black);
+  box-shadow: 0 0 5px var(--black);
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -140,7 +141,7 @@
 }
 
 .status .card:hover {
-  transform: translateY(10px);
+  transform: translateY(2px);
   box-shadow: 0 0 10px 2px rgb(0, 0, 0);
 }
 
@@ -162,5 +163,3 @@
     flex-wrap: wrap;
   }
 }
-
-

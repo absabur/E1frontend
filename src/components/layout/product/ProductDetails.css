@@ -10,7 +10,7 @@
 }
 .productSection {
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 0.5vmax;
   padding: 1rem;
   display: flex;
   align-items: center;
@@ -182,7 +182,9 @@
 }
 
 .description {
-  margin: 10px 0;
+  margin: 0.5vmax auto;
+  width: 98%;
+  border-radius: 10px;
   padding: 2rem;
   text-align: justify;
   display: flex;
@@ -196,13 +198,14 @@
 .specification {
   background-color: var(--white);
   box-shadow: 0 0 5px var(--black);
-  margin: 10px 0px;
-  width: 100%;
+  margin: 1vmax auto;
+  width: 98%;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   transition: all 0.3s;
 }
 .spch-head {
@@ -269,18 +272,15 @@
 }
 
 .allReviews {
-  width: 100%;
+  width: 98%;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  margin: 10px 0;
+  margin: 0.5vmax auto;
   background-color: var(--white);
   box-shadow: 0 0 5px var(--black);
-}
-
-.allReviews {
-  width: 100%;
 }
 
 .reviewHead {
@@ -352,7 +352,9 @@
 }
 
 .related-products{
-  margin: 10px 0;
+  width: 98%;
+  border-radius: 10px;
+  margin: 1vmax auto;
   background-color: var(--white);
   box-shadow: 0 0 5px var(--black);
 }
@@ -644,6 +646,6 @@
 
 @media screen and (max-width: 370px) {
   .reviewCard {
-    width: 155px;
+    width: 320px;
   }
 }
