@@ -10,7 +10,6 @@ const ReviewCard = ({ review }) => {
     activeColor: "tomato",
     isHalf: true
   };
-  console.log(review);
   return (
     <div className="reviewCard">
       <div className="user">

@@ -8,13 +8,13 @@ import {
   getProductDetails,
 } from "../../../actions/productAction";
 import Carousel from "react-material-ui-carousel";
+import Error from "../../Error/Error"
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 // import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.jsx";
 import LoadingPage from "../loading/LoadingPage";
-import Error from "../../Error/Error";
 
 import { addToCart } from "../../../actions/cartAction";
 import { RESET_CART_STATE } from "../../../constance/cartConstant";
@@ -24,7 +24,7 @@ import { RiStarSFill } from "react-icons/ri";
 import GlobalState from "../../../GlobalState";
 import MetaDeta from "../MetaDeta";
 import ProductCard from "../../Home/ProductCard";
-import { ALL_PRODUCT_RESET } from "../../../constance/productConstant";
+import { PRODUCT_DETAILS_RESET } from "../../../constance/productConstant";
 
 const ProductDetails = () => {
   const { setErr, setMsg } = useContext(GlobalState);
@@ -51,7 +51,7 @@ const ProductDetails = () => {
   const { isError, message } = useSelector((state) => state.cartAdd);
 
   useEffect(() => {
-    dispatch({type: ALL_PRODUCT_RESET})
+    dispatch({type: PRODUCT_DETAILS_RESET})
   }, [])
   
   useEffect(() => {
@@ -60,10 +60,11 @@ const ProductDetails = () => {
       type: RESET_CART_STATE,
     });
   }, [dispatch, params.id]);
+
   useEffect(() => {
     if (error) {
-      setErr(error);
       dispatch(clearErrors());
+      setErr(error);
     }
   }, [error])
   
@@ -185,7 +186,7 @@ const ProductDetails = () => {
         <LoadingPage />
       ) : product ? (
         <>
-          <MetaDeta title="Product Details" />
+          <MetaDeta title={product.name} />
           <p
             style={{
               textAlign: "center",
@@ -418,7 +419,7 @@ const ProductDetails = () => {
           </div>
         </>
       ) : (
-        <Error message={error ? error : "Product not Found"} />
+        <LoadingPage error={error? "error": ""} />
       )}
     </>
   );

@@ -1,7 +1,12 @@
 import React from 'react'
 import "./Loader.css";
+import { useNavigate } from 'react-router-dom';
 
-const LoadingPage = () => {
+const LoadingPage = ({error}) => {
+  const navigate = useNavigate()
+  if (error === "error") {
+    navigate("/")
+  }
   return (
     <div className="loading">
       <div className='outside'></div>
