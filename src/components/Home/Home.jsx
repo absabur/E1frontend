@@ -10,6 +10,7 @@ import LoadingPage from "../layout/loading/LoadingPage";
 import GlobalState from "../../GlobalState";
 import { allCategory } from "../../actions/admin/productsAction";
 import LoadingDiv from "../layout/loading/LoadingDiv";
+import Marquee from "react-fast-marquee";
 
 const Home = () => {
   const { setErr } = useContext(GlobalState);
@@ -53,6 +54,7 @@ const Home = () => {
         categories && 
         <div className="home-categories" id="category">
           <h1 className="categories-head">Categories</h1>
+          {categories.length === 0 && <h3 style={{display: "block", width: "100%", textAlign: "center", padding: "2rem 10px"}}>No category to show</h3>}
           {
             categories.map((cate)=> (
             <div style={{ display: "flex", alignItems: "flex-start", flexDirection: "column", width: "100%", margin: "5px 0", boxShadow: "0 0 20px rgb(180, 180, 180)"}}>
@@ -61,7 +63,8 @@ const Home = () => {
                 <Link style={{color: "var(--v1)"}} to={`/products?search=&minPrice=null&maxPrice=null&cate=${cate._id}&sort=null`}>See All</Link>
               </div>
               <div className="slider-parent">
-                <div className="product-slider">
+                <Marquee pauseOnHover={true} speed={150} className="product-slider">
+                  {productsForCategory && productsForCategory.length === 0 && <h4 className="product-in-slider" style={{width: "100%", boxShadow: "0 0 0 white", color: "var(--v1)"}}>No Products To Show</h4>}
                   {productsForCategory ? productsForCategory.map((product)=> (
                       <>{product.category === cate._id ? 
                         <Link to={`/product/${product._id}`} className="product-in-slider">
@@ -76,7 +79,7 @@ const Home = () => {
                         </Link>
                       : null}</>
                   )): <LoadingDiv />}
-                </div>
+                </Marquee>
               </div>
             </div>))
           }
@@ -89,6 +92,7 @@ const Home = () => {
           <LoadingPage />
         ) : (
           <>
+            {products && products.length === 0 && <h3 style={{display: "block", width: "100%", textAlign: "center", padding: "2rem 10px"}}>Products are not found</h3>}
             <div className="productCard">
               {products &&
                 products.map((product) => (

@@ -281,7 +281,7 @@ const Products = () => {
                   ))}
               </div>
 
-              {!products ? (
+              {products.length === 0 ? (
                 <div
                   style={{
                     minHeight: "500px",

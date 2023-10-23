@@ -32,14 +32,10 @@ const UpdateCategory = () => {
     }
   }, [params.id, categories]);
 
-  const updateProfileSubmit = async (e) => {
+  const updateCategorySubmit = async (e) => {
     e.preventDefault();
     const id = params.id;
 
-    const config = {
-      headers: { "Content-Type": "application/json" },
-      withCredentials: true,
-    };
     try {
       const token = localStorage.getItem("access_token_abs_ecommerce");
       const config = {
@@ -68,7 +64,7 @@ const UpdateCategory = () => {
       <div className="updatePage">
         <MetaDeta title="Update Category" />
         <div className="updateForm singleUpdate">
-          <form encType="multipart/form-data" onSubmit={updateProfileSubmit}>
+          <form encType="multipart/form-data" onSubmit={updateCategorySubmit}>
             <h1>Update Category</h1>
             <div className="updateName">
               <label htmlFor="name">

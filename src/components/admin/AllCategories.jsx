@@ -23,14 +23,17 @@ const AllCategories = () => {
   }, []);
   const [name, setName] = useState("");
 
-  const updateProfileSubmit = async (e) => {
+  const createCategory = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("access_token_abs_ecommerce");
 
     const config = {
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        access_token: `${token}`, 
+      },
       withCredentials: true,
     };
-    const token = localStorage.getItem("access_token_abs_ecommerce");
 
     try {
       const { data } = await axios.post(
@@ -118,6 +121,7 @@ const AllCategories = () => {
 
           <div>
             <h1 style={{ marginTop: "1rem" }}>Categories</h1>
+            {categories && categories.length === 0 && <h3 style={{margin: "2rem 10px"}}>No category found</h3>}
             {categories &&
               categories.map((category) => (
                 <div key={category._id} className="allCategory">
@@ -142,7 +146,7 @@ const AllCategories = () => {
               ))}
           </div>
           <div className="updateForm singleUpdate">
-            <form encType="multipart/form-data" onSubmit={updateProfileSubmit}>
+            <form onSubmit={createCategory}>
               <h1>Create Category</h1>
               <div className="updateName">
                 <label htmlFor="name">
