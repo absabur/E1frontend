@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CgMouse } from "react-icons/cg";
 import "./Home.css";
 import ProductCard from "./ProductCard";
@@ -11,9 +11,12 @@ import GlobalState from "../../GlobalState";
 import { allCategory } from "../../actions/admin/productsAction";
 import LoadingDiv from "../layout/loading/LoadingDiv";
 import Marquee from "react-fast-marquee";
+import { BsPauseBtnFill } from 'react-icons/bs';
+import { BsPlayBtnFill } from 'react-icons/bs';
 
 const Home = () => {
   const { setErr } = useContext(GlobalState);
+  const [PausePlay, setPausePlay] = useState("")
   const dispatch = useDispatch();
   const token = localStorage.getItem("access_token_abs_ecommerce");
 
@@ -33,6 +36,14 @@ const Home = () => {
     setErr(error);
 
     dispatch(clearErrors());
+  }
+
+  const handlePausePlay = (cate) => {
+    if (PausePlay === cate) {
+      setPausePlay("")
+    }else{
+      setPausePlay(cate)
+    }
   }
 
 
@@ -59,15 +70,17 @@ const Home = () => {
             categories.map((cate)=> (
             <div style={{ display: "flex", alignItems: "flex-start", flexDirection: "column", width: "100%", margin: "5px 0", boxShadow: "0 0 20px rgb(180, 180, 180)"}}>
               <div className="slider-head">
-                <h3>{cate.name}</h3>
+                <h3 style={{width: "50%"}}>{cate.name}</h3>
+                <p style={{fontSize: "2rem", padding: "0", cursor: "pointer", display: "flex", alignItems: "center", color: "var(--v1)"}} onClick={()=> handlePausePlay(cate)}>{cate === PausePlay ?  <BsPlayBtnFill /> : <BsPauseBtnFill />}</p>
                 <Link style={{color: "var(--v1)"}} to={`/products?search=&minPrice=null&maxPrice=null&cate=${cate._id}&sort=null`}>See All</Link>
               </div>
               <div className="slider-parent">
-                <Marquee pauseOnHover={true} speed={150} className="product-slider">
-                  {productsForCategory && productsForCategory.length === 0 && <h4 className="product-in-slider" style={{width: "100%", boxShadow: "0 0 0 white", color: "var(--v1)"}}>No Products To Show</h4>}
+              {/* pauseOnHover={true} */}
+                <Marquee play={cate === PausePlay ? false : true} speed={150}>
+                <div className="product-slider">
                   {productsForCategory ? productsForCategory.map((product)=> (
-                      <>{product.category === cate._id ? 
-                        <Link to={`/product/${product._id}`} className="product-in-slider">
+                    <>{product.category === cate._id ? 
+                      <Link to={`/product/${product._id}`} className="product-in-slider">
                           <div className="img">
                             <img src={product.images[0].url} alt="image" />
                           </div>
@@ -78,7 +91,8 @@ const Home = () => {
                           </div>
                         </Link>
                       : null}</>
-                  )): <LoadingDiv />}
+                    )): <LoadingDiv />}
+                </div>
                 </Marquee>
               </div>
             </div>))

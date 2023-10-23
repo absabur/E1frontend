@@ -145,7 +145,7 @@
   font-weight: 700;
   color: white;
   background-color: rgb(94, 94, 94);
-  cursor: url("../../../images/pointer.png"), auto;
+  cursor: pointer;
   border: none;
 }
 
@@ -256,7 +256,6 @@
   padding: 0 2px;
 }
 
-
 .spec-sub-body xmp {
   width: 70%;
   font-size: 18px;
@@ -351,7 +350,7 @@
   width: 50px;
 }
 
-.related-products{
+.related-products {
   width: 98%;
   border-radius: 10px;
   margin: 1vmax auto;
@@ -404,7 +403,7 @@
   background-color: rgb(183, 169, 183);
   font-size: 16px;
   margin: 0.4vmax;
-  cursor: url("../../../images/pointer.png"), auto;
+  cursor: pointer;
   transition: all 0.5s;
   text-align: center;
   padding: 10px 5px;
@@ -584,7 +583,7 @@
     padding: 10px;
     text-align: center;
     border-radius: 0 40px 40px 0;
-    cursor: url("../../../images/pointer.png"), auto;
+    cursor: pointer;
     top: 10px;
     width: 80px;
     background-color: var(--back);
@@ -628,10 +627,11 @@
 }
 
 @media screen and (max-width: 700px) {
-  .spec-sub-body{
+  .spec-sub-body {
     flex-direction: column;
   }
-  .spec-sub-body h3, .spec-sub-body xmp{
+  .spec-sub-body h3,
+  .spec-sub-body xmp {
     border: none;
     width: 100%;
   }

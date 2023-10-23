@@ -62,7 +62,7 @@
   width: 20px;
   height: 20px;
   border: 2px solid black;
-  cursor: url("../../../images/pointer.png"), auto;
+  cursor: pointer;
 }
 
 .active {

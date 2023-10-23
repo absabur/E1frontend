@@ -1,97 +1,95 @@
-.contact-section{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
+.contact-section {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
-.allcontact{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: 1rem 0;
+.allcontact {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1rem 0;
 }
 
-.cell-contact{
-    width: 48%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-    margin: 2rem 10px;
+.cell-contact {
+  width: 48%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin: 2rem 10px;
 }
 
-.cell-number{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    font-size: 35px;
-    font-weight: 300;
-    color: var(--v1);
-    cursor: url(../../images/pointer.png), auto;
-    transition: all 0.3s;
+.cell-number {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 35px;
+  font-weight: 300;
+  color: var(--v1);
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-.cell-number:hover{
-    text-decoration: underline;
+.cell-number:hover {
+  text-decoration: underline;
 }
 
-.call-now, .send-mail{
-    padding: 5px 10px;
-    font-size: 20px;
-    font-weight: 600;
-    width: 250px;
-    display: flex;
-    justify-content: space-around;
-    margin: 1rem 0;
+.call-now,
+.send-mail {
+  padding: 5px 10px;
+  font-size: 20px;
+  font-weight: 600;
+  width: 250px;
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 0;
 }
 
-.email-contact{
-    width: 48%;
-    padding: 1rem;
-    box-shadow:  0 0 5px var(--black);
+.email-contact {
+  width: 48%;
+  padding: 1rem;
+  box-shadow: 0 0 5px var(--black);
 }
 
-
-.email-contact div{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: 600;
-    font-size: 18px;
-    margin: 1rem 0;
+.email-contact div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 1rem 0;
 }
 
-
-.send-mail{
-    padding: 10px;
-    border-radius: 10px;
-    width: 150px;
+.send-mail {
+  padding: 10px;
+  border-radius: 10px;
+  width: 150px;
 }
 
-
-.email-contact div input, .email-contact textarea{
-    width: 70%;
-    padding: 10px;
-    text-align: left;
-    outline: none;
-    background-color: antiquewhite;
-    border: none;
-    border-radius: 10px;
-    box-shadow:  0 0 5px var(--black);
+.email-contact div input,
+.email-contact textarea {
+  width: 70%;
+  padding: 10px;
+  text-align: left;
+  outline: none;
+  background-color: antiquewhite;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 5px var(--black);
 }
-
 
 @media screen and (max-width: 1220px) {
-    .allcontact{
-        flex-direction: column;
-    }
-    .email-contact{
-        margin: 10px;
-        width: 95%;
-    }
+  .allcontact {
+    flex-direction: column;
+  }
+  .email-contact {
+    margin: 10px;
+    width: 95%;
+  }
 }

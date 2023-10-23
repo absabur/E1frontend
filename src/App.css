@@ -7,9 +7,6 @@
   overflow: none;
 }
 
-body {
-  cursor: url("./images/cursor.png"), auto;
-}
 :root {
   --blue: #141f2a;
   --white: #ffffff;
@@ -29,7 +26,7 @@ input[type="number"] {
 }
 
 a {
-  cursor: url("./images/pointer.png"), auto;
+  cursor: pointer;
 }
 
 .app {
@@ -56,7 +53,7 @@ a {
   transition: all 0.2s;
   color: var(--white);
   font-weight: 600;
-  cursor: url("./images/pointer.png"), auto;
+  cursor: pointer;
   text-decoration: none;
   background-color: #9f2016;
   box-shadow: 0 0 5px var(--black);
@@ -71,7 +68,7 @@ a {
   background-color: #1dc01d;
   color: var(--black);
   font-weight: 600;
-  cursor: url("./images/pointer.png"), auto;
+  cursor: pointer;
   text-decoration: none;
 }
 
@@ -89,7 +86,7 @@ a {
   bottom: 30px;
   font-size: 2.2rem;
   z-index: 102;
-  cursor: url("./images/pointer.png"), auto;
+  cursor: pointer;
   color: var(--black);
   background-color: var(--back);
   box-shadow: 0 0 5px var(--black);
@@ -108,7 +105,7 @@ a {
   animation: jump 2s linear;
 }
 
-.hideScroll{
+.hideScroll {
   height: 0;
   width: 0;
   right: -40px;
@@ -119,7 +116,7 @@ a {
   z-index: 110;
   font-size: 25px;
   margin: auto 0.8rem;
-  cursor: url("./images/pointer.png"), auto;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
@@ -130,42 +127,40 @@ a {
   }
 }
 
-
-
 @keyframes jump {
-  0%{
+  0% {
     height: 40px;
     width: 40px;
   }
-  12.5%{
+  12.5% {
     height: 30px;
     width: 30px;
   }
-  25%{
+  25% {
     height: 40px;
     width: 40px;
   }
-  37.5%{
+  37.5% {
     height: 30px;
     width: 30px;
   }
-  50%{
+  50% {
     height: 40px;
     width: 40px;
   }
-  62.5%{
+  62.5% {
     height: 30px;
     width: 30px;
   }
-  75%{
+  75% {
     height: 40px;
     width: 40px;
   }
-  87.5%{
+  87.5% {
     height: 30px;
     width: 30px;
   }
-  100%{
+  100% {
     height: 40px;
     width: 40px;
   }

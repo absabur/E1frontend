@@ -87,7 +87,7 @@ input {
 .quantityChange button {
   color: white;
   background-color: rgb(94, 94, 94);
-  cursor: url("../../../images/pointer.png"), auto;
+  cursor: pointer;
   border: none;
 }
 

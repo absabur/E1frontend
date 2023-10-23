@@ -73,7 +73,7 @@ loginForm form div label {
 
 .crossIcon {
   font-size: 30px;
-  cursor: url("../../../images/pointer.png"), auto;
+  cursor: pointer;
   z-index: 20;
   margin-right: 0.5rem;
 }
@@ -113,7 +113,7 @@ loginForm form div label {
 }
 
 #updateProfileImage > input::file-selector-button {
-  cursor: url("../../../images/pointer.png"), auto;
+  cursor: pointer;
   width: 100%;
   z-index: 2;
   height: 40px;

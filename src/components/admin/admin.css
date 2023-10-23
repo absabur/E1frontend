@@ -9,18 +9,19 @@
   min-height: 500px;
 }
 
-.dashview{
+.dashview {
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
 }
 
-.dot11, .dot22{
+.dot11,
+.dot22 {
   transform: scale(0.4);
 }
 
-.dashboard-toggle{
+.dashboard-toggle {
   margin-left: 250px;
   height: 40px;
   width: 50px;
@@ -30,7 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: url(../../images/pointer.png), auto;
+  cursor: pointer;
 }
 
 .sideBar {
@@ -211,7 +212,7 @@
 
 .copy:hover {
   text-decoration: underline;
-  cursor: url("../../images/pointer.png"), auto;
+  cursor: pointer;
 }
 
 .productChinCard:hover {
@@ -321,7 +322,7 @@
   background: transparent;
   border: none;
   font-size: 25px;
-  cursor: url("../../images/pointer.png"), auto;
+  cursor: pointer;
   color: black;
 }
 
@@ -365,7 +366,7 @@ create product */
   box-shadow: 0 0 10px var(--black);
 }
 
-.productSpecification{
+.productSpecification {
   margin: 1rem 0;
 }
 
@@ -421,7 +422,7 @@ create product */
   color: var(--black);
   border: none;
   background-color: transparent;
-  cursor: url("../../images/pointer.png"), auto;
+  cursor: pointer;
 }
 
 .editDelete:hover {
@@ -459,7 +460,7 @@ create product */
   font-weight: 600;
 }
 
-.cancel-div-admin{
+.cancel-div-admin {
   margin-left: -80px;
   height: 80px;
 }
@@ -470,10 +471,8 @@ create product */
   }
 }
 
-
-
 @media screen and (max-width: 500px) {
   .productCreate {
-    box-shadow:  0 0 0;
+    box-shadow: 0 0 0;
   }
 }

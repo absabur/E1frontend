@@ -42,7 +42,7 @@
 .trash {
   font-size: 28px;
   color: var(--v1);
-  cursor: url("../../../images/pointer.png"), auto;
+  cursor: pointer;
   box-shadow: 0 0 5px var(--black);
   padding: 5px 10px;
   border-radius: 5px;
@@ -76,7 +76,6 @@ section {
   justify-content: center;
   flex-direction: column;
 }
-
 
 .cartItems {
   width: 100%;

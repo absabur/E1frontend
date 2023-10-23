@@ -99,7 +99,7 @@ loginForm form div label {
 }
 
 #registerImage > input::file-selector-button {
-  cursor: url("../../../images/pointer.png"), auto;
+  cursor: pointer;
   width: 100%;
   z-index: 2;
   height: 40px;
