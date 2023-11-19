@@ -26,7 +26,6 @@ const UpdateProduct = () => {
   const { product } = useSelector((state) => state.productDetails);
 
   const { categories } = useSelector((state) => state.categories);
-
   const [cancelDiv, setCancelDiv] = useState({});
   const [miniMaxi, setMiniMaxi] = useState(true)
 
@@ -68,7 +67,7 @@ const UpdateProduct = () => {
       setName(product.name);
       setPrice(product.price);
       setDescription(product.description);
-      categories.map((cate)=> {
+      categories && categories.map((cate)=> {
         if (cate.name === product.category) {
           setCategory(cate._id);
         }
@@ -81,7 +80,7 @@ const UpdateProduct = () => {
       setSpecification(product.specification)
       setImagesPreview(imagesArray);
     }
-  }, [error, dispatch, isUpdated, product]);
+  }, [error, dispatch, isUpdated, product, categories]);
 
   const createProductSubmitHandler = (e) => {
     e.preventDefault();

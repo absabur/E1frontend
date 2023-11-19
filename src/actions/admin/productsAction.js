@@ -98,12 +98,11 @@ export const updateProduct = (token, id, productData) => async (dispatch) => {
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
         access_token: `${token}`,
       },
       withCredentials: true
     };
-
     const { data } = await axios.put(
       `${BackendUrl}/api/product/${id}`,
       productData,
