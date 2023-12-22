@@ -166,7 +166,8 @@ const CommonPattern = ({ orderStatus, head }) => {
                       }}
                     >
                       <span>
-                        Placed on: {order.paidAt.date ? order.paidAt.date+", "+order.paidAt.formatedTime : order.paidAt.slice(0, 10)+" "+order.paidAt.slice(11, 19)}
+                        Placed on:{" "}
+                        {order.paidAt ? order.paidAt.date+", "+order.paidAt.formatedTime : "Not placed yet"}
                       </span>
                       <span>. {order.paymentInfo.status}</span>
                     </div>
@@ -175,7 +176,10 @@ const CommonPattern = ({ orderStatus, head }) => {
                         <div className="img">
                           <img src={item.image} alt="" />
                         </div>
-                        <div className="productDetails" style={{boxShadow: "0 0 0"}}>
+                        <div
+                          className="productDetails"
+                          style={{ boxShadow: "0 0 0" }}
+                        >
                           <p className="productName">
                             {item.name.slice(0, 32)}
                             {item.name.slice(31, -1) ? "..." : ""}

@@ -32,7 +32,7 @@ const Order = () => {
   }, [params.id, dispatch]);
 
   useEffect(() => {
-    const token = localStorage.getItem("access_token_abs_ecommerce")
+    const token = localStorage.getItem("access_token_abs_ecommerce");
     if (error) {
       setErr(error);
 
@@ -63,7 +63,9 @@ const Order = () => {
       ) : JSON.stringify(order) !== "{}" && order ? (
         <div className="orderDetails">
           <div className="shipingInfo">
-            <b style={{textAlign: "center", fontSize: "20px"}}>Shiping Details</b>
+            <b style={{ textAlign: "center", fontSize: "20px" }}>
+              Shiping Details
+            </b>
             <br />
             <b>Name: {order.shippingInfo.name && order.shippingInfo.name}</b>
             <br />
@@ -73,7 +75,8 @@ const Order = () => {
             <br />
             <p style={{ opacity: "0.7" }}>
               Address:{" "}
-              {order.shippingInfo && `${order.shippingInfo.division}, ${order.shippingInfo.district}, ${order.shippingInfo.subDistrict}, ${order.shippingInfo.address}`}
+              {order.shippingInfo &&
+                `${order.shippingInfo.division}, ${order.shippingInfo.district}, ${order.shippingInfo.subDistrict}, ${order.shippingInfo.address}`}
             </p>
           </div>
           <div className="paymentDetails">
@@ -181,7 +184,8 @@ const Order = () => {
             <br />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span style={{ opacity: "0.7" }}>
-                Placed on: {order.paidAt.date ? order.paidAt.date+", "+order.paidAt.formatedTime : order.paidAt.slice(0, 10)+" "+order.paidAt.slice(11, 19)}
+                Placed on:{" "}
+                {order.paidAt ? order.paidAt.date+", "+order.paidAt.formatedTime : "Not placed yet"}
               </span>
               <span>. {order.paymentInfo.status}</span>
             </div>

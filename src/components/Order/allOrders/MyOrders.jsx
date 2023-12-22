@@ -24,6 +24,7 @@ const MyOrders = () => {
   const { success, isError, isLoading } = useSelector(
     (state) => state.cancelOrder
   );
+  
   useEffect(() => {
     dispatch(myOrders(token));
     if (error) {
@@ -146,7 +147,8 @@ const MyOrders = () => {
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <span>
-                      Placed on: {order.paidAt.date ? order.paidAt.date+", "+order.paidAt.formatedTime : order.paidAt.slice(0, 10)+" "+order.paidAt.slice(11, 19)}
+                      Placed on:{" "}
+                      {order.paidAt ? order.paidAt.date+", "+order.paidAt.formatedTime : "Not placed yet"}
                     </span>
                     <span>. {order.paymentInfo.status}</span>
                   </div>
@@ -155,7 +157,10 @@ const MyOrders = () => {
                       <div className="img">
                         <img src={item.image} alt="" />
                       </div>
-                      <div className="productDetails" style={{boxShadow: "0 0 0"}}>
+                      <div
+                        className="productDetails"
+                        style={{ boxShadow: "0 0 0" }}
+                      >
                         <p className="productName">
                           {item.name.slice(0, 15)}
                           {item.name.slice(14, -1) ? "..." : ""}

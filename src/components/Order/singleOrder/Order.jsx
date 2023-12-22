@@ -38,7 +38,9 @@ const Order = () => {
       ) : JSON.stringify(order) !== "{}" && order ? (
         <div className="orderDetails">
           <div className="shipingInfo">
-            <b style={{textAlign: "center", fontSize: "20px"}}>Shiping Details</b>
+            <b style={{ textAlign: "center", fontSize: "20px" }}>
+              Shiping Details
+            </b>
             <br />
             <b>Name: {order.user && order.user.name}</b>
             <br />
@@ -48,7 +50,8 @@ const Order = () => {
             <br />
             <p style={{ opacity: "0.7" }}>
               Address:{" "}
-              {order.user && `${order.shippingInfo.division}, ${order.shippingInfo.district}, ${order.shippingInfo.subDistrict}, ${order.shippingInfo.address}`}
+              {order.user &&
+                `${order.shippingInfo.division}, ${order.shippingInfo.district}, ${order.shippingInfo.subDistrict}, ${order.shippingInfo.address}`}
             </p>
           </div>
           <h4 style={{ margin: "10px" }}>
@@ -89,7 +92,7 @@ const Order = () => {
             <br />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span style={{ opacity: "0.7" }}>
-                Placed on: {order.paidAt.date ? order.paidAt.date+", "+order.paidAt.formatedTime : order.paidAt.slice(0, 10)+" "+order.paidAt.slice(11, 19)}
+                Placed on: {order.paidAt ? order.paidAt.date+", "+order.paidAt.formatedTime : "Not placed yet"}
               </span>
               <span>. {order.paymentInfo.status}</span>
             </div>
