@@ -31,6 +31,8 @@ const Header = () => {
   const token = localStorage.getItem("access_token_abs_ecommerce");
   const location = useLocation();
   const dispatch = useDispatch()
+  
+
   useEffect(() => {
     if (location.pathname === "/") {
       sethome({ width: "100%" });
@@ -174,7 +176,7 @@ const Header = () => {
 
             
           </div>
-          <div onClick={() => setToggle(!toggle)} className="bar-cross-icon">
+          <div onClick={() => setToggle(!toggle)} className={`bar-cross-icon ${toggle? "rotatef": "rotater"}`}>
             {toggle ? (
               <GiCrossedBones className="react-icons barCrossIcon" />
             ) : (

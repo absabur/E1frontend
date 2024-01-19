@@ -5,6 +5,7 @@
   z-index: 1000;
 }
 
+
 .header {
   position: absolute;
   display: flex;
@@ -197,6 +198,15 @@
     width: 70px;
     height: 100%;
     cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .rotatef{
+    transform: rotate(180deg);
+  }
+  
+  .rotater{
+    transform: rotate(-180deg);
   }
 
   .nav-links {

@@ -67,8 +67,8 @@ const Home = () => {
           <h1 className="categories-head">Categories</h1>
           {categories.length === 0 && <h3 style={{display: "block", width: "100%", textAlign: "center", padding: "2rem 10px"}}>No category to show</h3>}
           {
-            categories.map((cate)=> (
-            <div style={{ display: "flex", alignItems: "flex-start", flexDirection: "column", width: "100%", margin: "5px 0", boxShadow: "0 0 20px rgb(180, 180, 180)"}}>
+            categories.map((cate, index)=> (
+            <div key={index} style={{ display: "flex", alignItems: "flex-start", flexDirection: "column", width: "100%", margin: "5px 0", boxShadow: "0 0 20px rgb(180, 180, 180)"}}>
               <div className="slider-head">
                 <h3 style={{width: "50%"}}>{cate.name}</h3>
                 <p style={{fontSize: "2rem", padding: "0", cursor: "pointer", display: "flex", alignItems: "center", color: "var(--v1)"}} onClick={()=> handlePausePlay(cate)}>{cate === PausePlay ?  <BsPlayBtnFill /> : <BsPauseBtnFill />}</p>
@@ -78,8 +78,8 @@ const Home = () => {
               {/* pauseOnHover={true} */}
                 <Marquee play={cate === PausePlay ? false : true} speed={150}>
                 <div className="product-slider">
-                  {productsForCategory ? productsForCategory.map((product)=> (
-                    <>{product.category === cate._id ? 
+                  {productsForCategory ? productsForCategory.map((product, index)=> (
+                    <div key={index}>{product.category === cate._id ? 
                       <Link to={`/product/${product._id}`} className="product-in-slider">
                           <div className="img">
                             <img src={product.images[0].url} alt="image" />
@@ -90,7 +90,7 @@ const Home = () => {
                             <strong>৳{product.price}</strong>
                           </div>
                         </Link>
-                      : null}</>
+                      : null}</div>
                     )): <LoadingDiv />}
                 </div>
                 </Marquee>
