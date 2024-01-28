@@ -83,7 +83,7 @@ function App() {
       setShow(false);
       setLastScrollY(window.scrollY);
     }
-    if (lastScrollY - window.scrollY > 100) {
+    else if (lastScrollY - window.scrollY >= 100) {
       setShow(true);
       setLastScrollY(window.scrollY);
     }
@@ -91,7 +91,7 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("scroll", controlNavbar);
-  }, [lastScrollY]);
+  }, [window.scrollY]);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {

@@ -62,8 +62,7 @@
   width: 200px;
   height: 300px;  
   box-shadow: 0 0 10px rgb(0, 0, 0);
-  margin: 10px 5px;
-  opacity: 0.3;
+  margin: 5px;
   animation: sliderload 100ms ease infinite;
 }
 
@@ -130,15 +129,15 @@
 
 @keyframes sliderload{
   0%{
-    background-image: linear-gradient(to right, var(--v1), var(--blue),  var(--v2));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.125), rgba(0, 0, 0, 0.4),  rgba(0, 0, 0, 0.2));
   }
   33%{
-    background-image: linear-gradient(to right, var(--v2), var(--v1), var(--blue) );
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.125), rgba(0, 0, 0, 0.4) );
   }
   66%{
-    background-image: linear-gradient(to right, var(--blue), var(--v2), var(--v1));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.125));
   }
   100%{
-    background-image: linear-gradient(to right, var(--v1), var(--blue),  var(--v2));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.125), rgba(0, 0, 0, 0.4),  rgba(0, 0, 0, 0.2));
   }
 }
