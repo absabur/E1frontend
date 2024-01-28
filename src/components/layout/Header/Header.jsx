@@ -85,7 +85,6 @@ const Header = () => {
       duration: 0
     });
   }, [location.pathname]);
-
   return (
     <>
       <div className={`header-relative ${show ? "show-nav" : "hide-nav"}`}>

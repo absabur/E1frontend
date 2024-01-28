@@ -227,25 +227,25 @@
 }
 
 @media screen and (max-width: 450px) {
-  .productCard a {
+  .productCard a, .loading-card {
     width: 190px;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .productCard a {
+  .productCard a, loading-card {
     width: 180px;
   }
 }
 
 @media screen and (max-width: 380px) {
-  .productCard a {
+  .productCard a, loading-card {
     width: 170px;
   }
 }
 
 @media screen and (max-width: 370px) {
-  .productCard a {
+  .productCard a, loading-card {
     width: 165px;
   }
 }
