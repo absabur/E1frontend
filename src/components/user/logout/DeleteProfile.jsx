@@ -38,7 +38,7 @@ const DeleteProfile = () => {
   return (
     <>
       {loading ? (
-        <LoadingPage />
+        <LoadingPage error={null}/>
       ) : isAuthenticated ? (
         <div className="logoutPage">
           <MetaDeta title="Delete Account" />

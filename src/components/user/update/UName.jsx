@@ -49,7 +49,7 @@ const UName = () => {
     <>
       <MetaDeta title="Update Name" />
       {loading ? (
-        <LoadingPage />
+        <LoadingPage error={null}/>
       ) : isUpdated ? (
         <Navigate replace to={"/profile"} />
       ) : (

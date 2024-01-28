@@ -50,7 +50,7 @@ const UEmail = () => {
     <>
       <MetaDeta title="Update Email" />
       {loading ? (
-        <LoadingPage />
+        <LoadingPage error={null}/>
       ) : (
         <div className="updatePage">
           <div className="updateForm singleUpdate">

@@ -30,11 +30,12 @@ const Logout = () => {
     const token = localStorage.getItem("access_token_abs_ecommerce");
     await dispatch(logout(token));
     localStorage.removeItem("access_token_abs_ecommerce");
+    navigate('/')
   };
   return (
     <>
       {loading ? (
-        <LoadingPage />
+        <LoadingPage error={null}/>
       ) : isAuthenticated ? (
         <div className="logoutPage">
           <MetaDeta title="Log Out" />

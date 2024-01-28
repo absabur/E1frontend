@@ -55,7 +55,7 @@ const UPassword = () => {
   return (
     <>
       {loading ? (
-        <LoadingPage />
+        <LoadingPage error={null}/>
       ) : (
         <div className="updatePage">
           <div className="updateForm singleUpdate">

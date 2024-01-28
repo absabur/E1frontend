@@ -104,7 +104,7 @@ export const auth = (token) => async (dispatch) => {
 };
 
 export const logout = (token) => async (dispatch) => {
-  try {console.log(token);
+  try {
     const config = {
       headers: { access_token: `${token}` },
       withCredentials: true

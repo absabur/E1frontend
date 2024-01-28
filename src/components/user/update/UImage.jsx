@@ -73,7 +73,7 @@ const UImage = () => {
     <>
       <MetaDeta title="Update Image" />
       {loading ? (
-        <LoadingPage />
+        <LoadingPage error={null}/>
       ) : isUpdated ? (
         <Navigate replace to={"/"} />
       ) : (

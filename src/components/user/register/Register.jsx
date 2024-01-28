@@ -92,7 +92,7 @@ const Register = () => {
   return (
     <>
       {loading ? (
-        <LoadingPage />
+        <LoadingPage error={null}/>
       ) : isAuthenticated ? (
         <Navigate replace to={"/"} />
       ) : (

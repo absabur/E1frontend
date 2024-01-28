@@ -487,7 +487,7 @@ function App() {
               )}
               <Route
                 path="*"
-                element={isAuthenticated ? <Home /> : <Login />}
+                element={<LoadingPage error="universal"/>}
               />
             </Routes>
           </div>

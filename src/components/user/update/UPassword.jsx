@@ -57,7 +57,7 @@ const UPassword = () => {
     <>
       <MetaDeta title="Update Password" />
       {loading ? (
-        <LoadingPage />
+        <LoadingPage error={null}/>
       ) : isUpdated ? (
         <Navigate replace to={"/"} />
       ) : (

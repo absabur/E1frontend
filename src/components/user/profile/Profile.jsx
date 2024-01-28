@@ -73,7 +73,7 @@ const Profile = () => {
     <>
       {loading ? (
         <LoadingPage />
-      ) : isAuthenticated ? (
+      ) : (
         <div className="profileSection">
           <MetaDeta title={`${user.name}`} />
           <h1 className="profileHead">Profile</h1>
@@ -181,8 +181,6 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <Login />
       )}
     </>
   );

@@ -45,7 +45,7 @@ const UEmail = () => {
   return (
     <>
       {loading ? (
-        <LoadingPage />
+        <LoadingPage error={null}/>
       ) : isAuthenticated ? (
         <Navigate replace to={"/"} />
       ) : (

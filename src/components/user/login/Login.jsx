@@ -10,6 +10,7 @@ import { RiKeyLine } from "react-icons/ri";
 import { PiEyeClosedDuotone } from "react-icons/pi";
 import { PiEyeDuotone } from "react-icons/pi";
 import GlobalState from "../../../GlobalState";
+import LoadingPage from "../../layout/loading/LoadingPage";
 
 const Login = () => {
   const { setErr } = useContext(GlobalState);
@@ -19,6 +20,7 @@ const Login = () => {
   const navigate = useNavigate()
   const token = localStorage.getItem("access_token_abs_ecommerce");
   const {
+    loading,
     isAuthenticated,
     error,
     token: tokenBack,
@@ -40,7 +42,9 @@ const Login = () => {
   const [type, setType] = useState(false);
   return (
     <>
-      {isAuthenticated ? (
+    {
+      loading ? <LoadingPage error={null}/> :
+      isAuthenticated ? (
         <Navigate replace to={"/"} />
       ) : (
         <div className="loginPage">
@@ -94,7 +98,9 @@ const Login = () => {
             </p>
           </div>
         </div>
-      )}
+      )
+    }
+
     </>
   );
 };
