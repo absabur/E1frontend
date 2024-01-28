@@ -13,7 +13,7 @@ import GlobalState from "../../../GlobalState";
 import { ALL_PRODUCT_RESET } from "../../../constance/productConstant";
 
 const Products = () => {
-  const { setErr, setMsg } = useContext(GlobalState);
+  const { setErr } = useContext(GlobalState);
   const [loderFirst, setLoderFirst] = useState(true)
   const dispatch = useDispatch();
   const token = localStorage.getItem("access_token_abs_ecommerce");

@@ -62,6 +62,8 @@ function App() {
   const token = localStorage.getItem("access_token_abs_ecommerce");
   const [err, setErr] = useState("");
   const [msg, setMsg] = useState("");
+  const [show, setShow] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const goTop = () => {
     window.scrollTo({
@@ -69,6 +71,22 @@ function App() {
       behavior: "smooth",
     });
   };
+
+  const controlNavbar = () => {
+    if (window.scrollY > lastScrollY) {
+      setShow(false);
+    } else {
+      setShow(true);  
+    }
+    setLastScrollY(window.scrollY); 
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', controlNavbar);
+    return () => {
+       window.removeEventListener('scroll', controlNavbar);
+    };
+  }, [lastScrollY]);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -119,7 +137,7 @@ function App() {
 
   return (
     <GlobalState.Provider
-      value={{ err, setErr, msg, setMsg, toggle, setToggle }}
+      value={{ err, setErr, msg, setMsg, toggle, setToggle, show }}
     >
       <ToastContainer
         position="top-right"
@@ -137,7 +155,6 @@ function App() {
         <BrowserRouter>
           <Header />
           {user && user.isAdmin && <Sidebar />}
-          <div style={{ height: "80px" }}></div>
           <div
             onClick={() => setToggle(false)}
             style={{

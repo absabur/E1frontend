@@ -3,11 +3,31 @@
   width: 100vw;
   position: fixed;
   z-index: 1000;
+  transition: all 0.5s;
+}
+
+.hide-nav{
+  top: -80px;
+}
+
+.show-nav{
+  top: 0;
+}
+
+.duplicate-nav{
+  transition: all 0.5s;
+}
+
+.hide-duplicate-nav{
+  height: 0;
+}
+
+.show-duplicate-nav{
+  height: 80px;
 }
 
 
 .header {
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Search.css";
 import { useSearchParams } from 'react-router-dom';
 import { ImCross } from 'react-icons/im';
+import GlobalState from "../../../GlobalState";
 
 
 const Search = () => {
+  const { show } = useContext(GlobalState);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchValue, setsearchValue] = useState("")
@@ -21,7 +23,7 @@ const Search = () => {
 
   return (
     <>
-      <form className="searchBox" onSubmit={handleSearch}>
+      <form className={`searchBox ${show ? "down" : "up"}`} onSubmit={handleSearch}>
         <input
           type="text"
           placeholder="Search a Product ..."

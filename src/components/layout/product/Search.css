@@ -7,11 +7,19 @@
   align-items: center;
   background-color: var(--blue);
   position: fixed;
-  top: 80px;
   left: 0;
   z-index: 100;
   border-bottom: 1px solid var(--black);
   outline: 1px solid var(--white);
+  transition: all 0.5s;
+}
+
+.down{
+  top: 80px;
+}
+
+.up{
+  top: 0;
 }
 
 .searchBox > input[type="text"] {

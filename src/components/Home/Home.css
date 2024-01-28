@@ -94,6 +94,22 @@
   display: flex;
 }
 
+.slider-loading{
+  width: 100%;
+  display: flex;
+}
+
+.slider-loading div{  
+  box-shadow: 0 0 2px rgb(0, 0, 0);
+  margin: 10px;
+  width: 20vw;
+  height: 10vw;
+  min-height: 100px;
+  min-width: 250px;
+  opacity: 0.7;
+  animation: sliderload 2s ease infinite;
+}
+
 .product-in-slider {
   display: flex;
   align-items: center;
@@ -232,5 +248,27 @@
 @media screen and (max-width: 370px) {
   .productCard a {
     width: 165px;
+  }
+}
+
+
+@keyframes sliderload{
+  0%{
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2) , rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  }
+  20%{
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0) );
+  }
+  40%{
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2) , rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  }
+  60%{
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0) );
+  }
+  80%{
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2) , rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  }
+  100%{
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2) , rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
   }
 }

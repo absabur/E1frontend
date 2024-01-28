@@ -25,13 +25,12 @@ const Header = () => {
   const [profile, setprofile] = useState({ width: "0" });
   const [cart, setcart] = useState({ width: "0" });
 
-  const {toggle, setToggle} = useContext(GlobalState)
+  const {toggle, setToggle, show} = useContext(GlobalState)
   // @ts-ignore
   const { isAuthenticated, user, loading } = useSelector((state) => state.user);
   const token = localStorage.getItem("access_token_abs_ecommerce");
   const location = useLocation();
   const dispatch = useDispatch()
-  
 
   useEffect(() => {
     if (location.pathname === "/") {
@@ -89,7 +88,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="header-relative">
+      <div className={`header-relative ${show ? "show-nav" : "hide-nav"}`}>
         <div className="header">
           <div className="logo-section">
             {/* <img src={logo} alt="logo" /> */}
@@ -115,12 +114,6 @@ const Header = () => {
                 <Link to="/about">About</Link>
                 <div style={about} className="aboutLine ULine"></div>
               </div>
-              {/* {isAuthenticated &&
-                <div className='logNav'>
-                  <Link to="/logout">Log Out</Link>
-                  <div style={logout} className='logLine ULine'></div>
-                </div>
-              } */}
             </div>
           </div>
           <div className="icons">
@@ -215,15 +208,11 @@ const Header = () => {
               </Link>
               <div style={about} className="aboutLine ULine"></div>
             </div>
-            {/* {isAuthenticated &&
-                <div className='logNav'>
-                  <Link onClick={()=>setToggle(false)} to="/logout">Log Out</Link>
-                  <div style={logout} className='logLine ULine'></div>
-                </div>
-              } */}
           </div>
         </div>
       </div>
+      
+      <div className={`duplicate-nav ${show ? "show-duplicate-nav" : "hide-duplicate-nav"}`}></div>
     </>
   );
 };
