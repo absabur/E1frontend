@@ -53,9 +53,18 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-image: linear-gradient(to right, var(--v1), var(--blue),  var(--v2));
+  /* background-image: linear-gradient(to right, var(--v1), var(--blue),  var(--v2)); */
   animation: back 1s linear infinite;
   opacity: 0.5;
+}
+
+.loading-card{
+  width: 200px;
+  height: 300px;  
+  box-shadow: 0 0 10px rgb(0, 0, 0);
+  margin: 10px 5px;
+  opacity: 0.3;
+  animation: sliderload 100ms ease infinite;
 }
 
 
@@ -116,5 +125,20 @@
   }
   100%{
     opacity: 0.5;
+  }
+}
+
+@keyframes sliderload{
+  0%{
+    background-image: linear-gradient(to right, var(--v1), var(--blue),  var(--v2));
+  }
+  33%{
+    background-image: linear-gradient(to right, var(--v2), var(--v1), var(--blue) );
+  }
+  66%{
+    background-image: linear-gradient(to right, var(--blue), var(--v2), var(--v1));
+  }
+  100%{
+    background-image: linear-gradient(to right, var(--v1), var(--blue),  var(--v2));
   }
 }

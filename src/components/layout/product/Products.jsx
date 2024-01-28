@@ -11,6 +11,7 @@ import { TbFilter } from "react-icons/tb";
 import { allCategory } from "../../../actions/admin/productsAction";
 import GlobalState from "../../../GlobalState";
 import { ALL_PRODUCT_RESET } from "../../../constance/productConstant";
+import LoadingCard from "../loading/LoadingCard";
 
 const Products = () => {
   const { setErr } = useContext(GlobalState);
@@ -118,7 +119,11 @@ const Products = () => {
   return (
     <>
       {loading || loderFirst ? (
-        <LoadingPage />
+        <div>
+          <div style={{height: "80px"}}></div>
+          <h3 style={{ margin: "1rem", textAlign: "center" }}>Product Loading</h3>
+          <LoadingCard prod={20}/>
+        </div>
       ) : (
         <div style={{width: "100%", position: "relative"}}>
           {

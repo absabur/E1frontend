@@ -13,6 +13,7 @@ import LoadingDiv from "../layout/loading/LoadingDiv";
 import Marquee from "react-fast-marquee";
 import { BsPauseBtnFill } from "react-icons/bs";
 import { BsPlayBtnFill } from "react-icons/bs";
+import LoadingCard from "../layout/loading/LoadingCard";
 
 const Home = () => {
   const { setErr } = useContext(GlobalState);
@@ -174,7 +175,7 @@ const Home = () => {
       <div className="container related-products" id="container">
         <h2 className="homeHeading">Featured Products</h2>
         {loading ? (
-          <LoadingPage />
+          <LoadingCard prod={26}/>
         ) : (
           <>
             {products && products.length === 0 && (
