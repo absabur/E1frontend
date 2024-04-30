@@ -61,14 +61,14 @@
   border-bottom: 1px solid var(--black);
 }
 
-.pause{
+.pause {
   display: flex;
   align-items: center;
   justify-content: space-around;
   width: 100px;
 }
 
-.pause p{
+.pause p {
   padding: 0;
   display: flex;
   align-items: center;
@@ -94,19 +94,30 @@
   display: flex;
 }
 
-.slider-loading{
+.slider-loading {
   width: 100%;
   display: flex;
 }
 
-.slider-loading div{  
+.slider-loading div {
   box-shadow: 0 0 2px rgb(0, 0, 0);
   margin: 10px;
   width: 20vw;
   height: 10vw;
   min-height: 100px;
   min-width: 250px;
-  animation: sliderload 100ms ease infinite;
+  background: linear-gradient(to left, #ffffff 0%, #e3e3e3 50%, #ffffff 100%);
+  background-size: 200% 100%;
+  animation: sliderload 2s ease infinite;
+}
+
+@keyframes sliderload {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .product-in-slider {
@@ -245,7 +256,7 @@
 }
 
 @media screen and (max-width: 370px) {
-  .productCard a{
+  .productCard a {
     width: 165px;
   }
 }

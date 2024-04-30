@@ -1,15 +1,15 @@
 .loading {
-    width: 100vw;
-    height: 80vh;
-    background-color: var(--back);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 100%;
-    position: relative;
-  }
-  
-.outside{
+  width: 100vw;
+  height: 80vh;
+  background-color: var(--back);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  position: relative;
+}
+
+.outside {
   position: absolute;
   width: 90px;
   height: 95px;
@@ -19,7 +19,7 @@
   animation: out 2s linear infinite;
 }
 
-.inside{
+.inside {
   position: absolute;
   width: 75px;
   height: 70px;
@@ -29,14 +29,14 @@
   animation: in 2s linear infinite;
 }
 
-.dot1{
+.dot1 {
   position: absolute;
   background-color: var(--v1);
   animation: dot1 1s linear infinite;
   border-radius: 50%;
   z-index: 1;
 }
-.dot2{
+.dot2 {
   position: absolute;
   background-color: var(--black);
   animation: dot2 1s linear infinite;
@@ -44,8 +44,7 @@
   border-radius: 50%;
 }
 
-
-.loading-div{
+.loading-div {
   position: relative;
   height: 11vw;
   min-height: 110px;
@@ -53,95 +52,88 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* background-image: linear-gradient(to right, var(--v1), var(--blue),  var(--v2)); */
   animation: back 1s linear infinite;
   opacity: 0.5;
 }
 
-.loading-card{
+.loading-card {
   width: 200px;
-  height: 300px;  
+  height: 300px;
   box-shadow: 0 0 10px rgb(0, 0, 0);
   margin: 5px;
-  animation: sliderload 100ms ease infinite;
+  background: linear-gradient(to left, #ffffff 0%, #e3e3e3 50%, #ffffff 100%);
+  background-size: 200% 100%;
+  animation: sliderload 2s ease infinite;
 }
 
-
 @keyframes out {
-  0%{
+  0% {
     transform: rotate(360deg);
   }
-  100%{
+  100% {
     transform: rotate(0deg);
   }
 }
 
 @keyframes in {
-  0%{
+  0% {
     transform: rotate(0deg);
   }
-  100%{
+  100% {
     transform: rotate(360deg);
   }
 }
 
 @keyframes dot1 {
-  0%{
+  0% {
     height: 10px;
     width: 40px;
   }
-  50%{
+  50% {
     height: 40px;
     width: 10px;
   }
-  100%{
+  100% {
     height: 10px;
     width: 40px;
   }
 }
 
 @keyframes dot2 {
-  0%{
+  0% {
     height: 10px;
     width: 40px;
   }
-  50%{
+  50% {
     height: 40px;
     width: 10px;
   }
-  100%{
+  100% {
     height: 10px;
     width: 40px;
   }
 }
 
 @keyframes back {
-  0%{
+  0% {
     opacity: 0.5;
   }
-  50%{
+  50% {
     opacity: 0.1;
   }
-  100%{
+  100% {
     opacity: 0.5;
   }
 }
 
-@keyframes sliderload{
-  0%{
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.125), rgba(0, 0, 0, 0.4),  rgba(0, 0, 0, 0.2));
+@keyframes sliderload {
+  0% {
+    background-position: 200% 0;
   }
-  33%{
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.125), rgba(0, 0, 0, 0.4) );
-  }
-  66%{
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.125));
-  }
-  100%{
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.125), rgba(0, 0, 0, 0.4),  rgba(0, 0, 0, 0.2));
+  100% {
+    background-position: -200% 0;
   }
 }
-
 
 @media screen and (max-width: 450px) {
   .loading-card {
