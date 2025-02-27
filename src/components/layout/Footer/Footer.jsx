@@ -1,26 +1,46 @@
 import React from "react";
-import "./Footer.css";
 import logo from "../../../images/logo.png"
+import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer id="footer">
-      <div className="top-footer">
-        <div className="midFooter">
-          <h1><img style={{height: "70px", width: "70px", borderRadius: "20px", border: "1px solid var(--v1)"}} src={logo} alt="ABS" />
-          <br/>E-commerce</h1>
-          <p>High Quality is our first priority</p>
+    <footer className="footer">
+      <div className="footer-container">
+        
+        {/* Logo & About */}
+        <div className="footer-section">
+          <h2 className="footer-title"><img src={logo} width={150} alt="" /></h2>
+          <p>Your go-to store for the best products at the best prices.</p>
         </div>
 
-        <div className="rightFooter">
-          <h4>Follow Us</h4>
-          <a href="#">Instagram</a>
-          <a href="#">Youtube</a>
-          <a href="#">Facebook</a>
+        {/* Quick Links */}
+        <div className="footer-section">
+          <h3 className="footer-title">Quick Links</h3>
+          <ul className="footer-links">
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="https://absabur.pro">Portfolio</a></li>
+          </ul>
         </div>
+
+        {/* Contact & Socials */}
+        <div className="footer-section">
+          <h3 className="footer-title">Contact Us</h3>
+          <p>Email: absabur929@gmail.com</p>
+          <p>Phone: +8801773277050</p>
+          <div className="footer-socials">
+            <a href="https://www.facebook.com/md.abdus.sabur.sayam">Facebook</a>
+            <a href="https://x.com/AbdusSaburSayam">Twitter</a>
+            <a href="https://github.com/absabur">Github</a>
+          </div>
+        </div>
+
       </div>
-      <div className="copy-right">
-        <p>Copyrights 2023 &copy; abs E-commerce</p>
+
+      {/* Copyright */}
+      <div className="footer-bottom">
+        &copy; {new Date().getFullYear()} Your Brand. All rights reserved.
       </div>
     </footer>
   );

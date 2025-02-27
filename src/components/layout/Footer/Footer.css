@@ -1,72 +1,66 @@
-footer {
-  padding: 2vmax;
-  background-color: var(--blue);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  padding-bottom: 0;
-  margin-top: auto;
-}
-.top-footer{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-
-.midFooter {
-  width: 60%;
-
+.footer {
+  background: var(--blue);
+  color: white;
+  padding: 40px 20px;
   text-align: center;
-}
-
-.midFooter > h1 {
-  font-size: 3vmax;
-  font-family: "Roboto";
-  color: var(--v1);
-}
-.midFooter > p {
-  max-width: 60%;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  margin: 1vmax auto;
-}
-
-.rightFooter {
-  width: 20%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.rightFooter > h4 {
-  font-family: "Roboto";
-  font-size: 1.4vmax;
-  text-decoration: underline;
-  margin-bottom: 1rem;
-}
-.rightFooter > a {
-  text-decoration: none;
-  font-size: 1.3vmax;
-  font-weight: 600;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  color: var(--white);
-  transition: all 0.5s;
-  margin: 0.5vmax;
-}
-
-.rightFooter > a:hover {
-  color: var(--v1);
-}
-
-
-.copy-right{
-  opacity: 0.7;
-  padding: 1rem 0.5rem;
-  background-color: var(--black);
   width: 100%;
+}
+
+.footer-container {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin: 20px 0;
+}
+
+.footer-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin: 5px 0;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer-socials {
+  margin-top: 10px;
+}
+
+.footer-socials a {
+  margin-right: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.footer-socials a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  font-size: 14px;
 }

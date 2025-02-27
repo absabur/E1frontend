@@ -78,20 +78,26 @@ function App() {
     });
   };
 
-  const controlNavbar = () => {
-    if (window.scrollY - lastScrollY > 100) {
-      setShow(false);
-      setLastScrollY(window.scrollY);
-    }
-    else if (lastScrollY - window.scrollY >= 100) {
-      setShow(true);
-      setLastScrollY(window.scrollY);
-    }
-  };
-
   useEffect(() => {
+    const controlNavbar = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY + 100) {
+        setShow(false);
+        setLastScrollY(currentScrollY);
+      } else if (currentScrollY < lastScrollY - 100) {
+        setShow(true);
+        setLastScrollY(currentScrollY);
+      }
+    };
+
     window.addEventListener("scroll", controlNavbar);
-  }, [window.scrollY]);
+
+    return () => {
+      window.removeEventListener("scroll", controlNavbar); // Cleanup event listener
+    };
+  }, [lastScrollY]);
+  
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -487,10 +493,7 @@ function App() {
                   )}
                 </>
               )}
-              <Route
-                path="*"
-                element={<LoadingPage error="universal"/>}
-              />
+              <Route path="*" element={<LoadingPage error="universal" />} />
             </Routes>
           </div>
           <Footer />
