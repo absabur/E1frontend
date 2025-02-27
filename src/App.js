@@ -162,11 +162,13 @@ function App() {
           <div
             onClick={() => setToggle(false)}
             style={{
-              width: "100vw",
+              maxWidth: "1700px",
+              width: "100%",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
               backgroundColor: "var(--back)",
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.4)",
             }}
           >
             <Routes>

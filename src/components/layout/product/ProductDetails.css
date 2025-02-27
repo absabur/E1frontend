@@ -614,8 +614,6 @@
   }
 
   .CarouselImage {
-    height: 100vw;
-    width: 100vw;
   }
   .productSection {
     flex-direction: column;
